@@ -4,15 +4,20 @@ include 'koneksi.php';
 $kategori = $_GET['kategori'];
 $kelurahan = $_GET['kelurahan'];
 
+$mode = '';
+
 switch($kategori) {
   case 'ekonomi':
     $sql = "SELECT jenis_usaha AS label, jumlah FROM ekonomi WHERE kelurahan=?";
+    $mode = 'simple';
     break;
   case 'pendidikan':
     $sql = "SELECT jenis_pendidikan AS label, jumlah FROM pendidikan WHERE kelurahan=?";
+    $mode = 'simple';
     break;
   case 'kesehatan':
     $sql = "SELECT fasilitas AS label, jumlah FROM kesehatan WHERE kelurahan=?";
+    $mode = 'simple';
     break;
   case 'kependudukan':
     $sql = "SELECT kelompok_umur, laki_laki, perempuan, jumlah FROM kependudukan WHERE kelurahan=?";
