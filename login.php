@@ -1,9 +1,5 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 session_start();
-
-// Koneksi ke database
 $host = "localhost";
 $user = "root";
 $pass = "";
@@ -11,39 +7,36 @@ $db   = "statistik";
 
 $conn = mysqli_connect($host, $user, $pass, $db);
 
-// Cek koneksi
-if (!$conn) {
-    die("Koneksi gagal: " . mysqli_connect_error());
-}
+$error = '';
 
-// Proses login
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Ambil user dari database
     $result = mysqli_query($conn, "SELECT * FROM users WHERE username='$username'");
     $row = mysqli_fetch_assoc($result);
 
     if ($row && password_verify($password, $row['password'])) {
         $_SESSION['login'] = true;
         $_SESSION['username'] = $row['username'];
-        header("Location: ekonomi.php");
+        header("Location: dashboard.php");
         exit;
     } else {
-        echo "<p style='color:red;'>Username atau Password salah!</p>";
+        $error = "Username atau Password salah!";
     }
 }
 ?>
 
-<!-- Form Login -->
-<h2>Login</h2>
-<form method="post">
-  <label>Username:</label><br>
-  <input type="text" name="username" required><br><br>
-  
-  <label>Password:</label><br>
-  <input type="password" name="password" required><br><br>
-  
-  <button type="submit" name="login">Login</button>
-</form>
+<link rel="stylesheet" href="style.css">
+
+<div class="container">
+  <h2>Login</h2>
+  <?php if ($error) echo "<div class='message'>$error</div>"; ?>
+  <form method="post">
+    <input type="text" name="username" placeholder="Username" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <button type="submit" name="login">Login</button>
+  </form>
+ <p>Belum punya akun? <a href="register.php" class="link-daftar">Daftar</a></p>
+
+</div>
