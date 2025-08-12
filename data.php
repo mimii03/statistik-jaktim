@@ -26,7 +26,7 @@
     }
 
     .button {
-      background-color: #2980b9;
+      background-color: #245472ff;
       color: white;
       padding: 15px 30px;
       text-decoration: none;
@@ -36,7 +36,7 @@
     }
 
     .button:hover {
-      background-color: #1c598a;
+      background-color: #7691a7ff;
     }
 
     select {
