@@ -1,19 +1,25 @@
+
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html, body {
-  height: 100%;
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
+  background-color: #f4f4f4;
   display: flex;
-  background-color: #f4f4f4; 
+  flex-direction: column; 
+  align-items: center;    
+  justify-content: center; 
+}
+
+h1 {
+  margin-bottom: 20px;
 }
 
 canvas {
@@ -40,7 +46,8 @@ canvas {
 }
 
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+select {
   width: 100%;
   padding: 12px 15px;
   margin: 12px 0;
@@ -52,17 +59,16 @@ input[type="password"] {
   transition: all 0.3s ease;
 }
 
-input:focus {
+input:focus, select:focus {
   outline: none;
   background: #e9f7ff;
   box-shadow: 0 0 5px rgba(46, 191, 145, 0.6);
 }
 
-button {
+button, .button {
   background: #2ebf91;
   color: white;
   padding: 12px;
-  width: 100%;
   border: none;
   border-radius: 10px;
   font-size: 16px;
@@ -71,10 +77,29 @@ button {
   margin-top: 10px;
   box-shadow: 0 8px 20px rgba(46, 191, 145, 0.5);
   transition: 0.3s;
+  text-decoration: none;
+  display: inline-block;
 }
 
-button:hover {
+button:hover, .button:hover {
   background: #24a97f;
+}
+
+.button {
+  background-color: #245472ff;
+  padding: 15px 30px;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.button:hover {
+  background-color: #7691a7ff;
+}
+
+.small-btn {
+  width: 30%;
+  display: inline-block;
+  padding: 10px 20px;
 }
 
 a {

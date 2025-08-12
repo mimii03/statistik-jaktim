@@ -4,46 +4,6 @@
   <meta charset="UTF-8">
   <title>Pilih Kategori Data</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-
-    h1 {
-      margin-bottom: 20px;
-    }
-
-    .button {
-      background-color: #245472ff;
-      color: white;
-      padding: 15px 30px;
-      text-decoration: none;
-      border-radius: 5px;
-      margin: 10px;
-      transition: background-color 0.3s;
-    }
-
-    .button:hover {
-      background-color: #7691a7ff;
-    }
-
-    select {
-      padding: 10px;
-      margin: 10px;
-    }
-  </style>
 </head>
 <body>
     <div class="sidebar hidden" id="sidebar">
@@ -134,7 +94,9 @@
     <option value="kesehatan">🏥 Kesehatan</option>
   </select>
 
-  <button onclick="redirectToData()" class="button">Tampilkan Data</button>
+   <div style="text-align: center; margin-top: 20px;">
+      <button onclick="redirectToData()" class="small-btn">Tampilkan Data</button>
+    </div>
 
   <script>
     function toggleSidebar() {
