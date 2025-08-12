@@ -2,6 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pilih Kategori Data</title>
   <link rel="stylesheet" href="style.css">
   <style>
@@ -56,7 +57,7 @@
 
   <div class="navbar">
     <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
-    <span>Beranda</span>
+    <a href="index.html" class="beranda-link">Beranda</a>
     
     <div class="dropdown">
       <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">

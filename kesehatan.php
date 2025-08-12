@@ -2,6 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Grafik Kesehatan</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="style.css">
@@ -17,7 +18,7 @@
 
   <div class="navbar">
     <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
-    <span>Beranda</span>
+    <a href="index.html" class="beranda-link">Beranda</a>
     
     <div class="dropdown">
       <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
