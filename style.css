@@ -227,3 +227,19 @@ p.error {
 .sidebar.hidden + .content {
   margin-left: 0;
 }
+
+.beranda-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    height: 60px;
+    transform: translateY(-8px); /* angka negatif = naik */
+}
+
+.beranda-link:hover {
+    text-decoration: underline;
+}
