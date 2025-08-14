@@ -16,6 +16,7 @@ body {
   flex-direction: column; 
   align-items: center;    
   justify-content: center; 
+  margin-top: 80px;
 }
 
 h1 {
@@ -36,6 +37,7 @@ canvas {
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
   width: 100%;
   max-width: 400px;
+  margin: 0 auto;
   text-align: center;
 }
 
@@ -97,10 +99,17 @@ button:hover, .button:hover {
   background-color: #7691a7ff;
 }
 
+
+#kategori {
+  width: 70%;
+  max-width: 300px; 
+  margin: 12px 0; 
+}
+
 .small-btn {
-  width: 30%;
-  display: inline-block;
+  width: 80%; 
   padding: 10px 20px;
+  display: inline-block; 
 }
 
 a {
