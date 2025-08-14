@@ -18,7 +18,7 @@
 
   <div class="navbar">
     <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
-    <a href="index.html" class="beranda-link">Beranda</a>
+   <a href="index.html" class="beranda-link">Beranda</a>
     
     <div class="dropdown">
       <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
@@ -85,11 +85,15 @@
     </div>
   </div>
   
-  <h2 id="judul">Grafik Statistik Kesehatan</h2>
+  <?php
+  $kelurahan = $_GET['kelurahan'];
+  ?>
+  <h2>Grafik Statistik Kesehatan - <?php echo htmlspecialchars($kelurahan); ?></h2>
   <canvas id="chartKesehatan"></canvas>
   <br>
-  <a href="download.php?kategori=ekonomi&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-download">⬇️ Download CSV</a>
-<button class="btn-download" data-chart="chartKesehatan">📥 Download PNG</button>
+  <a href="download.php?kategori=kesehatan&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-download">⬇️ Download CSV</a>
+  <button class="btn-download" data-chart="chartKesehatan">📥 Download PNG</button>
+
 
   <script>
     function toggleSidebar() {
@@ -109,15 +113,9 @@
       }
     }
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const kelurahan = urlParams.get('kelurahan') || 'Pulo Gebang';
-
-    document.getElementById('judul').textContent = `Grafik Statistik Kesehatan - ${kelurahan}`;
-    document.getElementById('downloadLink').href = `download.php?kategori=kesehatan&kelurahan=${encodeURIComponent(kelurahan)}`;
-
     const ctx = document.getElementById("chartKesehatan").getContext("2d");
 
-    fetch(`getdata.php?kategori=kesehatan&kelurahan=${encodeURIComponent(kelurahan)}`)
+    fetch("getdata.php?kategori=kesehatan&kelurahan=<?php echo urlencode($kelurahan); ?>")
       .then(res => res.json())
       .then(data => {
         new Chart(ctx, {
@@ -167,7 +165,7 @@
         }
         var link = document.createElement('a');
         link.href = canvas.toDataURL('image/png', 1.0);
-        link.download = chartId + ".png"; // nama file sesuai chart
+        link.download = chartId + ".png"; 
         link.click();
     });
 });
