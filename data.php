@@ -86,18 +86,17 @@
 
   <h1>Pilih Kategori Data</h1>
 
-  <label for="kategori">Pilih Kategori Data:</label>
-  <select id="kategori">
-    <option value="">-- Pilih Kategori --</option>
-    <option value="pendidikan">📚 Pendidikan</option>
-    <option value="kependudukan">🧑‍🤝‍🧑 Kependudukan</option>
-    <option value="ekonomi">💼 Ekonomi</option>
-    <option value="kesehatan">🏥 Kesehatan</option>
-  </select>
-
-   <div style="text-align: center; margin-top: 20px;">
-      <button onclick="redirectToData()" class="small-btn">Tampilkan Data</button>
-    </div>
+<label for="kategori">Pilih Kategori Data:</label>
+<select id="kategori">
+  <option value="">-- Pilih Kategori --</option>
+  <option value="pendidikan">📚 Pendidikan</option>
+  <option value="kependudukan">🧑‍🤝‍🧑 Kependudukan</option>
+  <option value="ekonomi">💼 Ekonomi</option>
+  <option value="kesehatan">🏥 Kesehatan</option>
+</select>
+<div style="text-align: center; margin-top: 20px;">
+  <button onclick="redirectToData()" class="small-btn">Tampilkan Data</button>
+</div>
 
   <script>
     function toggleSidebar() {
