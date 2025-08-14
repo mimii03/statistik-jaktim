@@ -1,72 +1,37 @@
-<?php
-
-$koneksi = new mysqli("localhost", "root", "", "statistik");
-
-if ($koneksi->connect_error) {
-    die("Koneksi gagal: " . $koneksi->connect_error);
-}
-
-$sql = "SELECT jenis_usaha, jumlah FROM ekonomi WHERE kelurahan = 'Pulo Gebang'";
-$result = $koneksi->query($sql);
-
-$labels = [];
-$dataJumlah = [];
-
-while ($row = $result->fetch_assoc()) {
-    $labels[] = $row["jenis_usaha"];
-    $dataJumlah[] = $row["jumlah"];
-}
-
-$koneksi->close();
-?>
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <title>Grafik Ekonomi Pulo Gebang</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f9f9f9;
-            padding: 30px;
-        }
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .chart-container {
-            width: 95%;
-            max-width: 1000px;
-            margin: auto;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grafik Ekonomi</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="sidebar hidden" id="sidebar">
+  <div class="sidebar hidden" id="sidebar">
     <h3>Statistik</h3>
     <a href="pendidikan.php">📚 Pendidikan</a>
     <a href="kependudukan.php">🧑‍🤝‍🧑 Kependudukan</a>
-    <a href="ekonomi.php">💼 Ekonomi</a>
+    <a href="ekonomi.php" class="active">💼 Ekonomi</a>
     <a href="kesehatan.php">🏥 Kesehatan</a>
   </div>
 
   <div class="navbar">
     <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
-    <span>Beranda</span>
-    
+    <a href="index.html" class="beranda-link">Beranda</a>
+
     <div class="dropdown">
       <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
       <div class="dropdown-content">
         <div id="kelurahanList">
+          <!-- daftar kelurahan sama seperti kependudukan -->
           <a href="data.php?kelurahan=Balimester">Balimester</a>
           <a href="data.php?kelurahan=Batu Ampar">Batu Ampar</a>
           <a href="data.php?kelurahan=Baru">Baru</a>
           <a href="data.php?kelurahan=Batuampar">Batuampar</a>
           <a href="data.php?kelurahan=Bidaracina">Bidaracina</a>
           <a href="data.php?kelurahan=Bambu Apus">Bambu Apus</a>
-          <a href="data.php?kelurahan=Cawang">Cawang</a>
+            <a href="data.php?kelurahan=Cawang">Cawang</a>
           <a href="data.php?kelurahan=Ceger">Ceger</a>
           <a href="data.php?kelurahan=Cibubur">Cibubur</a>
           <a href="data.php?kelurahan=Cipinang">Cipinang</a>
@@ -116,20 +81,22 @@ $koneksi->close();
           <a href="data.php?kelurahan=Susukan">Susukan</a>
           <a href="data.php?kelurahan=Utan Kayu Selatan">Utan Kayu Selatan</a>
           <a href="data.php?kelurahan=Utan Kayu Utara">Utan Kayu Utara</a>
+          <!-- ... dan seterusnya -->
         </div>
       </div>
     </div>
   </div>
-  
-    <h2>Statistik Usaha Ekonomi di Pulo Gebang</h2>
-    <div class="chart-container">
-        <canvas id="grafikEkonomi"></canvas>
-        <br>
-        <center><a href="download.php?kategori=ekonomi&kelurahan=Pulo Gebang">⬇ Download CSV</a></center>
-    </div>
 
-    <script>
-        function toggleSidebar() {
+  <?php
+  $kelurahan = $_GET['kelurahan'];
+  ?>
+  <h2>Grafik Statistik Ekonomi - <?php echo htmlspecialchars($kelurahan); ?></h2>
+  <canvas id="chartEkonomi"></canvas>
+  <br>
+  <a href="download.php?kategori=ekonomi&kelurahan=<?php echo urlencode($kelurahan); ?>">⬇️ Download CSV</a>
+
+  <script>
+    function toggleSidebar() {
       const sidebar = document.getElementById("sidebar");
       sidebar.classList.toggle("hidden");
     }
@@ -146,49 +113,47 @@ $koneksi->close();
       }
     }
 
-        const ctx = document.getElementById("grafikEkonomi").getContext("2d");
+    const ctx = document.getElementById("chartEkonomi").getContext("2d");
 
+    fetch("getdata.php?kategori=ekonomi&kelurahan=<?php echo urlencode($kelurahan); ?>")
+      .then(res => res.json())
+      .then(data => {
         new Chart(ctx, {
-            type: "bar",
-            data: {
-                labels: <?php echo json_encode($labels); ?>,
-                datasets: [
-                    {
-                        label: "Jumlah Unit Usaha",
-                        data: <?php echo json_encode($dataJumlah); ?>,
-                        backgroundColor: "rgba(75, 192, 192, 0.7)"
-                    }
-                ]
-            },
-            options: {
-                indexAxis: 'y',
-                responsive: true,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: "Jumlah Unit Usaha per Jenis Usaha"
-                    },
-                    legend: {
-                        display: false
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Jenis Usaha'
-                        }
-                    },
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Jumlah Unit Usaha'
-                        }
-                    }
-                }
-            }
+          type: 'bar',
+          data: {
+            labels: data.labels,
+            datasets: [{
+              label: 'Data Ekonomi',
+              data: data.jumlah,
+              backgroundColor: [
+                'rgba(52, 152, 219, 0.7)',
+                'rgba(46, 204, 113, 0.7)',
+                'rgba(231, 76, 60, 0.7)',
+                'rgba(241, 196, 15, 0.7)',
+                'rgba(155, 89, 182, 0.7)',
+                'rgba(230, 126, 34, 0.7)',
+                'rgba(127, 140, 141, 0.7)',
+                'rgba(52, 73, 94, 0.7)'
+              ],
+              borderColor: [
+                'rgba(41, 128, 185, 1)',
+                'rgba(39, 174, 96, 1)',
+                'rgba(192, 57, 43, 1)',
+                'rgba(243, 156, 18, 1)',
+                'rgba(142, 68, 173, 1)',
+                'rgba(211, 84, 0, 1)',
+                'rgba(99, 110, 114, 1)',
+                'rgba(44, 62, 80, 1)'
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            indexAxis: 'y',
+            responsive: true
+          }
         });
-    </script>
+      });
+  </script>
 </body>
 </html>
