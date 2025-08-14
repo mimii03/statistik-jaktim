@@ -91,7 +91,8 @@
   <h2>Grafik Statistik Kependudukan - <?php echo htmlspecialchars($kelurahan); ?></h2>
   <canvas id="chartKependudukan"></canvas>
   <br>
-  <a href="download.php?kategori=kependudukan&kelurahan=<?php echo urlencode($kelurahan); ?>">⬇️ Download CSV</a>
+  <a href="download.php?kategori=ekonomi&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-download">⬇️ Download CSV</a>
+<button class="btn-download" data-chart="chartKependudukan">📥 Download PNG</button>
 
   <script>
     function toggleSidebar() {
@@ -153,6 +154,22 @@
           }
         });
       });
+
+ document.querySelectorAll(".btn-download").forEach(function(button) {
+    button.addEventListener("click", function() {
+        var chartId = this.getAttribute("data-chart");
+        var canvas = document.getElementById(chartId);
+        if (!canvas) {
+            console.error("Canvas dengan ID " + chartId + " tidak ditemukan!");
+            return;
+        }
+        var link = document.createElement('a');
+        link.href = canvas.toDataURL('image/png', 1.0);
+        link.download = chartId + ".png"; // nama file sesuai chart
+        link.click();
+    });
+});
+
   </script>
 </body>
 </html>
