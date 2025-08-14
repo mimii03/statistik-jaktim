@@ -90,6 +90,7 @@ button:hover, .button:hover {
   padding: 15px 30px;
   border-radius: 5px;
   margin: 10px;
+  width: 30px;
 }
 
 .button:hover {
