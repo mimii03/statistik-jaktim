@@ -86,6 +86,7 @@
 
   <h1>Pilih Kategori Data</h1>
 
+  <div class="centered-container">
 <label for="kategori">Pilih Kategori Data:</label>
 <select id="kategori">
   <option value="">-- Pilih Kategori --</option>
@@ -94,6 +95,8 @@
   <option value="ekonomi">💼 Ekonomi</option>
   <option value="kesehatan">🏥 Kesehatan</option>
 </select>
+</div>
+
 <div style="text-align: center; margin-top: 20px;">
   <button onclick="redirectToData()" class="small-btn">Tampilkan Data</button>
 </div>

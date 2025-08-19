@@ -8,7 +8,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = trim($_POST["password"]);
     $confirm  = trim($_POST["confirm"]);
 
-    // Validasi input kosong
     if (empty($username) || empty($email) || empty($password) || empty($confirm)) {
         $error = "Semua field harus diisi!";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -16,15 +15,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif ($password !== $confirm) {
         $error = "Password dan konfirmasi password tidak sama!";
     } else {
-        // Cek apakah username atau email sudah dipakai
         $check = mysqli_query($conn, "SELECT * FROM users WHERE username='$username' OR email='$email'");
         if (mysqli_num_rows($check) > 0) {
             $error = "Username atau Email sudah digunakan!";
         } else {
-            // Enkripsi password
             $hashed = password_hash($password, PASSWORD_DEFAULT);
 
-            // Simpan ke database
             $query = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$hashed')";
             if (mysqli_query($conn, $query)) {
                 header("Location: login.php");

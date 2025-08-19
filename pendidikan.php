@@ -164,7 +164,7 @@
         }
         var link = document.createElement('a');
         link.href = canvas.toDataURL('image/png', 1.0);
-        link.download = chartId + ".png"; // nama file sesuai chart
+        link.download = chartId + ".png"; 
         link.click();
     });
 });

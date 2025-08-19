@@ -20,6 +20,7 @@ body {
 
 h1 {
   margin-bottom: 20px;
+  text-align: center;
 }
 
 h2 {
@@ -34,6 +35,17 @@ canvas {
   width: 900px;
   margin: 20px auto;
   display: block;
+}
+
+.centered-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  margin: 20px 0; 
+}
+
+.centered-container label {
+  margin-bottom: 10px; 
 }
 
 .container {
@@ -112,8 +124,8 @@ button:hover, .button:hover {
   margin: 12px 0; 
 }
 
-.small-btn {
-  width: 80%; 
+button.small-btn {
+  width: 20%; 
   padding: 10px 20px;
   display: inline-block; 
 }
