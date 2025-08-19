@@ -156,7 +156,8 @@ p.error {
   position: fixed;
   transition: width 0.3s;
   overflow-y: auto;
-  padding-top: 60px;
+  padding: 20px 0px;
+  top: 60px;
 }
 
 .sidebar.hidden {
@@ -187,7 +188,8 @@ p.error {
   color: white;
   display: flex;
   align-items: center;
-  padding: 0 20px;
+  margin: 0;
+  padding: 10px 20px;
   position: fixed;
   top: 0;
   z-index: 1;
