@@ -91,7 +91,7 @@
   <h2>Grafik Statistik Pendidikan - <?php echo htmlspecialchars($kelurahan); ?></h2>
   <canvas id="chartPendidikan"></canvas>
   <br>
-  <a href="download.php?kategori=ekonomi&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-download">⬇️ Download CSV</a>
+  <a href="download.php?kategori=pendidikan&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-download">⬇️ Download CSV</a>
   <button class="btn-download" data-chart="chartPendidikan">📥 Download PNG</button>
 
 
