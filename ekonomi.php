@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Grafik Ekonomi</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Grafik Ekonomi Pulo Gebang</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+            padding: 30px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .chart-container {
+            width: 95%;
+            max-width: 1000px;
+            margin: auto;
+        }
+    </style>
 </head>
 <body>
   <div class="sidebar hidden" id="sidebar">
@@ -86,15 +101,13 @@
       </div>
     </div>
   </div>
-
-  <?php
-  $kelurahan = $_GET['kelurahan'];
-  ?>
-  <h2>Grafik Statistik Ekonomi - <?php echo htmlspecialchars($kelurahan); ?></h2>
-  <canvas id="chartEkonomi"></canvas>
-  <br>
-  <a href="download.php?kategori=ekonomi&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-download">⬇️ Download CSV</a>
-<button class="btn-download" data-chart="chartEkonomi">📥 Download PNG</button>
+  
+    <h2>Statistik Usaha Ekonomi di Pulo Gebang</h2>
+    <div class="chart-container">
+        <canvas id="grafikEkonomi"></canvas>
+        <br>
+        <center><a href="download.php?kategori=ekonomi&kelurahan=Pulo Gebang">⬇ Download CSV</a></center>
+    </div>
 
   <script>
     function toggleSidebar() {
