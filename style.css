@@ -12,7 +12,6 @@ html, body {
 
 body {
   background-color: #f4f4f4;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
   padding-top: 80px;
@@ -21,6 +20,13 @@ body {
 
 h1 {
   margin-bottom: 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #333;
 }
 
 canvas {
@@ -230,7 +236,6 @@ p.error {
 }
 
 .content {
-  margin-left: 250px;
   text-align: center;
 }
 
@@ -247,7 +252,7 @@ p.error {
     color: white;
     text-decoration: none;
     height: 60px;
-    transform: translateY(-8px); /* angka negatif = naik */
+    transform: translateY(-8px);
 }
 
 .beranda-link:hover {
@@ -260,9 +265,8 @@ p.error {
   border: none;
   padding: 6px 12px;
   border-radius: 5px;
-  cursor: pointer;
-  margin-bottom: 10px;
   font-size: 14px;
+  margin-left: 550px;
 }
 
 .btn-download:hover {

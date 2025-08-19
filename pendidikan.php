@@ -94,7 +94,6 @@
   <a href="download.php?kategori=pendidikan&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-download">⬇️ Download CSV</a>
   <button class="btn-download" data-chart="chartPendidikan">📥 Download PNG</button>
 
-
   <script>
     function toggleSidebar() {
       const sidebar = document.getElementById("sidebar");
