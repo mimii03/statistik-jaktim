@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php include 'style.css'; ?>
     </style>
 </head>
-<body>
+<body class="login-page">
     <div class="container">
         <h2>Register</h2>
         <?php if (!empty($error)) { echo "<p class='error'>$error</p>"; } ?>

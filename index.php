@@ -1,11 +1,13 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Statistik Jaktim</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,19 +22,29 @@
 
   <div class="navbar">
     <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
-  <a href="index.html" class="beranda-link">Beranda</a>
+    <a href="index.php" class="beranda-link">Beranda</a>
 
-  <div class="auth-buttons">
-  <a href="login.php" class="btn-login">Login</a>
-  <a href="register.php" class="btn-register">Register</a>
-</div>
+    <div class="auth-buttons">
+      <?php if(isset($_SESSION['username'])): ?>
+        <div class="dropdown">
+          <button class="btn-login">
+            <?php echo htmlspecialchars($_SESSION['username']); ?> ⬇
+          </button>
+          <div class="dropdown-content">
+            <a href="logout.php">Logout</a>
+          </div>
+        </div>
+      <?php else: ?>
+        <a href="login.php" class="btn-login">Login</a>
+        <a href="register.php" class="btn-register">Register</a>
+      <?php endif; ?>
+    </div>
 
-    
     <div class="dropdown">
       <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
       <div class="dropdown-content">
         <div id="kelurahanList">
-          <a href="data.php?kelurahan=Balimester">Balimester</a>
+<a href="data.php?kelurahan=Balimester">Balimester</a>
           <a href="data.php?kelurahan=Batu Ampar">Batu Ampar</a>
           <a href="data.php?kelurahan=Baru">Baru</a>
           <a href="data.php?kelurahan=Batuampar">Batuampar</a>
@@ -87,15 +99,14 @@
           <a href="data.php?kelurahan=Setu">Setu</a>
           <a href="data.php?kelurahan=Susukan">Susukan</a>
           <a href="data.php?kelurahan=Utan Kayu Selatan">Utan Kayu Selatan</a>
-          <a href="data.php?kelurahan=Utan Kayu Utara">Utan Kayu Utara</a>
-        </div>
+          <a href="data.php?kelurahan=Utan Kayu Utara">Utan Kayu Utara</a>        </div>
       </div>
     </div>
   </div>
 
   <div class="content">
     <h2>Selamat Datang di Statistik Jaktim</h2>
-    <p>Silakan pilih kategori kelurahan dari navigasi bar diatas.</p>
+    <p>Silakan pilih kategori kelurahan dari navigasi bar di atas.</p>
   </div>
 
   <script>
