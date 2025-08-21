@@ -19,7 +19,7 @@ if (isset($_POST['login'])) {
     if ($row && password_verify($password, $row['password'])) {
         $_SESSION['login'] = true;
         $_SESSION['username'] = $row['username'];
-        header("Location: index.html");
+        header("Location: index.php");
         exit;
     } else {
         $error = "Username atau Password salah!";
@@ -33,7 +33,7 @@ if (isset($_POST['login'])) {
   <title>Login</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="login-page"> <!-- 👈 tambahin class khusus -->
+<body class="login-page"> 
   <div class="container">
     <h2>Login</h2>
     <?php if ($error) echo "<div class='message'>$error</div>"; ?>
