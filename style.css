@@ -306,36 +306,36 @@ p.error {
   background-color: #2980b9;
 }
 
-.auth-buttons {
-  margin-left: auto;
-  display: flex;
-  gap: 10px;
-}
-
-.auth-buttons a {
-  position: relative;
-  z-index: 1000;
-}
-
-
-.btn-login, .btn-register {
-  background-color: #3498db;
-  color: white;
-  padding: 6px 14px;
-  text-decoration: none;
-  border-radius: 6px;
-  font-size: 14px;
-  transition: background 0.3s ease;
-}
-
-.btn-register {
-  background-color: #2ecc71;
-}
-
 .btn-login:hover {
-  background-color: #2980b9;
+  background-color: #d9f0ff;
 }
 
 .btn-register:hover {
   background-color: #27ae60;
 }
+
+.auth-buttons {
+  position: absolute;
+  top: 50px; /* atur jarak dari atas */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 9999; /* biar ga ketimpa dropdown */
+}
+
+.auth-buttons a {
+  padding: 6px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: white;
+}
+
+.btn-login {
+  background: #007bff;
+}
+
+.btn-register {
+  background: #28a745;
+}
+
