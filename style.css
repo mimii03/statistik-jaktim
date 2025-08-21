@@ -49,7 +49,7 @@ canvas {
 }
 
 .container {
-  background: #ffffffee;
+  background: #73bff1ee;
   padding: 40px 30px;
   border-radius: 20px;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
@@ -301,41 +301,44 @@ p.error {
   font-size: 14px;
   margin-left: 55px;
 }
-
-.btn-download:hover {
-  background-color: #2980b9;
-}
-
-.btn-login:hover {
-  background-color: #d9f0ff;
-}
-
-.btn-register:hover {
-  background-color: #27ae60;
-}
-
 .auth-buttons {
-  position: absolute;
-  top: 50px; /* atur jarak dari atas */
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
-  gap: 10px;
-  z-index: 9999; /* biar ga ketimpa dropdown */
+  gap: 10px;    /* dorong ke kanan */
+  margin-left: 850px;    /* kasih jarak ke tepi kanan */
+  margin-top: -20px;
 }
 
 .auth-buttons a {
-  padding: 6px 14px;
-  border-radius: 6px;
+  padding: 6px 16px;
+  border-radius: 8px;
   text-decoration: none;
-  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #4e73df, #1d4ed8); /* gaya biru */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
 }
 
-.btn-login {
-  background: #007bff;
+/* Hover effect */
+.auth-buttons a:hover {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
-.btn-register {
-  background: #28a745;
+body.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #74ebd5, #acb6e5);
 }
 
+body.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #74ebd5, #acb6e5);
+}

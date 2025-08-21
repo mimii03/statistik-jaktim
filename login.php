@@ -19,24 +19,30 @@ if (isset($_POST['login'])) {
     if ($row && password_verify($password, $row['password'])) {
         $_SESSION['login'] = true;
         $_SESSION['username'] = $row['username'];
-        header("Location: dashboard.php");
+        header("Location: index.html");
         exit;
     } else {
         $error = "Username atau Password salah!";
     }
 }
 ?>
-
-<link rel="stylesheet" href="style.css">
-
-<div class="container">
-  <h2>Login</h2>
-  <?php if ($error) echo "<div class='message'>$error</div>"; ?>
-  <form method="post">
-    <input type="text" name="username" placeholder="Username" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <button type="submit" name="login">Login</button>
-  </form>
- <p>Belum punya akun? <a href="register.php" class="link-daftar">Daftar</a></p>
-
-</div>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page"> <!-- 👈 tambahin class khusus -->
+  <div class="container">
+    <h2>Login</h2>
+    <?php if ($error) echo "<div class='message'>$error</div>"; ?>
+    <form method="post">
+      <input type="text" name="username" placeholder="Username" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <button type="submit" name="login">Login</button>
+    </form>
+    <p>Belum punya akun? <a href="register.php" class="link-daftar">Daftar</a></p>
+  </div>
+</body>
+</html>
