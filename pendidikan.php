@@ -18,7 +18,7 @@
 
   <div class="navbar">
     <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
-   <a href="index.html" class="beranda-link">Beranda</a>
+   <a href="index.php" class="beranda-link">Beranda</a>
     
     <div class="dropdown">
       <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
@@ -94,9 +94,10 @@
   <center><a href="download.php?kategori=pendidikan&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-download">⬇️ Download CSV</a></center>
   <center><button class="btn-download" data-chart="chartPendidikan">📥 Download PNG</button></center>
 
- <h3>Belum ada data? Tambah data 
-  <a href="tambahdata.php?kelurahan=<?php echo urlencode($kelurahan); ?>">disini</a>
+ <h3>Belum ada data?
+  <a href="tambahdata.php?kelurahan=<?php echo urlencode($kelurahan); ?>">tambah data</a>
 </h3>
+
 
   <script>
     function toggleSidebar() {

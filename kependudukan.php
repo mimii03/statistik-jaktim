@@ -18,7 +18,7 @@
 
   <div class="navbar">
     <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
-    <a href="index.html" class="beranda-link">Beranda</a>
+    <a href="index.php" class="beranda-link">Beranda</a>
     
     <div class="dropdown">
       <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
@@ -91,8 +91,8 @@
   <h2>Grafik Statistik Kependudukan - <?php echo htmlspecialchars($kelurahan); ?></h2>
   <canvas id="chartKependudukan"></canvas>
   <br>
-  <a href="download.php?kategori=ekonomi&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-download">⬇️ Download CSV</a>
-<button class="btn-download" data-chart="chartKependudukan">📥 Download PNG</button>
+  <center><a href="download.php?kategori=ekonomi&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-download">⬇️ Download CSV</a></center>
+  <center><button class="btn-download" data-chart="chartKependudukan">📥 Download PNG</button></center>
 
   <script>
     function toggleSidebar() {
