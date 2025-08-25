@@ -1,4 +1,70 @@
+
 <?php
+session_start();
+
+// koneksi database admin
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db   = "statistik";
+$conn = new mysqli($host, $user, $pass, $db);
+if ($conn->connect_error) {
+    die("Koneksi gagal: " . $conn->connect_error);
+}
+
+// LOGIN
+if (isset($_POST['login'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $sql = "SELECT * FROM admin WHERE username='$username' AND password='$password'";
+    $result = $conn->query($sql);
+
+    if ($result && $result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $_SESSION['username']  = $row['username'];
+        $_SESSION['kelurahan'] = $row['kelurahan'];
+    } else {
+        $error = "Username atau Password salah!";
+    }
+}
+
+// LOGOUT
+if (isset($_GET['logout'])) {
+    session_destroy();
+    header("Location: tambahdata.php");
+    exit;
+}
+
+// CEK LOGIN
+if (!isset($_SESSION['username'])) {
+    ?>
+    <!DOCTYPE html>
+    <html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <title>Login Admin</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body class="flex items-center justify-center h-screen bg-gray-100">
+        <div class="bg-white p-6 rounded shadow-md w-80">
+            <h2 class="text-xl font-semibold mb-4">Login Admin</h2>
+            <?php if (!empty($error)) echo "<p class='text-red-500'>$error</p>"; ?>
+            <form method="POST">
+                <input type="text" name="username" placeholder="Username" required class="w-full mb-3 px-3 py-2 border rounded">
+                <input type="password" name="password" placeholder="Password" required class="w-full mb-3 px-3 py-2 border rounded">
+                <button type="submit" name="login" class="w-full bg-blue-500 text-white py-2 rounded">Login</button>
+            </form>
+        </div>
+    </body>
+    </html>
+    <?php
+    exit;
+}
+?>
+
+<?php
+
 $type = $_GET['type'] ?? 'pendidikan';
 
 $map = [
