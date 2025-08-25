@@ -20,6 +20,23 @@
     <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
     <a href="index.php" class="beranda-link">Beranda</a>
     
+<div class="auth-buttons">
+      <?php if(isset($_SESSION['username'])): ?>
+        <div class="dropdown">
+          <button class="btn-login">
+            <?php echo htmlspecialchars($_SESSION['username']); ?> ⬇
+          </button>
+          <div class="dropdown-content">
+            <a href="logout.php">Logout</a>
+          </div>
+        </div>
+      <?php else: ?>
+        <a href="login.php" class="btn-login">Login</a>
+        <a href="register.php" class="btn-register">Register</a>
+      <?php endif; ?>
+    </div>
+
+
     <div class="dropdown">
       <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
       <div class="dropdown-content">
