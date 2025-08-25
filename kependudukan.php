@@ -111,6 +111,12 @@
   <center><a href="download.php?kategori=ekonomi&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-download">⬇️ Download CSV</a></center>
   <center><button class="btn-download" data-chart="chartKependudukan">📥 Download PNG</button></center>
 
+  <h3>Belum ada data?
+    <a href="data.php?type=kependudukan&action=add&kelurahan=<?= urlencode($kelurahan) ?>">
+      Tambah Data
+    </a>
+  </h3>
+
   <script>
     function toggleSidebar() {
       const sidebar = document.getElementById("sidebar");
