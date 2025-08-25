@@ -103,8 +103,9 @@
   </div>
   
   <?php
-  $kelurahan = $_GET['kelurahan'];
-  ?>
+$kelurahan = isset($_GET['kelurahan']) ? $_GET['kelurahan'] : '';
+?>
+  
   <h2>Grafik Statistik Pendidikan - <?php echo htmlspecialchars($kelurahan); ?></h2>
   <canvas id="chartPendidikan"></canvas>
   <br>
