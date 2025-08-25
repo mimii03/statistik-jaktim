@@ -167,21 +167,31 @@ if (isset($_GET['edit'])) {
                 <input type="number" name="jumlah" placeholder="Jumlah" value="<?= $edit_data['jumlah'] ?? '' ?>" required class="w-full px-3 py-2 border rounded">
 
             <?php elseif ($type == 'kesehatan'): ?>
-                <input type="text" name="fasilitas_kesehatan" placeholder="Nama Fasilitas" value="<?= $edit_data['fasilitas_kesehatan'] ?? '' ?>" required class="w-full px-3 py-2 border rounded">
+                <select name="fasilitas" required class="w-full px-3 py-2 border rounded">
+                    <option value="">Pilih Fasilitas</option>
+                    <?php foreach (['Rumah Sakit','Puskesmas','Pos Kesehatan','Klinik Kesehatan','Tempat Praktek Dokter','Tempat Praktek Bidan','Apotik','Toko Obat'] as $j): ?>
+                        <option value="<?= $j ?>" <?= isset($edit_data['fasilitas']) && $edit_data['fasilitas'] === $j ? 'selected' : '' ?>><?= $j ?></option>
+                    <?php endforeach ?>
+                </select>
                 <input type="number" name="jumlah_kesehatan" placeholder="Jumlah" value="<?= $edit_data['jumlah'] ?? '' ?>" required class="w-full px-3 py-2 border rounded">
 
             <?php elseif ($type == 'ekonomi'): ?>
-                <input type="text" name="fasilitas" placeholder="Nama Fasilitas Ekonomi" value="<?= $edit_data['fasilitas'] ?? '' ?>" required class="w-full px-3 py-2 border rounded">
+                <select name="fasilitas" required class="w-full px-3 py-2 border rounded">
+                    <option value="">Pilih Fasilitas Ekonomi</option>
+                    <?php foreach (['Pasar Lingkungan','Mini Market','Pabrik Industri','Toko','Warung/Warteg','Lokasi Kaki Lima','Bank','POM Bensin','Kuliner'] as $j): ?>
+                        <option value="<?= $j ?>" <?= isset($edit_data['fasilitas']) && $edit_data['fasilitas'] === $j ? 'selected' : '' ?>><?= $j ?></option>
+                    <?php endforeach ?>
+                </select>
                 <input type="number" name="jumlah_fasilitas" placeholder="Jumlah" value="<?= $edit_data['jumlah'] ?? '' ?>" required class="w-full px-3 py-2 border rounded">
 
             <?php elseif ($type == 'kependudukan'): ?>
-                <input type="number" name="jumlah_penduduk" placeholder="Jumlah Penduduk" value="<?= $edit_data['jumlah_penduduk'] ?? '' ?>" required class="w-full px-3 py-2 border rounded">
+                <select name="kategori" required class="w-full px-3 py-2 border rounded">
+                    <option value="">Pilih Kategori Kependudukan</option>
+                    <?php foreach (['(00-04)','(05-09)','(10-14)','(15-19)','(20-24)','(25-29)','(30-34)','(35-39)','(40-44)','(45-49)','(50-54)','(55-59)','(60-64)','(65-69)','(70+)'] as $j): ?>
+                        <option value="<?= $j ?>" <?= isset($edit_data['kategori']) && $edit_data['kategori'] === $j ? 'selected' : '' ?>><?= $j ?></option>
+                    <?php endforeach ?>
+                </select>
             <?php endif ?>
-
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                <?= $edit_data ? "Update" : "Simpan" ?>
-            </button>
-        </form>
 
         <div>
             <h3 class="text-xl font-semibold mb-3">Data <?= ucfirst($type) ?></h3>
@@ -198,7 +208,9 @@ if (isset($_GET['edit'])) {
                             <th class="border px-2 py-1">Fasilitas</th>
                             <th class="border px-2 py-1">Jumlah</th>
                         <?php elseif ($type == 'kependudukan'): ?>
-                            <th class="border px-2 py-1">Jumlah Penduduk</th>
+                            <th class="border px-2 py-1">Kelompok Umur</th>
+                            <th class="border px-2 py-1">Laki-laki</th>
+                            <th class="border px-2 py-1">Perempuan</th>
                         <?php endif ?>
                         <th class="border px-2 py-1">Aksi</th>
                     </tr>
