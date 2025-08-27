@@ -1,60 +1,99 @@
 <?php
-session_start();
-if (!isset($_SESSION['admin'])) {
-    header("Location: login_admin.php?kelurahan=" . urlencode($_GET['kelurahan'] ?? ''));
-    exit;
+$type = isset($_GET['type']) ? $_GET['type'] : '';
+$kelurahan = isset($_GET['kelurahan']) ? $_GET['kelurahan'] : '';
+
+$data_file = "data_{$type}_{$kelurahan}.json";
+if (!file_exists($data_file)) {
+    file_put_contents($data_file, json_encode([]));
 }
-?>
+$data = json_decode(file_get_contents($data_file), true);
 
-<?php
-
-$type = $_GET['type'] ?? 'pendidikan';
-
-$map = [
-    'pendidikan'   => 'data_pendidikan.json',
-    'kesehatan'    => 'data_kesehatan.json',
-    'ekonomi'      => 'data_ekonomi.json',
-    'kependudukan' => 'data_kependudukan.json',
-];
-
-$data_file = $map[$type] ?? $map['pendidikan'];
-
-$data = [];
-if (file_exists($data_file)) {
-    $json = file_get_contents($data_file);
-    $data = json_decode($json, true) ?? [];
-}
-
-if (isset($_GET['hapus'])) {
-    $index = $_GET['hapus'];
-    array_splice($data, $index, 1);
-    file_put_contents($data_file, json_encode($data, JSON_PRETTY_PRINT));
-    header("Location: tambahdata.php?type=$type");
-    exit;
-}
-
+// proses simpan data
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $record = [];
+
     if ($type == 'pendidikan') {
         $record = [
             'jenjang' => $_POST['jenjang'],
             'jumlah'  => $_POST['jumlah'],
         ];
+
+        // cek duplikat jenjang
+        $exists = false;
+        foreach ($data as $row) {
+            if ($row['jenjang'] === $record['jenjang'] && !isset($_POST['edit_index'])) {
+                $exists = true;
+                break;
+            }
+        }
+        if ($exists) {
+            echo "<script>alert('Data untuk jenjang {$record['jenjang']} sudah ada. Silakan edit.'); 
+                  window.location='tambahdata.php?type=$type&kelurahan=" . urlencode($_POST['kelurahan']) . "';</script>";
+            exit;
+        }
+
     } elseif ($type == 'kesehatan') {
         $record = [
-            'fasilitas_kesehatan' => $_POST['fasilitas_kesehatan'],
-            'jumlah'              => $_POST['jumlah_kesehatan'],
+            'fasilitas' => $_POST['fasilitas'],
+            'jumlah'    => $_POST['jumlah_kesehatan'],
         ];
+
+        // cek duplikat fasilitas
+        $exists = false;
+        foreach ($data as $row) {
+            if ($row['fasilitas'] === $record['fasilitas'] && !isset($_POST['edit_index'])) {
+                $exists = true;
+                break;
+            }
+        }
+        if ($exists) {
+            echo "<script>alert('Data fasilitas {$record['fasilitas']} sudah ada. Silakan edit.'); 
+                  window.location='tambahdata.php?type=$type&kelurahan=" . urlencode($_POST['kelurahan']) . "';</script>";
+            exit;
+        }
+
     } elseif ($type == 'ekonomi') {
         $record = [
-            'fasilitas' => $_POST['fasilitas'],
-            'jumlah'    => $_POST['jumlah_fasilitas'],
+            'usaha'  => $_POST['usaha'],
+            'jumlah' => $_POST['jumlah_ekonomi'],
         ];
+
+        // cek duplikat usaha
+        $exists = false;
+        foreach ($data as $row) {
+            if ($row['usaha'] === $record['usaha'] && !isset($_POST['edit_index'])) {
+                $exists = true;
+                break;
+            }
+        }
+        if ($exists) {
+            echo "<script>alert('Data usaha {$record['usaha']} sudah ada. Silakan edit.'); 
+                  window.location='tambahdata.php?type=$type&kelurahan=" . urlencode($_POST['kelurahan']) . "';</script>";
+            exit;
+        }
+
     } elseif ($type == 'kependudukan') {
         $record = [
-            'jumlah_penduduk' => $_POST['jumlah_penduduk'],
+            'kategori' => $_POST['kategori'],
+            'jumlah'   => $_POST['jumlah_kependudukan'],
         ];
+
+        // cek duplikat kategori
+        $exists = false;
+        foreach ($data as $row) {
+            if ($row['kategori'] === $record['kategori'] && !isset($_POST['edit_index'])) {
+                $exists = true;
+                break;
+            }
+        }
+        if ($exists) {
+            echo "<script>alert('Data kategori {$record['kategori']} sudah ada. Silakan edit.'); 
+                  window.location='tambahdata.php?type=$type&kelurahan=" . urlencode($_POST['kelurahan']) . "';</script>";
+            exit;
+        }
     }
 
+    // edit atau tambah baru
     if (isset($_POST['edit_index']) && $_POST['edit_index'] !== '') {
         $data[(int)$_POST['edit_index']] = $record;
     } else {
@@ -63,24 +102,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     file_put_contents($data_file, json_encode($data, JSON_PRETTY_PRINT));
 
-    // ambil kelurahan dari form hidden
     $kelurahan = isset($_POST['kelurahan']) ? urlencode($_POST['kelurahan']) : '';
-
-    echo "<p>✅ Data berhasil ditambahkan!</p>";
-    if ($type == 'pendidikan') {
-        echo "<a href='pendidikan.php?kelurahan=$kelurahan' class='btn-kembali'>⬅ Kembali ke Data Pendidikan</a>";
-    } else {
-        echo "<a href='tambahdata.php?type=$type' class='btn-kembali'>⬅ Kembali</a>";
-    }
+    echo "<p>✅ Data berhasil disimpan!</p>";
+    echo "<a href='tambahdata.php?type=$type&kelurahan=$kelurahan' class='btn-kembali'>⬅ Kembali</a>";
     exit;
-}
-
-
-$edit_data = null;
-$edit_index = null;
-if (isset($_GET['edit'])) {
-    $edit_index = $_GET['edit'];
-    $edit_data = $data[$edit_index];
 }
 ?>
 

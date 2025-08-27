@@ -34,5 +34,9 @@
     {
         "jenjang": "SD",
         "jumlah": "2"
+    },
+    {
+        "jenjang": "MI",
+        "jumlah": "4"
     }
 ]
