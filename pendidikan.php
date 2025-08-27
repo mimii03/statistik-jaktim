@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -103,11 +106,40 @@
   </div>
   
   <?php
-  $kelurahan = $_GET['kelurahan'];
-  ?>
+  include "koneksi.php";
+$kelurahan = isset($_GET['kelurahan']) ? $_GET['kelurahan'] : '';
+$sql = "SELECT jenis_pendidikan, jumlah FROM pendidikan WHERE kelurahan='$kelurahan'";
+$result = mysqli_query($conn, $sql);
+
+$labels = [];
+$data = [];
+
+while ($row = mysqli_fetch_assoc($result)) {
+    $labels[] = $row['jenis_pendidikan'];
+    $data[]   = $row['jumlah'];
+}
+
+?>
+  
   <h2>Grafik Statistik Pendidikan - <?php echo htmlspecialchars($kelurahan); ?></h2>
-  <canvas id="chartPendidikan"></canvas>
-  <br>
+<canvas id="chartPendidikan"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('chartPendidikan');
+
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: <?php echo json_encode($labels); ?>,
+    datasets: [{
+      label: 'Jumlah Pendidikan',
+      data: <?php echo json_encode($data); ?>,
+      borderWidth: 1
+    }]
+  }
+});
+</script>
+
   <center><a href="download.php?kategori=pendidikan&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-download">⬇️ Download CSV</a></center>
   <center><button class="btn-download" data-chart="chartPendidikan">📥 Download PNG</button></center>
 

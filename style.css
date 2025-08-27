@@ -345,3 +345,17 @@ body.login-page {
   height: 100vh;
   background: linear-gradient(135deg, #74ebd5, #acb6e5);
 }
+
+.btn-kembali {
+  display: inline-block;
+  padding: 8px 15px;
+  background-color: #3498db;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.btn-kembali:hover {
+  background-color: #2980b9;
+}
