@@ -229,6 +229,7 @@ p.error {
 .dropdown {
   position: relative;
   margin-left: auto;
+  margin-right: 30px;
 }
 
 .dropdown-content {
@@ -236,13 +237,13 @@ p.error {
   background-color: white;
   position: absolute;
   color: black;
-  top: 50%;
+  top: 83%;
   right: 0;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   z-index: auto;
   max-height: 300px;
   overflow-y: auto;
-  width: 200px;
+  width: 180px;
   margin-left: 100px;
 }
 
@@ -304,9 +305,10 @@ p.error {
 }
 .auth-buttons {
   display: flex;
-  gap: 10px;    /* dorong ke kanan */
-  margin-left: 850px;    /* kasih jarak ke tepi kanan */
+  gap: 10px;   
+  margin-left: 700px;   
   margin-top: -20px;
+  margin-right: 20px;
 }
 
 .auth-buttons a {

@@ -36,7 +36,6 @@
       <?php endif; ?>
     </div>
 
-
     <div class="dropdown">
       <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
       <div class="dropdown-content">
@@ -112,7 +111,7 @@
   <center><button class="btn-download" data-chart="chartKependudukan">📥 Download PNG</button></center>
 
   <h3>Belum ada data?
-    <a href="data.php?type=kependudukan&action=add&kelurahan=<?= urlencode($kelurahan) ?>">
+    <a href="tambahdata.php?type=kependudukan&action=add&kelurahan=<?= urlencode($kelurahan) ?>">
       Tambah Data
     </a>
   </h3>

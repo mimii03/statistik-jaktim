@@ -1,60 +1,53 @@
 <?php
-include 'koneksi.php';
+header('Content-Type: application/json');
 
-$kategori = $_GET['kategori'];
-$kelurahan = $_GET['kelurahan'];
+$kategori = $_GET['kategori'] ?? '';
+$kelurahan = $_GET['kelurahan'] ?? '';
 
-$mode = '';
+$map = [
+    'pendidikan'   => 'data_pendidikan.json',
+    'kesehatan'    => 'data_kesehatan.json',
+    'ekonomi'      => 'data_ekonomi.json',
+    'kependudukan' => 'data_kependudukan.json',
+];
 
-switch($kategori) {
-  case 'ekonomi':
-    $sql = "SELECT jenis_usaha AS label, jumlah FROM ekonomi WHERE kelurahan=?";
-    $mode = 'simple';
-    break;
-  case 'pendidikan':
-    $sql = "SELECT jenis_pendidikan AS label, jumlah FROM pendidikan WHERE kelurahan=?";
-    $mode = 'simple';
-    break;
-  case 'kesehatan':
-    $sql = "SELECT fasilitas AS label, jumlah FROM kesehatan WHERE kelurahan=?";
-    $mode = 'simple';
-    break;
-  case 'kependudukan':
-    $sql = "SELECT kelompok_umur, laki_laki, perempuan, jumlah FROM kependudukan WHERE kelurahan=?";
-    $mode = 'kependudukan';
-    break;
-  default:
-    die("Kategori tidak valid");
+if (!isset($map[$kategori])) {
+    echo json_encode(['labels' => [], 'jumlah' => []]);
+    exit;
 }
 
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $kelurahan);
-$stmt->execute();
-$result = $stmt->get_result();
+$file = $map[$kategori];
 
-if ($mode === 'simple') {
-  $labels = $jumlah = [];
-  while ($row = $result->fetch_assoc()) {
-    $labels[] = $row['label'];
-    $jumlah[] = $row['jumlah'];
-  }
-  echo json_encode([
-    'labels' => $labels,
-    'jumlah' => $jumlah
-  ]);
-} else if ($mode === 'kependudukan') {
-  $labels = $laki = $perempuan = $jumlah = [];
-  while ($row = $result->fetch_assoc()) {
-    $labels[] = $row['kelompok_umur'];
-    $laki[] = $row['laki_laki'];
-    $perempuan[] = $row['perempuan'];
-    $jumlah[] = $row['jumlah'];
-  }
-  echo json_encode([
-    'labels' => $labels,
-    'laki' => $laki,
-    'perempuan' => $perempuan,
-    'jumlah' => $jumlah
-  ]);
+if (!file_exists($file)) {
+    echo json_encode(['labels' => [], 'jumlah' => []]);
+    exit;
 }
-?>
+
+$json = file_get_contents($file);
+$data = json_decode($json, true) ?? [];
+
+// Format data untuk chart
+$labels = [];
+$jumlah = [];
+
+if ($kategori === 'kependudukan') {
+    foreach ($data as $row) {
+        $labels[] = $row['kategori'] ?? '';
+        $jumlah[] = (int)($row['jumlah_penduduk'] ?? 0);
+    }
+} elseif ($kategori === 'pendidikan') {
+    foreach ($data as $row) {
+        $labels[] = $row['jenjang'] ?? '';
+        $jumlah[] = (int)($row['jumlah'] ?? 0);
+    }
+} elseif ($kategori === 'kesehatan' || $kategori === 'ekonomi') {
+    foreach ($data as $row) {
+        $labels[] = $row['fasilitas'] ?? '';
+        $jumlah[] = (int)($row['jumlah'] ?? 0);
+    }
+}
+
+echo json_encode([
+    'labels' => $labels,
+    'jumlah' => $jumlah
+]);
