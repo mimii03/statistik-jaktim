@@ -36,7 +36,6 @@
       <?php endif; ?>
     </div>
 
-    
     <div class="dropdown">
       <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
       <div class="dropdown-content">

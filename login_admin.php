@@ -10,18 +10,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
     $kelurahan = $_GET['kelurahan'] ?? '';
 
-    // Cek user di tabel admin
     $query = "SELECT * FROM admin WHERE username='$username' AND password='$password' AND kelurahan='$kelurahan'";
     $result = mysqli_query($conn, $query);
 
     if ($result && mysqli_num_rows($result) > 0) {
         $admin = mysqli_fetch_assoc($result);
         
-        // simpan session
         $_SESSION['admin'] = $admin['username'];
         $_SESSION['kelurahan'] = $admin['kelurahan'];
 
-        // redirect ke tambah data
         header("Location: tambahdata.php?kelurahan=" . urlencode($admin['kelurahan']));
         exit;
     } else {

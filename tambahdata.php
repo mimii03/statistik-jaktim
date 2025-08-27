@@ -22,7 +22,6 @@ if (file_exists($data_file)) {
     $data = json_decode($json, true) ?? [];
 }
 
-// Hapus data
 if (isset($_GET['hapus'])) {
     $index = $_GET['hapus'];
     array_splice($data, $index, 1);
@@ -31,7 +30,6 @@ if (isset($_GET['hapus'])) {
     exit;
 }
 
-// Tambah / Edit data
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($type == 'pendidikan') {
         $record = [
@@ -39,7 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'jumlah'  => $_POST['jumlah'],
         ];
 
-        // Cek duplikat jenjang
         $duplicate = false;
         foreach ($data as $i => $row) {
             if ($row['jenjang'] === $record['jenjang'] && (!isset($_POST['edit_index']) || $i != $_POST['edit_index'])) {
@@ -59,7 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'jumlah'              => $_POST['jumlah_kesehatan'],
         ];
 
-        // Cek duplikat fasilitas_kesehatan
         $duplicate = false;
         foreach ($data as $i => $row) {
             if ($row['fasilitas_kesehatan'] === $record['fasilitas_kesehatan'] && (!isset($_POST['edit_index']) || $i != $_POST['edit_index'])) {
@@ -79,7 +75,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'jumlah'    => $_POST['jumlah_fasilitas'],
         ];
 
-        // Cek duplikat fasilitas ekonomi
         $duplicate = false;
         foreach ($data as $i => $row) {
             if ($row['fasilitas'] === $record['fasilitas'] && (!isset($_POST['edit_index']) || $i != $_POST['edit_index'])) {
@@ -98,7 +93,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'jumlah_penduduk' => $_POST['jumlah_penduduk'],
         ];
 
-        // Karena kependudukan cuma 1 data, jangan boleh ada lebih dari 1
         if (count($data) > 0 && (!isset($_POST['edit_index']) || $_POST['edit_index'] === '')) {
             echo "<p style='color:red'>❌ Data kependudukan sudah ada. Silakan edit saja.</p>";
             echo "<a href='tambahdata.php?type=$type'>⬅ Kembali</a>";
@@ -106,7 +100,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Simpan data (edit atau tambah baru)
     if (isset($_POST['edit_index']) && $_POST['edit_index'] !== '') {
         $data[(int)$_POST['edit_index']] = $record;
     } else {
@@ -115,7 +108,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     file_put_contents($data_file, json_encode($data, JSON_PRETTY_PRINT));
 
-    // ambil kelurahan dari form hidden
     $kelurahan = isset($_POST['kelurahan']) ? urlencode($_POST['kelurahan']) : '';
 
     echo "<p>✅ Data berhasil disimpan!</p>";
@@ -127,7 +119,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
-// Mode edit
 $edit_data = null;
 $edit_index = null;
 if (isset($_GET['edit'])) {

@@ -26,7 +26,6 @@ if (!file_exists($file)) {
 $json = file_get_contents($file);
 $data = json_decode($json, true) ?? [];
 
-// Format data untuk chart
 $labels = [];
 $jumlah = [];
 
