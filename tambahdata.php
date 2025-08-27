@@ -4,9 +4,6 @@ if (!isset($_SESSION['admin'])) {
     header("Location: login_admin.php?kelurahan=" . urlencode($_GET['kelurahan'] ?? ''));
     exit;
 }
-?>
-
-<?php
 
 $type = $_GET['type'] ?? 'pendidikan';
 
@@ -25,6 +22,7 @@ if (file_exists($data_file)) {
     $data = json_decode($json, true) ?? [];
 }
 
+// Hapus data
 if (isset($_GET['hapus'])) {
     $index = $_GET['hapus'];
     array_splice($data, $index, 1);
@@ -33,28 +31,82 @@ if (isset($_GET['hapus'])) {
     exit;
 }
 
+// Tambah / Edit data
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($type == 'pendidikan') {
         $record = [
             'jenjang' => $_POST['jenjang'],
             'jumlah'  => $_POST['jumlah'],
         ];
+
+        // Cek duplikat jenjang
+        $duplicate = false;
+        foreach ($data as $i => $row) {
+            if ($row['jenjang'] === $record['jenjang'] && (!isset($_POST['edit_index']) || $i != $_POST['edit_index'])) {
+                $duplicate = true;
+                break;
+            }
+        }
+        if ($duplicate) {
+            echo "<p style='color:red'>❌ Data dengan jenjang <b>{$record['jenjang']}</b> sudah ada. Silakan edit saja.</p>";
+            echo "<a href='tambahdata.php?type=$type'>⬅ Kembali</a>";
+            exit;
+        }
+
     } elseif ($type == 'kesehatan') {
         $record = [
             'fasilitas_kesehatan' => $_POST['fasilitas_kesehatan'],
             'jumlah'              => $_POST['jumlah_kesehatan'],
         ];
+
+        // Cek duplikat fasilitas_kesehatan
+        $duplicate = false;
+        foreach ($data as $i => $row) {
+            if ($row['fasilitas_kesehatan'] === $record['fasilitas_kesehatan'] && (!isset($_POST['edit_index']) || $i != $_POST['edit_index'])) {
+                $duplicate = true;
+                break;
+            }
+        }
+        if ($duplicate) {
+            echo "<p style='color:red'>❌ Data fasilitas <b>{$record['fasilitas_kesehatan']}</b> sudah ada. Silakan edit saja.</p>";
+            echo "<a href='tambahdata.php?type=$type'>⬅ Kembali</a>";
+            exit;
+        }
+
     } elseif ($type == 'ekonomi') {
         $record = [
             'fasilitas' => $_POST['fasilitas'],
             'jumlah'    => $_POST['jumlah_fasilitas'],
         ];
+
+        // Cek duplikat fasilitas ekonomi
+        $duplicate = false;
+        foreach ($data as $i => $row) {
+            if ($row['fasilitas'] === $record['fasilitas'] && (!isset($_POST['edit_index']) || $i != $_POST['edit_index'])) {
+                $duplicate = true;
+                break;
+            }
+        }
+        if ($duplicate) {
+            echo "<p style='color:red'>❌ Data fasilitas <b>{$record['fasilitas']}</b> sudah ada. Silakan edit saja.</p>";
+            echo "<a href='tambahdata.php?type=$type'>⬅ Kembali</a>";
+            exit;
+        }
+
     } elseif ($type == 'kependudukan') {
         $record = [
             'jumlah_penduduk' => $_POST['jumlah_penduduk'],
         ];
+
+        // Karena kependudukan cuma 1 data, jangan boleh ada lebih dari 1
+        if (count($data) > 0 && (!isset($_POST['edit_index']) || $_POST['edit_index'] === '')) {
+            echo "<p style='color:red'>❌ Data kependudukan sudah ada. Silakan edit saja.</p>";
+            echo "<a href='tambahdata.php?type=$type'>⬅ Kembali</a>";
+            exit;
+        }
     }
 
+    // Simpan data (edit atau tambah baru)
     if (isset($_POST['edit_index']) && $_POST['edit_index'] !== '') {
         $data[(int)$_POST['edit_index']] = $record;
     } else {
@@ -66,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // ambil kelurahan dari form hidden
     $kelurahan = isset($_POST['kelurahan']) ? urlencode($_POST['kelurahan']) : '';
 
-    echo "<p>✅ Data berhasil ditambahkan!</p>";
+    echo "<p>✅ Data berhasil disimpan!</p>";
     if ($type == 'pendidikan') {
         echo "<a href='pendidikan.php?kelurahan=$kelurahan' class='btn-kembali'>⬅ Kembali ke Data Pendidikan</a>";
     } else {
@@ -75,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
-
+// Mode edit
 $edit_data = null;
 $edit_index = null;
 if (isset($_GET['edit'])) {
