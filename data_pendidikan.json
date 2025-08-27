@@ -1,38 +1,22 @@
 [
     {
-        "jenjang": "SD",
+        "jenjang": "MI",
         "jumlah": "7"
     },
     {
-        "jenjang": "PT\/Akademi",
-        "jumlah": "5"
-    },
-    {
-        "jenjang": "MA",
-        "jumlah": "3"
-    },
-    {
-        "jenjang": "SMK",
-        "jumlah": "13"
-    },
-    {
-        "jenjang": "SMA",
-        "jumlah": "6"
-    },
-    {
-        "jenjang": "SMP",
-        "jumlah": "5"
-    },
-    {
-        "jenjang": "PT\/Akademi",
-        "jumlah": "5"
-    },
-    {
-        "jenjang": "SMP",
-        "jumlah": "12"
+        "jenjang": "SD",
+        "jumlah": "22"
     },
     {
         "jenjang": "SD",
-        "jumlah": "2"
+        "jumlah": "5"
+    },
+    {
+        "jenjang": "SD",
+        "jumlah": "6"
+    },
+    {
+        "jenjang": "MI",
+        "jumlah": "3"
     }
 ]

@@ -1,3 +1,31 @@
+<?php
+session_start();
+include "koneksi.php";
+
+// cek login
+if (!isset($_SESSION['login'])) {
+    $redirectUrl = "kependudukan.php";
+    if (isset($_GET['kelurahan'])) {
+        $redirectUrl .= "?kelurahan=" . urlencode($_GET['kelurahan']);
+    }
+    header("Location: login.php?redirect=" . urlencode($redirectUrl));
+    exit;
+}
+
+$kelurahan = isset($_GET['kelurahan']) ? $_GET['kelurahan'] : '';
+$sql = "SELECT jenis_pendidikan, jumlah FROM pendidikan WHERE kelurahan='$kelurahan'";
+$result = mysqli_query($conn, $sql);
+
+$labels = [];
+$data   = [];
+
+while ($row = mysqli_fetch_assoc($result)) {
+    $labels[] = $row['jenis_pendidikan'];
+    $data[]   = $row['jumlah'];
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -20,7 +48,7 @@
     <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
     <a href="index.php" class="beranda-link">Beranda</a>
     
-<div class="auth-buttons">
+   <div class="auth-buttons">
       <?php if(isset($_SESSION['username'])): ?>
         <div class="dropdown">
           <button class="btn-login">
