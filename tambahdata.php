@@ -7,6 +7,17 @@ if (!isset($_SESSION['admin'])) {
 ?>
 
 <?php
+$kategori = $_GET['kategori'] ?? '';
+
+$kelurahan = $_GET['kelurahan'] ?? '';
+if (is_array($kelurahan)) {
+    $kelurahan = reset($kelurahan); // ambil elemen pertama array
+}
+
+?>
+
+
+<?php
 
 $type = $_GET['type'] ?? 'pendidikan';
 
@@ -200,11 +211,13 @@ if (isset($_GET['edit'])) {
                             </td>
                         </tr>
                     <?php endforeach ?>
+ <a href="<?php echo $type; ?>.php?kelurahan=<?php echo urlencode($listkelurahan); ?>" class="btn-kembali">
+                ⬅ Kembali ke Data <?php echo ucfirst($type); ?>
+            </a>
 
                 </tbody>
             </table>
-                <a href="pendidikan.php" class="btn-kembali">⬅ Kembali ke Data Pendidikan</a>
-
+ 
         </div>
     </main>
 </div>

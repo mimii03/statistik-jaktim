@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <button type="submit" name="login">Login</button>
 </form>
 
-<a href="pendidikan.php" class="btn-kembali">⬅ Kembali ke Data Pendidikan</a>
-
+  <a href="<?php echo $kategori; ?>.php?kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali">
+    ⬅ Kembali ke Data <?php echo ucfirst($kategori); ?>
 </body>
 </html>

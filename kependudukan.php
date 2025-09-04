@@ -1,3 +1,12 @@
+<?php
+$type = "kependudukan"; 
+$kelurahan = $_GET['kelurahan'] ?? '';
+if (is_array($kelurahan)) {
+    $kelurahan = reset($kelurahan);
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -157,5 +166,9 @@
 });
 
   </script>
+   <a href="<?php echo $type; ?>.php?kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali">
+    ⬅ Kembali ke Data <?php echo ucfirst($type); ?>
+</a>
+
 </body>
 </html>
