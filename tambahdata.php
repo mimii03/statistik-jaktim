@@ -4,6 +4,9 @@ if (!isset($_SESSION['admin'])) {
     header("Location: login_admin.php?kelurahan=" . urlencode($_GET['kelurahan'] ?? ''));
     exit;
 }
+?>
+
+<?php
 
 $type = $_GET['type'] ?? 'pendidikan';
 
@@ -36,68 +39,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'jenjang' => $_POST['jenjang'],
             'jumlah'  => $_POST['jumlah'],
         ];
-
-        $duplicate = false;
-        foreach ($data as $i => $row) {
-            if ($row['jenjang'] === $record['jenjang'] && (!isset($_POST['edit_index']) || $i != $_POST['edit_index'])) {
-                $duplicate = true;
-                break;
-            }
-        }
-        if ($duplicate) {
-            echo "<p style='color:red'>❌ Data dengan jenjang <b>{$record['jenjang']}</b> sudah ada. Silakan edit saja.</p>";
-            echo "<a href='tambahdata.php?type=$type'>⬅ Kembali</a>";
-            exit;
-        }
-
     } elseif ($type == 'kesehatan') {
         $record = [
             'fasilitas_kesehatan' => $_POST['fasilitas_kesehatan'],
             'jumlah'              => $_POST['jumlah_kesehatan'],
         ];
-
-        $duplicate = false;
-        foreach ($data as $i => $row) {
-            if ($row['fasilitas_kesehatan'] === $record['fasilitas_kesehatan'] && (!isset($_POST['edit_index']) || $i != $_POST['edit_index'])) {
-                $duplicate = true;
-                break;
-            }
-        }
-        if ($duplicate) {
-            echo "<p style='color:red'>❌ Data fasilitas <b>{$record['fasilitas_kesehatan']}</b> sudah ada. Silakan edit saja.</p>";
-            echo "<a href='tambahdata.php?type=$type'>⬅ Kembali</a>";
-            exit;
-        }
-
     } elseif ($type == 'ekonomi') {
         $record = [
             'fasilitas' => $_POST['fasilitas'],
             'jumlah'    => $_POST['jumlah_fasilitas'],
         ];
-
-        $duplicate = false;
-        foreach ($data as $i => $row) {
-            if ($row['fasilitas'] === $record['fasilitas'] && (!isset($_POST['edit_index']) || $i != $_POST['edit_index'])) {
-                $duplicate = true;
-                break;
-            }
-        }
-        if ($duplicate) {
-            echo "<p style='color:red'>❌ Data fasilitas <b>{$record['fasilitas']}</b> sudah ada. Silakan edit saja.</p>";
-            echo "<a href='tambahdata.php?type=$type'>⬅ Kembali</a>";
-            exit;
-        }
-
     } elseif ($type == 'kependudukan') {
         $record = [
             'jumlah_penduduk' => $_POST['jumlah_penduduk'],
         ];
-
-        if (count($data) > 0 && (!isset($_POST['edit_index']) || $_POST['edit_index'] === '')) {
-            echo "<p style='color:red'>❌ Data kependudukan sudah ada. Silakan edit saja.</p>";
-            echo "<a href='tambahdata.php?type=$type'>⬅ Kembali</a>";
-            exit;
-        }
     }
 
     if (isset($_POST['edit_index']) && $_POST['edit_index'] !== '') {
@@ -108,9 +63,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     file_put_contents($data_file, json_encode($data, JSON_PRETTY_PRINT));
 
+    // ambil kelurahan dari form hidden
     $kelurahan = isset($_POST['kelurahan']) ? urlencode($_POST['kelurahan']) : '';
 
-    echo "<p>✅ Data berhasil disimpan!</p>";
+    echo "<p>✅ Data berhasil ditambahkan!</p>";
     if ($type == 'pendidikan') {
         echo "<a href='pendidikan.php?kelurahan=$kelurahan' class='btn-kembali'>⬅ Kembali ke Data Pendidikan</a>";
     } else {
@@ -118,6 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     exit;
 }
+
 
 $edit_data = null;
 $edit_index = null;
@@ -152,67 +109,32 @@ if (isset($_GET['edit'])) {
     <div class="dropdown">
       <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
       <div class="dropdown-content">
-        <div id="kelurahanList">
-          <a href="data.php?kelurahan=Balimester">Balimester</a>
-          <a href="data.php?kelurahan=Batu Ampar">Batu Ampar</a>
-          <a href="data.php?kelurahan=Baru">Baru</a>
-          <a href="data.php?kelurahan=Batuampar">Batuampar</a>
-          <a href="data.php?kelurahan=Bidaracina">Bidaracina</a>
-          <a href="data.php?kelurahan=Bambu Apus">Bambu Apus</a>
-          <a href="data.php?kelurahan=Cawang">Cawang</a>
-          <a href="data.php?kelurahan=Ceger">Ceger</a>
-          <a href="data.php?kelurahan=Cibubur">Cibubur</a>
-          <a href="data.php?kelurahan=Cipinang">Cipinang</a>
-          <a href="data.php?kelurahan=Cipinang Besar Selatan">Cipinang Besar Selatan</a>
-          <a href="data.php?kelurahan=Cipinang Besar Utara">Cipinang Besar Utara</a>
-          <a href="data.php?kelurahan=Cipinang Cempedak">Cipinang Cempedak</a>
-          <a href="data.php?kelurahan=Cipinang Melayu">Cipinang Melayu</a>
-          <a href="data.php?kelurahan=Cipinang Muara">Cipinang Muara</a>
-          <a href="data.php?kelurahan=Cilangkap">Cilangkap</a>
-          <a href="data.php?kelurahan=Ciracas">Ciracas</a>
-          <a href="data.php?kelurahan=Duren Sawit">Duren Sawit</a>
-          <a href="data.php?kelurahan=Dukuh">Dukuh</a>
-          <a href="data.php?kelurahan=Gedong">Gedong</a>
-          <a href="data.php?kelurahan=Halim Perdana Kusumah">Halim Perdana Kusumah</a>
-          <a href="data.php?kelurahan=Jatinegara">Jatinegara</a>
-          <a href="data.php?kelurahan=Jatinegara Kaum">Jatinegara Kaum</a>
-          <a href="data.php?kelurahan=Jati">Jati</a>
-          <a href="data.php?kelurahan=Kampung Dukuh">Kampung Dukuh</a>
-          <a href="data.php?kelurahan=Kampung Melayu">Kampung Melayu</a>
-          <a href="data.php?kelurahan=Kayu Manis">Kayu Manis</a>
-          <a href="data.php?kelurahan=Kayu Putih">Kayu Putih</a>
-          <a href="data.php?kelurahan=Kebon Manggis">Kebon Manggis</a>
-          <a href="data.php?kelurahan=Kramat Jati">Kramat Jati</a>
-          <a href="data.php?kelurahan=Klender">Klender</a>
-          <a href="data.php?kelurahan=Lubang Buaya">Lubang Buaya</a>
-          <a href="data.php?kelurahan=Malaka Jaya">Malaka Jaya</a>
-          <a href="data.php?kelurahan=Malaka Sari">Malaka Sari</a>
-          <a href="data.php?kelurahan=Makasar">Makasar</a>
-          <a href="data.php?kelurahan=Matraman">Matraman</a>
-          <a href="data.php?kelurahan=Munjul">Munjul</a>
-          <a href="data.php?kelurahan=Palmeriam">Palmeriam</a>
-          <a href="data.php?kelurahan=Pasar Rebo">Pasar Rebo</a>
-          <a href="data.php?kelurahan=Pekayon">Pekayon</a>
-          <a href="data.php?kelurahan=Penggilingan">Penggilingan</a>
-          <a href="data.php?kelurahan=Pinang Ranti">Pinang Ranti</a>
-          <a href="data.php?kelurahan=Pisangan Baru">Pisangan Baru</a>
-          <a href="data.php?kelurahan=Pondok Bambu">Pondok Bambu</a>
-          <a href="data.php?kelurahan=Pondok Kelapa">Pondok Kelapa</a>
-          <a href="data.php?kelurahan=Pondok Kopi">Pondok Kopi</a>
-          <a href="data.php?kelurahan=Pulogadung">Pulogadung</a>
-          <a href="data.php?kelurahan=Pulo Gebang">Pulo Gebang</a>
-          <a href="data.php?kelurahan=Rambutan">Rambutan</a>
-          <a href="data.php?kelurahan=Rawa Bunga">Rawa Bunga</a>
-          <a href="data.php?kelurahan=Rawa Terate">Rawa Terate</a>
-          <a href="data.php?kelurahan=Rawamangun">Rawamangun</a>
-          <a href="data.php?kelurahan=Setu">Setu</a>
-          <a href="data.php?kelurahan=Susukan">Susukan</a>
-          <a href="data.php?kelurahan=Utan Kayu Selatan">Utan Kayu Selatan</a>
-          <a href="data.php?kelurahan=Utan Kayu Utara">Utan Kayu Utara</a>
-        </div>
-      </div>
-    </div>
-  </div>
+       <div id="kelurahanList">
+  <div id="kelurahanList">
+  <?php
+  $kelurahan = [
+    "Balimester", "Batu Ampar", "Baru", "Batuampar", "Bidaracina",
+    "Bambu Apus", "Cawang", "Ceger", "Cibubur", "Cipinang",
+    "Cipinang Besar Selatan", "Cipinang Besar Utara", "Cipinang Cempedak",
+    "Cipinang Melayu", "Cipinang Muara", "Cilangkap", "Ciracas",
+    "Duren Sawit", "Dukuh", "Gedong", "Halim Perdana Kusumah",
+    "Jatinegara", "Jatinegara Kaum", "Jati", "Kampung Dukuh",
+    "Kampung Melayu", "Kayu Manis", "Kayu Putih", "Kebon Manggis",
+    "Kramat Jati", "Klender", "Lubang Buaya", "Malaka Jaya",
+    "Malaka Sari", "Makasar", "Matraman", "Munjul", "Palmeriam",
+    "Pasar Rebo", "Pekayon", "Penggilingan", "Pinang Ranti",
+    "Pisangan Baru", "Pondok Bambu", "Pondok Kelapa", "Pondok Kopi",
+    "Pulogadung", "Pulo Gebang", "Rambutan", "Rawa Bunga",
+    "Rawa Terate", "Rawamangun", "Setu", "Susukan",
+    "Utan Kayu Selatan", "Utan Kayu Utara"
+  ];
+
+  foreach ($kelurahan as $nama) {
+      echo "<a href='data.php?kelurahan=" . urlencode($nama) . "'>$nama</a>";
+  }
+  ?>
+</div>
+
 
 <div class="min-h-screen text-gray-800 dark:text-white">
     <main class="max-w-5xl mx-auto p-6">
@@ -229,32 +151,22 @@ if (isset($_GET['edit'])) {
                 <input type="number" name="jumlah" placeholder="Jumlah" value="<?= $edit_data['jumlah'] ?? '' ?>" required class="w-full px-3 py-2 border rounded">
 
             <?php elseif ($type == 'kesehatan'): ?>
-                <select name="fasilitas" required class="w-full px-3 py-2 border rounded">
-                    <option value="">Pilih Fasilitas</option>
-                    <?php foreach (['Rumah Sakit','Puskesmas','Pos Kesehatan','Klinik Kesehatan','Tempat Praktek Dokter','Tempat Praktek Bidan','Apotik','Toko Obat'] as $j): ?>
-                        <option value="<?= $j ?>" <?= isset($edit_data['fasilitas']) && $edit_data['fasilitas'] === $j ? 'selected' : '' ?>><?= $j ?></option>
-                    <?php endforeach ?>
-                </select>
+                <input type="text" name="fasilitas_kesehatan" placeholder="Nama Fasilitas" value="<?= $edit_data['fasilitas_kesehatan'] ?? '' ?>" required class="w-full px-3 py-2 border rounded">
                 <input type="number" name="jumlah_kesehatan" placeholder="Jumlah" value="<?= $edit_data['jumlah'] ?? '' ?>" required class="w-full px-3 py-2 border rounded">
 
             <?php elseif ($type == 'ekonomi'): ?>
-                <select name="fasilitas" required class="w-full px-3 py-2 border rounded">
-                    <option value="">Pilih Fasilitas Ekonomi</option>
-                    <?php foreach (['Pasar Lingkungan','Mini Market','Pabrik Industri','Toko','Warung/Warteg','Lokasi Kaki Lima','Bank','POM Bensin','Kuliner'] as $j): ?>
-                        <option value="<?= $j ?>" <?= isset($edit_data['fasilitas']) && $edit_data['fasilitas'] === $j ? 'selected' : '' ?>><?= $j ?></option>
-                    <?php endforeach ?>
-                </select>
+                <input type="text" name="fasilitas" placeholder="Nama Fasilitas Ekonomi" value="<?= $edit_data['fasilitas'] ?? '' ?>" required class="w-full px-3 py-2 border rounded">
                 <input type="number" name="jumlah_fasilitas" placeholder="Jumlah" value="<?= $edit_data['jumlah'] ?? '' ?>" required class="w-full px-3 py-2 border rounded">
 
             <?php elseif ($type == 'kependudukan'): ?>
-                <select name="kategori" required class="w-full px-3 py-2 border rounded">
-                    <option value="">Pilih Kategori Kependudukan</option>
-                    <?php foreach (['(00-04)','(05-09)','(10-14)','(15-19)','(20-24)','(25-29)','(30-34)','(35-39)','(40-44)','(45-49)','(50-54)','(55-59)','(60-64)','(65-69)','(70+)'] as $j): ?>
-                        <option value="<?= $j ?>" <?= isset($edit_data['kategori']) && $edit_data['kategori'] === $j ? 'selected' : '' ?>><?= $j ?></option>
-                    <?php endforeach ?>
-                </select>
+                <input type="number" name="jumlah_penduduk" placeholder="Jumlah Penduduk" value="<?= $edit_data['jumlah_penduduk'] ?? '' ?>" required class="w-full px-3 py-2 border rounded">
             <?php endif ?>
     <input type="hidden" name="kelurahan" value="<?php echo htmlspecialchars($_GET['kelurahan'] ?? ''); ?>">
+
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                <?= $edit_data ? "Update" : "Simpan" ?>
+            </button>
+        </form>
 
         <div>
             <h3 class="text-xl font-semibold mb-3">Data <?= ucfirst($type) ?></h3>
@@ -271,9 +183,7 @@ if (isset($_GET['edit'])) {
                             <th class="border px-2 py-1">Fasilitas</th>
                             <th class="border px-2 py-1">Jumlah</th>
                         <?php elseif ($type == 'kependudukan'): ?>
-                            <th class="border px-2 py-1">Kelompok Umur</th>
-                            <th class="border px-2 py-1">Laki-laki</th>
-                            <th class="border px-2 py-1">Perempuan</th>
+                            <th class="border px-2 py-1">Jumlah Penduduk</th>
                         <?php endif ?>
                         <th class="border px-2 py-1">Aksi</th>
                     </tr>

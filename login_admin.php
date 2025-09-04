@@ -31,21 +31,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Login Admin</title>
+      <link rel="stylesheet" href="style.css">
+
 </head>
 <body class="login-page"> 
     <div class="container">
-    <h2>Login Admin - <?php echo htmlspecialchars($_GET['kelurahan'] ?? ''); ?></h2>
+<h2>Login Admin - <?php echo htmlspecialchars($_GET['kelurahan'] ?? ''); ?></h2>
 
-    <?php if (!empty($error)) echo "<p style='color:red;'>$error</p>"; ?>
+<?php if (!empty($error)) echo "<p style='color:red;'>$error</p>"; ?>
 
-    <fo method="post">
-       <input type="hidden" name="redirect" value="<?php echo htmlspecialchars($redirect); ?>">
-      <input type="text" name="username" placeholder="Username" required>
-      <input type="password" name="password" placeholder="Password" required>
-      <button type="submit" name="login">Login</button>
-    
-    </form>
-    <a href="pendidikan.php" class="btn-kembali">⬅ Kembali ke Data Pendidikan</a>
+<form method="post">
+  <input type="hidden" name="redirect" value="<?php echo htmlspecialchars($redirect); ?>">
+  <input type="text" name="username" placeholder="Username" required>
+  <input type="password" name="password" placeholder="Password" required>
+  <button type="submit" name="login">Login</button>
+</form>
+
+<a href="pendidikan.php" class="btn-kembali">⬅ Kembali ke Data Pendidikan</a>
 
 </body>
 </html>
