@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['admin'])) {
+if (!isset($_SESSION['login'])) {
     header("Location: login_admin.php?kelurahan=" . urlencode($_GET['kelurahan'] ?? ''));
     exit;
 }
@@ -118,35 +118,35 @@ if (isset($_GET['edit'])) {
     <a href="index.php" class="beranda-link">Beranda</a>
     
     <div class="dropdown">
-      <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
-      <div class="dropdown-content">
-       <div id="kelurahanList">
-  <div id="kelurahanList">
-  <?php
-  $kelurahan = [
-    "Balimester", "Batu Ampar", "Baru", "Batuampar", "Bidaracina",
-    "Bambu Apus", "Cawang", "Ceger", "Cibubur", "Cipinang",
-    "Cipinang Besar Selatan", "Cipinang Besar Utara", "Cipinang Cempedak",
-    "Cipinang Melayu", "Cipinang Muara", "Cilangkap", "Ciracas",
-    "Duren Sawit", "Dukuh", "Gedong", "Halim Perdana Kusumah",
-    "Jatinegara", "Jatinegara Kaum", "Jati", "Kampung Dukuh",
-    "Kampung Melayu", "Kayu Manis", "Kayu Putih", "Kebon Manggis",
-    "Kramat Jati", "Klender", "Lubang Buaya", "Malaka Jaya",
-    "Malaka Sari", "Makasar", "Matraman", "Munjul", "Palmeriam",
-    "Pasar Rebo", "Pekayon", "Penggilingan", "Pinang Ranti",
-    "Pisangan Baru", "Pondok Bambu", "Pondok Kelapa", "Pondok Kopi",
-    "Pulogadung", "Pulo Gebang", "Rambutan", "Rawa Bunga",
-    "Rawa Terate", "Rawamangun", "Setu", "Susukan",
-    "Utan Kayu Selatan", "Utan Kayu Utara"
-  ];
+  <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
+  <div class="dropdown-content" id="kelurahanList">
+    <?php
+    $listKelurahan = [
+      "Balimester", "Batu Ampar", "Baru", "Batuampar", "Bidaracina",
+      "Bambu Apus", "Cawang", "Ceger", "Cibubur", "Cipinang",
+      "Cipinang Besar Selatan", "Cipinang Besar Utara", "Cipinang Cempedak",
+      "Cipinang Melayu", "Cipinang Muara", "Cilangkap", "Ciracas",
+      "Duren Sawit", "Dukuh", "Gedong", "Halim Perdana Kusumah",
+      "Jatinegara", "Jatinegara Kaum", "Jati", "Kampung Dukuh",
+      "Kampung Melayu", "Kayu Manis", "Kayu Putih", "Kebon Manggis",
+      "Kramat Jati", "Klender", "Lubang Buaya", "Malaka Jaya",
+      "Malaka Sari", "Makasar", "Matraman", "Munjul", "Palmeriam",
+      "Pasar Rebo", "Pekayon", "Penggilingan", "Pinang Ranti",
+      "Pisangan Baru", "Pondok Bambu", "Pondok Kelapa", "Pondok Kopi",
+      "Pulogadung", "Pulo Gebang", "Rambutan", "Rawa Bunga",
+      "Rawa Terate", "Rawamangun", "Setu", "Susukan",
+      "Utan Kayu Selatan", "Utan Kayu Utara"
+    ];
 
-  foreach ($kelurahan as $nama) {
-      echo "<a href='data.php?kelurahan=" . urlencode($nama) . "'>$nama</a>";
-  }
-  ?>
-</div>
-
-
+    foreach ($listKelurahan as $nama) {
+        echo "<a href='data.php?kelurahan=" . urlencode($nama) . "'>$nama</a>";
+    }
+    ?>
+        </div>
+      </div>
+    </div>
+  </div>
+  
 <div class="min-h-screen text-gray-800 dark:text-white">
     <main class="max-w-5xl mx-auto p-6">
         <form method="POST" enctype="multipart/form-data" class="space-y-3 mb-10">
@@ -172,12 +172,12 @@ if (isset($_GET['edit'])) {
             <?php elseif ($type == 'kependudukan'): ?>
                 <input type="number" name="jumlah_penduduk" placeholder="Jumlah Penduduk" value="<?= $edit_data['jumlah_penduduk'] ?? '' ?>" required class="w-full px-3 py-2 border rounded">
             <?php endif ?>
-    <input type="hidden" name="kelurahan" value="<?php echo htmlspecialchars($_GET['kelurahan'] ?? ''); ?>">
+            <input type="hidden" name="kelurahan" value="<?php echo htmlspecialchars($_GET['kelurahan'] ?? ''); ?>">
 
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
                 <?= $edit_data ? "Update" : "Simpan" ?>
             </button>
-        </form>
+            </form> 
 
         <div>
             <h3 class="text-xl font-semibold mb-3">Data <?= ucfirst($type) ?></h3>
