@@ -42,7 +42,7 @@
         ];
 
         foreach ($listKelurahan as $nama) {
-            echo "<a href='pendidikan.php?kelurahan=" . urlencode($nama) . "'>$nama</a>";
+            echo "<a href='data.php?kelurahan=" . urlencode($nama) . "'>$nama</a>";
         }
         ?>
         </div>
