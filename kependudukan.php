@@ -166,8 +166,8 @@ if (is_array($kelurahan)) {
 });
 
   </script>
-   <a href="<?php echo $type; ?>.php?kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali">
-    ⬅ Kembali ke Data <?php echo ucfirst($type); ?>
+  <a href="data.php?type=<?php echo urlencode($type); ?>&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali">
+   ⬅ Kembali ke Data 
 </a>
 
 </body>

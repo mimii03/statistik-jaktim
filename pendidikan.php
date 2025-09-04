@@ -24,6 +24,14 @@ while ($row = mysqli_fetch_assoc($result)) {
     $data[]   = $row['jumlah'];
 }
 ?>
+
+<?php
+$kelurahan = $_GET['kelurahan'] ?? '';
+if (is_array($kelurahan)) {
+    $kelurahan = reset($kelurahan);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -156,5 +164,9 @@ document.querySelectorAll(".btn-download").forEach(function(button) {
   });
 });
 </script>
+ <a href="data.php?type=<?php echo urlencode($type); ?>&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali">
+   ⬅ Kembali ke  Kategori Data 
+</a>
+
 </body>
 </html>
