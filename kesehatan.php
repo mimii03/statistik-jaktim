@@ -1,3 +1,12 @@
+<?php
+$type = "kesehatan"; 
+$kelurahan = $_GET['kelurahan'] ?? '';
+if (is_array($kelurahan)) {
+    $kelurahan = reset($kelurahan);
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -37,30 +46,30 @@
     </div>
 
     <div class="dropdown">
-      <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
-      <div class="dropdown-content">
-          <?php
-        $listKelurahan = [
-          "Balimester", "Batu Ampar", "Baru", "Batuampar", "Bidaracina",
-          "Bambu Apus", "Cawang", "Ceger", "Cibubur", "Cipinang",
-          "Cipinang Besar Selatan", "Cipinang Besar Utara", "Cipinang Cempedak",
-          "Cipinang Melayu", "Cipinang Muara", "Cilangkap", "Ciracas",
-          "Duren Sawit", "Dukuh", "Gedong", "Halim Perdana Kusumah",
-          "Jatinegara", "Jatinegara Kaum", "Jati", "Kampung Dukuh",
-          "Kampung Melayu", "Kayu Manis", "Kayu Putih", "Kebon Manggis",
-          "Kramat Jati", "Klender", "Lubang Buaya", "Malaka Jaya",
-          "Malaka Sari", "Makasar", "Matraman", "Munjul", "Palmeriam",
-          "Pasar Rebo", "Pekayon", "Penggilingan", "Pinang Ranti",
-          "Pisangan Baru", "Pondok Bambu", "Pondok Kelapa", "Pondok Kopi",
-          "Pulogadung", "Pulo Gebang", "Rambutan", "Rawa Bunga",
-          "Rawa Terate", "Rawamangun", "Setu", "Susukan",
-          "Utan Kayu Selatan", "Utan Kayu Utara"
-        ];
+  <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
+  <div class="dropdown-content" id="kelurahanList">
+    <?php
+    $listKelurahan = [
+      "Balimester", "Batu Ampar", "Baru", "Batuampar", "Bidaracina",
+      "Bambu Apus", "Cawang", "Ceger", "Cibubur", "Cipinang",
+      "Cipinang Besar Selatan", "Cipinang Besar Utara", "Cipinang Cempedak",
+      "Cipinang Melayu", "Cipinang Muara", "Cilangkap", "Ciracas",
+      "Duren Sawit", "Dukuh", "Gedong", "Halim Perdana Kusumah",
+      "Jatinegara", "Jatinegara Kaum", "Jati", "Kampung Dukuh",
+      "Kampung Melayu", "Kayu Manis", "Kayu Putih", "Kebon Manggis",
+      "Kramat Jati", "Klender", "Lubang Buaya", "Malaka Jaya",
+      "Malaka Sari", "Makasar", "Matraman", "Munjul", "Palmeriam",
+      "Pasar Rebo", "Pekayon", "Penggilingan", "Pinang Ranti",
+      "Pisangan Baru", "Pondok Bambu", "Pondok Kelapa", "Pondok Kopi",
+      "Pulogadung", "Pulo Gebang", "Rambutan", "Rawa Bunga",
+      "Rawa Terate", "Rawamangun", "Setu", "Susukan",
+      "Utan Kayu Selatan", "Utan Kayu Utara"
+    ];
 
-        foreach ($listKelurahan as $nama) {
-            echo "<a href='data.php?kelurahan=" . urlencode($nama) . "'>$nama</a>";
-        }
-        ?>
+    foreach ($listKelurahan as $nama) {
+        echo "<a href='data.php?kelurahan=" . urlencode($nama) . "'>$nama</a>";
+    }
+    ?>
         </div>
       </div>
     </div>
@@ -75,10 +84,9 @@
   <center><a href="download.php?kategori=kesehatan&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-download">⬇️ Download CSV</a></center>
   <center><button class="btn-download" data-chart="chartKesehatan">📥 Download PNG</button></center>
 
-<h3>Belum ada data?
-  <a href="tambahdata.php?type=kesehatan&kelurahan=<?php echo urlencode($kelurahan); ?>">tambah data</a>
-</h3>
-
+  <h3>Belum ada data?
+    <a href="tambahdata.php?kelurahan=<?php echo urlencode($kelurahan); ?>">tambah data</a>
+  </h3>
 
   <script>
     function toggleSidebar() {
@@ -156,5 +164,9 @@
 });
 
   </script>
+  <a href="data.php?type=<?php echo urlencode($type); ?>&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali">
+   ⬅ Kembali ke  Kategori Data 
+</a>
+
 </body>
 </html>

@@ -1,13 +1,13 @@
 <?php
 session_start();
-if (!isset($_SESSION['login'])) {
+if (!isset($_SESSION['admin'])) {
     header("Location: login_admin.php?kelurahan=" . urlencode($_GET['kelurahan'] ?? ''));
     exit;
 }
 ?>
 
 <?php
-$type = "pendidikan"; 
+$type = "tambahdata"; 
 $kelurahan = $_GET['kelurahan'] ?? '';
 if (is_array($kelurahan)) {
     $kelurahan = reset($kelurahan);
@@ -211,9 +211,10 @@ if (isset($_GET['edit'])) {
                 </tbody>
             </table>
 
- <a href="data.php?type=<?php echo urlencode($type); ?>&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali">
-   ⬅ Kembali ke  Kategori Data 
-</a>        </div>
+ <a href="<?php echo $type; ?>.php?kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali">
+    ⬅ Kembali ke Data <?php echo ucfirst($type); ?>
+</a>
+       </div>
     </main>
 </div>
 </body>
