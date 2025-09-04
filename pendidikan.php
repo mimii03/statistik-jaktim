@@ -2,7 +2,6 @@
 session_start();
 include "koneksi.php";
 
-// cek login
 if (!isset($_SESSION['login'])) {
     $redirectUrl = "pendidikan.php";
     if (isset($_GET['kelurahan'])) {
@@ -35,7 +34,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 </head>
 <body>
   <div class="sidebar hidden" id="sidebar">
-    <h3>Statistik</h3>
+    <h4>Statistik</h4>
     <a href="pendidikan.php">📚 Pendidikan</a>
     <a href="kependudukan.php">🧑‍🤝‍🧑 Kependudukan</a>
     <a href="ekonomi.php">💼 Ekonomi</a>
@@ -101,7 +100,6 @@ while ($row = mysqli_fetch_assoc($result)) {
 <h3>Belum ada data?
   <a href="tambahdata.php?type=pendidikan&kelurahan=<?php echo urlencode($kelurahan); ?>">tambah data</a>
 </h3>
-
 
 <script>
 function toggleSidebar() {
