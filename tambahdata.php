@@ -7,15 +7,12 @@ if (!isset($_SESSION['login'])) {
 ?>
 
 <?php
-$kategori = $_GET['kategori'] ?? '';
-
+$type = "pendidikan"; 
 $kelurahan = $_GET['kelurahan'] ?? '';
 if (is_array($kelurahan)) {
-    $kelurahan = reset($kelurahan); // ambil elemen pertama array
+    $kelurahan = reset($kelurahan);
 }
-
 ?>
-
 
 <?php
 
@@ -94,15 +91,6 @@ if (isset($_GET['edit'])) {
 }
 ?>
 
-<?php
-$type = "tambahdata"; 
-$kelurahan = $_GET['kelurahan'] ?? '';
-if (is_array($kelurahan)) {
-    $kelurahan = reset($kelurahan);
-}
-?>
-
-
 <!DOCTYPE html>
 <html lang="en" class="bg-[#e0f2fe] dark:bg-gray-900">
 <head>
@@ -114,7 +102,7 @@ if (is_array($kelurahan)) {
 </head>
 <body>
 <div class="sidebar hidden" id="sidebar">
-    <h3>Statistik</h3>
+    <h4>Statistik</h4>
     <a href="pendidikan.php">📚 Pendidikan</a>
     <a href="kependudukan.php">🧑‍🤝‍🧑 Kependudukan</a>
     <a href="ekonomi.php">💼 Ekonomi</a>
@@ -219,14 +207,13 @@ if (is_array($kelurahan)) {
                             </td>
                         </tr>
                     <?php endforeach ?>
- <a href="data.php?type=<?php echo urlencode($type); ?>&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali">
-   ⬅ Kembali ke  Kategori Data 
-</a>
 
                 </tbody>
             </table>
 
-        </div>
+ <a href="data.php?type=<?php echo urlencode($type); ?>&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali">
+   ⬅ Kembali ke  Kategori Data 
+</a>        </div>
     </main>
 </div>
 </body>
