@@ -1,10 +1,11 @@
 <?php
 session_start();
-if (!isset($_SESSION['admin'])) {
+if (!isset($_SESSION['admin']) || $_SESSION['kelurahan'] !== ($_GET['kelurahan'] ?? '')) {
     header("Location: login_admin.php?kelurahan=" . urlencode($_GET['kelurahan'] ?? ''));
     exit;
 }
 ?>
+
 
 <?php
 $type = "tambahdata"; 
@@ -75,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     echo "<p>✅ Data berhasil ditambahkan!</p>";
     if ($type == 'pendidikan') {
-        echo "<a href='pendidikan.php?kelurahan=$kelurahan' class='btn-kembali'>⬅ Kembali ke Data Pendidikan</a>";
+        echo "<a href='pendidikan.php?kelurahan=$kelurahan' class='btn-kembali'>⬅ Kembali</a>";
     } else {
         echo "<a href='tambahdata.php?type=$type' class='btn-kembali'>⬅ Kembali</a>";
     }
