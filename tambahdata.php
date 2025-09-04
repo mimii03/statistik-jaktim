@@ -59,6 +59,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ];
     } elseif ($type == 'kependudukan') {
         $record = [
+            'jenis_kelamin' => $_POST['jenis_kelamin'],
+            'kelompok_umur' => $_POST['kelompok_umur'],
             'jumlah_penduduk' => $_POST['jumlah_penduduk'],
         ];
     }
@@ -166,6 +168,18 @@ if (isset($_GET['edit'])) {
                 <input type="number" name="jumlah_fasilitas" placeholder="Jumlah" value="<?= $edit_data['jumlah'] ?? '' ?>" required class="w-full px-3 py-2 border rounded">
 
             <?php elseif ($type == 'kependudukan'): ?>
+                <select name="jenis_kelamin" required class="w-full px-3 py-2 border rounded">
+                    <option value="">Jenis Kelamin</option>
+                    <?php foreach (['Perempuan','Laki-laki'] as $j): ?>
+                        <option value="<?= $j ?>" <?= isset($edit_data['jenis_kelamin']) && $edit_data['jenis_kelamin'] === $j ? 'selected' : '' ?>><?= $j ?></option>
+                    <?php endforeach ?>
+                </select>
+                <select name="kelompok_umur" required class="w-full px-3 py-2 border rounded">
+                    <option value="">kelompok umur</option>
+                    <?php foreach (['00-04','05-09','10-14','15-19','20-24','25-29','30-34','35-39','40-44','45-49','50-54','55-59','60-64','65-69','70-75','75+'] as $j): ?>
+                        <option value="<?= $j ?>" <?= isset($edit_data['kelompok_umur']) && $edit_data['kelompok_umur'] === $j ? 'selected' : '' ?>><?= $j ?></option>
+                    <?php endforeach ?>
+                </select>
                 <input type="number" name="jumlah_penduduk" placeholder="Jumlah Penduduk" value="<?= $edit_data['jumlah_penduduk'] ?? '' ?>" required class="w-full px-3 py-2 border rounded">
             <?php endif ?>
             <input type="hidden" name="kelurahan" value="<?php echo htmlspecialchars($_GET['kelurahan'] ?? ''); ?>">
@@ -190,6 +204,8 @@ if (isset($_GET['edit'])) {
                             <th class="border px-2 py-1">Fasilitas</th>
                             <th class="border px-2 py-1">Jumlah</th>
                         <?php elseif ($type == 'kependudukan'): ?>
+                            <th class="border px-2 py-1">Jenis Kelamin</th>
+                            <th class="border px-2 py-1">Kelompok Umur</th>
                             <th class="border px-2 py-1">Jumlah Penduduk</th>
                         <?php endif ?>
                         <th class="border px-2 py-1">Aksi</th>
