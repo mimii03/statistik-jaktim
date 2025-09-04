@@ -13,7 +13,7 @@ session_start();
 <body>
 
   <div class="sidebar hidden" id="sidebar">
-    <h3>Statistik</h3>
+    <h4>Statistik</h4>
     <a href="pendidikan.php">📚 Pendidikan</a>
     <a href="kependudukan.php">🧑‍🤝‍🧑 Kependudukan</a>
     <a href="ekonomi.php">💼 Ekonomi</a>
