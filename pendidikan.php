@@ -98,9 +98,10 @@ while ($row = mysqli_fetch_assoc($result)) {
   <center><a href="download.php?kategori=pendidikan&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-download">⬇️ Download CSV</a></center>
   <center><button class="btn-download" data-chart="chartPendidikan">📥 Download PNG</button></center>
 
-  <h3>Belum ada data?
-    <a href="tambahdata.php?kelurahan=<?php echo urlencode($kelurahan); ?>">tambah data</a>
-  </h3>
+<h3>Belum ada data?
+  <a href="tambahdata.php?type=pendidikan&kelurahan=<?php echo urlencode($kelurahan); ?>">tambah data</a>
+</h3>
+
 
 <script>
 function toggleSidebar() {
