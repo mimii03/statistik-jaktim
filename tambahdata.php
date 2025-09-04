@@ -74,7 +74,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     file_put_contents($data_file, json_encode($data, JSON_PRETTY_PRINT));
 
-    // ambil kelurahan dari form hidden
     $kelurahan = isset($_POST['kelurahan']) ? urlencode($_POST['kelurahan']) : '';
 
     echo "<p>✅ Data berhasil ditambahkan!</p>";
@@ -95,11 +94,20 @@ if (isset($_GET['edit'])) {
 }
 ?>
 
+<?php
+$type = "tambahdata"; 
+$kelurahan = $_GET['kelurahan'] ?? '';
+if (is_array($kelurahan)) {
+    $kelurahan = reset($kelurahan);
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en" class="bg-[#e0f2fe] dark:bg-gray-900">
 <head>
     <meta charset="UTF-8">
-    <title>Input data pendidikan</title>
+    <title>Input data</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
@@ -146,7 +154,7 @@ if (isset($_GET['edit'])) {
       </div>
     </div>
   </div>
-  
+
 <div class="min-h-screen text-gray-800 dark:text-white">
     <main class="max-w-5xl mx-auto p-6">
         <form method="POST" enctype="multipart/form-data" class="space-y-3 mb-10">
@@ -211,13 +219,13 @@ if (isset($_GET['edit'])) {
                             </td>
                         </tr>
                     <?php endforeach ?>
- <a href="<?php echo $type; ?>.php?kelurahan=<?php echo urlencode($listkelurahan); ?>" class="btn-kembali">
-                ⬅ Kembali ke Data <?php echo ucfirst($type); ?>
-            </a>
+ <a href="data.php?type=<?php echo urlencode($type); ?>&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali">
+   ⬅ Kembali ke  Kategori Data 
+</a>
 
                 </tbody>
             </table>
- 
+
         </div>
     </main>
 </div>
