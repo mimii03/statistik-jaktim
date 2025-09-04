@@ -14,5 +14,13 @@
     {
         "jenjang": "SD",
         "jumlah": "2"
+    },
+    {
+        "jenjang": "PT\/Akademi",
+        "jumlah": "9"
+    },
+    {
+        "jenjang": "MTS",
+        "jumlah": "3"
     }
 ]

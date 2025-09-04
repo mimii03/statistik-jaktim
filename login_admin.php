@@ -5,10 +5,13 @@ ini_set('display_errors', 1);
 
 include "koneksi.php";
 
+$kelurahan = $_GET['kelurahan'] ?? '';
+$redirect = $_GET['redirect'] ?? "tambahdata.php?kelurahan=" . urlencode($kelurahan);
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $kelurahan = $_GET['kelurahan'] ?? '';
+    $redirect = $_POST['redirect'] ?? $redirect;
 
     $query = "SELECT * FROM admin WHERE username='$username' AND password='$password' AND kelurahan='$kelurahan'";
     $result = mysqli_query($conn, $query);
@@ -19,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['admin'] = $admin['username'];
         $_SESSION['kelurahan'] = $admin['kelurahan'];
 
-        header("Location: tambahdata.php?kelurahan=" . urlencode($admin['kelurahan']));
+        header("Location: " . $redirect);
         exit;
     } else {
         $error = "Username atau password salah untuk kelurahan $kelurahan!";
@@ -31,23 +34,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Login Admin</title>
-      <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="login-page"> 
     <div class="container">
-<h2>Login Admin - <?php echo htmlspecialchars($_GET['kelurahan'] ?? ''); ?></h2>
+        <h2>Login Admin - <?php echo htmlspecialchars($kelurahan); ?></h2>
 
-<?php if (!empty($error)) echo "<p style='color:red;'>$error</p>"; ?>
+        <?php if (!empty($error)) echo "<p style='color:red;'>$error</p>"; ?>
 
-<form method="post">
-  <input type="hidden" name="redirect" value="<?php echo htmlspecialchars($redirect); ?>">
-  <input type="text" name="username" placeholder="Username" required>
-  <input type="password" name="password" placeholder="Password" required>
-  <button type="submit" name="login">Login</button>
-</form>
+        <form method="post">
+            <input type="hidden" name="redirect" value="<?php echo htmlspecialchars($redirect); ?>">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit" name="login">Login</button>
+        </form>
 
-  <a href="<?php echo $kategori; ?>.php?kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali">
-    ⬅ Kembali ke Data <?php echo ucfirst($kategori); ?>
+        <a href="data.php?kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali">
+            ⬅ Kembali ke Data <?php echo htmlspecialchars(ucfirst($kelurahan)); ?>
+        </a>
+    </div>
 </body>
 </html>
