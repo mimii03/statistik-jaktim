@@ -32,10 +32,6 @@ if (is_array($kelurahan)) {
 }
 ?>
 
-<?php
-session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
