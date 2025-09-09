@@ -32,6 +32,11 @@ if (is_array($kelurahan)) {
 }
 ?>
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 99ed83a7733d16856ededdba12a2e8fd53efc020
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -162,6 +167,25 @@ document.querySelectorAll(".btn-download").forEach(function(button) {
     link.click();
   });
 });
+</script>
+
+ <script>
+function toggleDropdown() {
+  document.getElementById("userDropdown").classList.toggle("show");
+}
+
+// Tutup dropdown kalau klik di luar
+window.onclick = function(e) {
+  if (!e.target.matches('.user-btn')) {
+    let dropdowns = document.getElementsByClassName("user-dropdown");
+    for (let i = 0; i < dropdowns.length; i++) {
+      let openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
 </script>
 <center><a href="data.php?type=<?php echo urlencode($type); ?>&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali">
    ⬅ Kembali ke  Kategori Data 

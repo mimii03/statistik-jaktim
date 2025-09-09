@@ -6,9 +6,7 @@ if (is_array($kelurahan)) {
 }
 ?>
 
-<?php
-session_start();
-?>
+
 
 <!DOCTYPE html>
 <html lang="id">
@@ -181,7 +179,7 @@ fetch("getdata.php?kategori=kependudukan&kelurahan=<?php echo urlencode($kelurah
 });
 
   </script>
-  <center><a href="data.php?type=<?php echo urlencode($type); ?>&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali bg-blue-500 hover:bg-blue-600 text-white text-lg font-semibold px-9 py-4 rounded-lg inline-block">
+  <a href="data.php?type=<?php echo urlencode($type); ?>&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali bg-blue-500 hover:bg-blue-600 text-white text-lg font-semibold px-9 py-4 rounded-lg inline-block">
    ⬅ Kembali ke  Kategori Data 
 </a></center>
 

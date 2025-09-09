@@ -7,6 +7,9 @@ if (!isset($_SESSION['admin']) || $_SESSION['kelurahan'] !== ($_GET['kelurahan']
 ?>
 
 
+
+
+
 <?php
 $type = "tambahdata"; 
 $kelurahan = $_GET['kelurahan'] ?? '';
@@ -124,10 +127,27 @@ if (isset($_GET['edit'])) {
     <a href="kesehatan.php">🏥 Kesehatan</a>
   </div>
 
+
   <div class="navbar">
     <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
     <a href="index.php" class="beranda-link">Beranda</a>
     
+<div class="admin-auth">
+  <?php if(isset($_SESSION['admin'])): ?>
+    <div class="admin-menu">
+      <button class="admin-btn" onclick="toggleAdminDropdown()">
+        <?php echo htmlspecialchars($_SESSION['admin']); ?> ⬇
+      </button>
+      <div id="adminDropdown" class="admin-dropdown">
+        <a href="logout_admin.php" class="admin-logout">Logout</a>
+      </div>
+    </div>
+  <?php else: ?>
+    <a href="login_admin.php" class="admin-login">Login Admin</a>
+  <?php endif; ?>
+</div>
+
+
     <div class="dropdown">
   <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
   <div class="dropdown-content" id="kelurahanList">
@@ -246,4 +266,11 @@ if (isset($_GET['edit'])) {
        </div>
     </main>
 </div>
+
+<script>
+function toggleAdminDropdown() {
+  document.getElementById("adminDropdown").classList.toggle("show");
+}
+</script>
+
 </body>
