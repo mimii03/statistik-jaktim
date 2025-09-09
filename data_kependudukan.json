@@ -10,5 +10,10 @@
     },
     {
         "jumlah_penduduk": "8"
+    },
+    {
+        "jenis_kelamin": "Perempuan",
+        "kelompok_umur": "15-19",
+        "jumlah_penduduk": "56"
     }
 ]

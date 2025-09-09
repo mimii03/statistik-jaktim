@@ -6,6 +6,9 @@ if (is_array($kelurahan)) {
 }
 ?>
 
+<?php
+session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="id">
@@ -30,20 +33,21 @@ if (is_array($kelurahan)) {
     <a href="index.php" class="beranda-link">Beranda</a>
     
 <div class="auth-buttons">
-      <?php if(isset($_SESSION['username'])): ?>
-        <div class="dropdown">
-          <button class="btn-login">
-            <?php echo htmlspecialchars($_SESSION['username']); ?> ⬇
-          </button>
-          <div class="dropdown-content">
-            <a href="logout.php">Logout</a>
-          </div>
-        </div>
-      <?php else: ?>
-        <a href="login.php" class="btn-login">Login</a>
-        <a href="register.php" class="btn-register">Register</a>
-      <?php endif; ?>
+  <?php if(isset($_SESSION['username'])): ?>
+    <div class="user-menu">
+      <button class="user-btn" onclick="toggleDropdown()">
+        <?php echo htmlspecialchars($_SESSION['username']); ?> ⬇
+      </button>
+      <div id="userDropdown" class="user-dropdown">
+        <a href="logout.php" class="logout-btn">Logout</a>
+      </div>
     </div>
+  <?php else: ?>
+    <a href="login.php" class="btn-login">Login</a>
+    <a href="register.php" class="btn-register">Register</a>
+  <?php endif; ?>
+</div>
+
 
     <div class="dropdown">
   <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
@@ -166,7 +170,7 @@ if (is_array($kelurahan)) {
 });
 
   </script>
-  <a href="data.php?type=<?php echo urlencode($type); ?>&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali bg-blue-500 hover:bg-blue-600 text-white text-lg font-semibold px-9 py-4 rounded-lg inline-block">
+  <a href="data.php?type=<?php echo urlencode($type); ?>&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali ">
    ⬅ Kembali ke  Kategori Data 
 </a>
 

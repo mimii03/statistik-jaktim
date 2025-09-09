@@ -234,13 +234,14 @@ p.error {
   position: relative;
   margin-left: auto;
   margin-right: 30px;
+  color: rgb(255, 255, 255);
 }
 
 .dropdown-content {
   display: none;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   position: absolute;
-  color: black;
+  color: rgb(255, 255, 255);
   top: 83%;
   right: 0;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -267,11 +268,11 @@ p.error {
   padding: 8px 12px;
   display: block;
   text-decoration: none;
-  color: black;
+  color: rgb(0, 0, 0);
 }
 
 .dropdown-content a:hover {
-  background-color: #eee;
+  background-color: #cfcfcf;
 }
 
 .content {
@@ -341,14 +342,6 @@ body.login-page {
   background: linear-gradient(135deg, #74ebd5, #acb6e5);
 }
 
-body.login-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: linear-gradient(135deg, #74ebd5, #acb6e5);
-}
-
 .btn-kembali {
   display: inline-block;
   padding: 8px 15px;
@@ -382,4 +375,55 @@ table th {
   background-color: #f5f5f5;
   font-weight: bold;
   color: #333;
+}
+
+.user-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.user-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  margin-left: 200px; 
+    margin-top: 20px;
+  
+}
+
+.user-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #fff;
+  min-width: 160px;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  z-index: 700;
+}
+
+.user-dropdown a {
+  display: block;
+  padding: 12px 16px;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+}
+
+.user-dropdown a:hover {
+  background: #f2f2f2;
+}
+
+.logout-btn {
+  color: red;
+  font-weight: bold;
+}
+
+.user-dropdown.show {
+  display: block;
 }
