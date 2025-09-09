@@ -84,7 +84,7 @@ if (is_array($kelurahan)) {
   <center><a href="download.php?kategori=ekonomi&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-download">⬇️ Download CSV</a></center>?
   <center><button class="btn-download" data-chart="chartEkonomi">📥 Download PNG</button></center>
 
-<h3>Belum ada data?
+  <h3>Belum ada data?
   <a href="tambahdata.php?type=ekonomi&kelurahan=<?php echo urlencode($kelurahan); ?>">tambah data</a>
 </h3>
   
@@ -158,9 +158,9 @@ if (is_array($kelurahan)) {
       });
     });
   </script>
-  <a href="data.php?type=<?php echo urlencode($type); ?>&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali">
+  <center><a href="data.php?type=<?php echo urlencode($type); ?>&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali">
    ⬅ Kembali ke  Kategori Data 
-</a>
+</a></center>
 
 </body>
 </html>

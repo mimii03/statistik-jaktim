@@ -17,7 +17,7 @@ if (is_array($kelurahan)) {
 
 <?php
 
-$type = $_GET['type'] ?? 'pendidikan';
+$type = $_GET['type'] ?? '';
 
 $map = [
     'pendidikan'   => 'data_pendidikan.json',
@@ -79,11 +79,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "<p>✅ Data berhasil ditambahkan!</p>";
     if ($type == 'pendidikan') {
         echo "<a href='pendidikan.php?kelurahan=$kelurahan' class='btn-kembali'>⬅ Kembali</a>";
-    } else {
-        echo "<a href='tambahdata.php?type=$type' class='btn-kembali'>⬅ Kembali</a>";
-    }
-    exit;
-}
+
+    } elseif ($type == 'ekonomi') {
+        echo "<a href='ekonomi.php?kelurahan=$kelurahan' class='btn-kembali'>⬅ Kembali</a>";
+
+    } elseif ($type == 'kesehatan') {
+        echo "<a href='kesehatan.php?kelurahan=$kelurahan' class='btn-kembali'>⬅ Kembali</a>";
+
+    } elseif ($type == 'kependudukan') {
+        echo "<a href='kependudukan.php?kelurahan=$kelurahan' class='btn-kembali'>⬅ Kembali</a>";
+    } exit;}
 
 
 $edit_data = null;

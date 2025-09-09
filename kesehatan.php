@@ -164,9 +164,9 @@ if (is_array($kelurahan)) {
 });
 
   </script>
-  <a href="data.php?type=<?php echo urlencode($type); ?>&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali">
+  <center><a href="data.php?type=<?php echo urlencode($type); ?>&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali">
    ⬅ Kembali ke  Kategori Data 
-</a>
+</a></center>
 
 </body>
 </html>
