@@ -6,21 +6,6 @@ if (!isset($_SESSION['admin']) || $_SESSION['kelurahan'] !== ($_GET['kelurahan']
 }
 ?>
 
-<div class="auth-buttons">
-  <?php if(isset($_SESSION['admin'])): ?>
-    <div class="user-menu">
-      <button class="user-btn" onclick="toggleDropdown()">
-        <?php echo htmlspecialchars($_SESSION['admin']); ?> ⬇
-      </button>
-      <div id="userDropdown" class="user-dropdown">
-        <a href="logout_admin.php" class="logout-btn">Logout</a>
-      </div>
-    </div>
-  <?php else: ?>
-    <a href="login.php" class="btn-login">Login</a>
-    <a href="register.php" class="btn-register">Register</a>
-  <?php endif; ?>
-</div>
 
 
 
@@ -135,10 +120,27 @@ if (isset($_GET['edit'])) {
     <a href="kesehatan.php">🏥 Kesehatan</a>
   </div>
 
+
   <div class="navbar">
     <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
     <a href="index.php" class="beranda-link">Beranda</a>
     
+<div class="admin-auth">
+  <?php if(isset($_SESSION['admin'])): ?>
+    <div class="admin-menu">
+      <button class="admin-btn" onclick="toggleAdminDropdown()">
+        <?php echo htmlspecialchars($_SESSION['admin']); ?> ⬇
+      </button>
+      <div id="adminDropdown" class="admin-dropdown">
+        <a href="logout_admin.php" class="admin-logout">Logout</a>
+      </div>
+    </div>
+  <?php else: ?>
+    <a href="login_admin.php" class="admin-login">Login Admin</a>
+  <?php endif; ?>
+</div>
+
+
     <div class="dropdown">
   <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
   <div class="dropdown-content" id="kelurahanList">
@@ -258,22 +260,10 @@ if (isset($_GET['edit'])) {
     </main>
 </div>
 
- <script>
-function toggleDropdown() {
-  document.getElementById("userDropdown").classList.toggle("show");
-}
-
-// Tutup dropdown kalau klik di luar
-window.onclick = function(e) {
-  if (!e.target.matches('.user-btn')) {
-    let dropdowns = document.getElementsByClassName("user-dropdown");
-    for (let i = 0; i < dropdowns.length; i++) {
-      let openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
+<script>
+function toggleAdminDropdown() {
+  document.getElementById("adminDropdown").classList.toggle("show");
 }
 </script>
+
 </body>

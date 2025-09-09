@@ -382,7 +382,7 @@ table th {
 }
 
 .user-btn {
-  background-color: #007bff;
+  background: linear-gradient(135deg, #15ee4b, #26f1e7);
   color: white;
   padding: 10px 16px;
   border: none;
@@ -425,4 +425,70 @@ table th {
 
 .user-dropdown.show {
   display: block;
+}
+
+/* Container tombol admin */
+.admin-auth {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  margin-right: 250px; /* geser ke kiri */
+}
+
+/* Tombol utama admin */
+.admin-btn {
+  background: linear-gradient(135deg, #ffa7e5, #128e92);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.admin-btn:hover {
+  background: linear-gradient(135deg, #e01ff1, #0041a8);
+  transform: translateY(-2px);
+}
+
+/* Dropdown admin */
+.admin-dropdown {
+  display: none;
+  position: absolute;
+  top: 45px;
+  right: 0;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  overflow: hidden;
+  z-index: 100;
+}
+
+/* Isi dropdown */
+.admin-dropdown a {
+  display: block;
+  padding: 10px 16px;
+  color: #333;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.admin-dropdown a:hover {
+  background: #f5f5f5;
+  color: #d9534f; /* merah pas hover logout */
+}
+
+/* Animasi fade dropdown */
+.admin-dropdown.show {
+  display: block;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
 }
