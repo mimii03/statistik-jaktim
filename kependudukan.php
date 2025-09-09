@@ -170,9 +170,9 @@ session_start();
 });
 
   </script>
-  <a href="data.php?type=<?php echo urlencode($type); ?>&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali ">
+  <a href="data.php?type=<?php echo urlencode($type); ?>&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali bg-blue-500 hover:bg-blue-600 text-white text-lg font-semibold px-9 py-4 rounded-lg inline-block">
    ⬅ Kembali ke  Kategori Data 
-</a>
+</a></center>
 
 </body>
 </html>
