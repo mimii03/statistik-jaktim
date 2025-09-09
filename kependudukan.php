@@ -6,9 +6,7 @@ if (is_array($kelurahan)) {
 }
 ?>
 
-<?php
-session_start();
-?>
+
 
 <!DOCTYPE html>
 <html lang="id">
@@ -170,6 +168,24 @@ session_start();
 });
 
   </script>
+   <script>
+function toggleDropdown() {
+  document.getElementById("userDropdown").classList.toggle("show");
+}
+
+// Tutup dropdown kalau klik di luar
+window.onclick = function(e) {
+  if (!e.target.matches('.user-btn')) {
+    let dropdowns = document.getElementsByClassName("user-dropdown");
+    for (let i = 0; i < dropdowns.length; i++) {
+      let openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
   <a href="data.php?type=<?php echo urlencode($type); ?>&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali bg-blue-500 hover:bg-blue-600 text-white text-lg font-semibold px-9 py-4 rounded-lg inline-block">
    ⬅ Kembali ke  Kategori Data 
 </a></center>
