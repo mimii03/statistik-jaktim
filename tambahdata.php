@@ -16,18 +16,25 @@ if (is_array($kelurahan)) {
 
 <?php
 $type = $_GET['type'] ?? '';
+if ($type === '') {
+    $basename = basename($_SERVER['PHP_SELF'], '.php');
+    $mapType = [
+        'kependudukan' => 'kependudukan',
+        'pendidikan'   => 'pendidikan',
+        'kesehatan'    => 'kesehatan',
+        'ekonomi'      => 'ekonomi',
+        'tambahdata'   => ''
+    ];
+    $type = $mapType[$basename] ?? '';
+}
 
-$map = [
-    'pendidikan'   => 'data_pendidikan.json',
-    'kesehatan'    => 'data_kesehatan.json',
-    'ekonomi'      => 'data_ekonomi.json',
-    'kependudukan' => 'data_kependudukan.json',
-];
-
-$data_file = $map[$type] ?? $map['pendidikan'];
+$data_file = '';
+if ($type !== '') {
+    $data_file = "data_{$type}_" . urlencode($kelurahan) . ".json";
+}
 
 $data = [];
-if (file_exists($data_file)) {
+if ($data_file && file_exists($data_file)) {
     $json = file_get_contents($data_file);
     $data = json_decode($json, true) ?? [];
 }

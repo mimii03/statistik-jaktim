@@ -32,8 +32,11 @@ if (is_array($kelurahan)) {
 }
 ?>
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 99ed83a7733d16856ededdba12a2e8fd53efc020
 <!DOCTYPE html>
 <html lang="id">
 <head>

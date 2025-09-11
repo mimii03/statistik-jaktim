@@ -83,7 +83,7 @@ if (is_array($kelurahan)) {
   <h2>Grafik Statistik Kependudukan - <?php echo htmlspecialchars($kelurahan); ?></h2>
   <canvas id="chartKependudukan"></canvas>
   <br>
-  <center><a href="download.php?kategori=ekonomi&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-download">⬇️ Download CSV</a></center>
+  <center><a href="download.php?kategori=kependudukan&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-download">⬇️ Download CSV</a></center>
   <center><button class="btn-download" data-chart="chartKependudukan">📥 Download PNG</button></center>
 
 <h3>Belum ada data?
@@ -112,45 +112,56 @@ if (is_array($kelurahan)) {
     
     const ctx = document.getElementById("chartKependudukan").getContext("2d");
 
-    fetch("getdata.php?kategori=kependudukan&kelurahan=<?php echo urlencode($kelurahan); ?>")
-      .then(res => res.json())
-      .then(data => {
-        new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: data.labels,
-            datasets: [{
-              label: 'Jumlah Penduduk',
-              data: data.jumlah,
-              backgroundColor: [
-                'rgba(52, 152, 219, 0.7)',
-                'rgba(46, 204, 113, 0.7)',
-                'rgba(231, 76, 60, 0.7)',
-                'rgba(241, 196, 15, 0.7)',
-                'rgba(155, 89, 182, 0.7)',
-                'rgba(230, 126, 34, 0.7)',
-                'rgba(127, 140, 141, 0.7)',
-                'rgba(52, 73, 94, 0.7)'
-              ],
-              borderColor: [
-                'rgba(41, 128, 185, 1)',
-                'rgba(39, 174, 96, 1)',
-                'rgba(192, 57, 43, 1)',
-                'rgba(243, 156, 18, 1)',
-                'rgba(142, 68, 173, 1)',
-                'rgba(211, 84, 0, 1)',
-                'rgba(99, 110, 114, 1)',
-                'rgba(44, 62, 80, 1)'
-              ],
-              borderWidth: 1
-            }]
+fetch("getdata.php?kategori=kependudukan&kelurahan=<?php echo urlencode($kelurahan); ?>")
+  .then(res => res.json())
+  .then(data => {
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: data.labels,
+        datasets: [
+          {
+            label: 'Laki-Laki',
+            data: data.laki.map(v => -v),
+            backgroundColor: 'rgba(52, 152, 219, 0.7)',
+            borderColor: 'rgba(41, 128, 185, 1)',
+            borderWidth: 1
           },
-          options: {
-            indexAxis: 'y',
-            responsive: true
+          {
+            label: 'Perempuan',
+            data: data.perempuan,
+            backgroundColor: 'rgba(231, 76, 60, 0.7)',
+            borderColor: 'rgba(192, 57, 43, 1)',
+            borderWidth: 1
+          },
+          {
+            label: 'Total',
+            data: data.total,
+            backgroundColor: 'rgba(155, 89, 182, 0.5)',
+            borderColor: 'rgba(142, 68, 173, 1)',
+            borderWidth: 1
           }
-        });
-      });
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            stacked: true,
+            ticks: {
+              callback: function(value) {
+                return Math.abs(value); 
+              }
+            }
+          },
+          y: {
+            stacked: true
+          }
+        }
+      }
+    });
+  });
 
  document.querySelectorAll(".btn-download").forEach(function(button) {
     button.addEventListener("click", function() {
