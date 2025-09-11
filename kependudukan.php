@@ -156,5 +156,12 @@ if (is_array($kelurahan)) {
 
     renderChart();
   </script>
+<<<<<<< HEAD
+=======
+  <center><a href="data.php?type=<?php echo urlencode($type); ?>&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali bg-blue-500 hover:bg-blue-600 text-white text-lg font-semibold px-9 py-4 rounded-lg inline-block">
+   ⬅ Kembali ke  Kategori Data 
+</a></center>
+
+>>>>>>> 195ff63441fd5b877ab541551c71f3aacb44da5f
 </body>
 </html>

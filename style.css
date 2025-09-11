@@ -310,7 +310,7 @@ p.error {
 .auth-buttons {
   display: flex;
   gap: 10px;   
-  margin-left: 700px;   
+  margin-left: 500px;   
   margin-top: -20px;
   margin-right: 20px;
 }
@@ -322,7 +322,7 @@ p.error {
   font-size: 14px;
   font-weight: 600;
   color: #fff;
-  background: linear-gradient(135deg, #4e73df, #1d4ed8); /* gaya biru */
+  background: linear-gradient(135deg, #4e73df, #0505ff); /* gaya biru */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
 }
@@ -339,6 +339,14 @@ body.login-page {
   align-items: center;
   height: 100vh;
   background: linear-gradient(135deg, #74ebd5, #acb6e5);
+}
+
+.guest-menu .btn-login,
+.guest-menu .btn-register {
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  margin-left: 5px;
 }
 
 .btn-kembali {
@@ -389,9 +397,8 @@ table th {
   border-radius: 6px;
   cursor: pointer;
   font-size: 15px;
-  margin-left: 200px; 
-    margin-top: 20px;
-  
+  margin-left: 325px; 
+  margin-top: 20px;
 }
 
 .user-dropdown {
@@ -418,14 +425,63 @@ table th {
   background: #f2f2f2;
 }
 
+.user-menu:hover .user-dropdown {
+  display: block;
+}
+
+.btn-login {
+  background: #4a6cf7;
+  color: white;
+}
+
+.btn-register {
+  background: #6c5ce7;
+  color: white;
+}
+
+/* Style ketika sudah login */
+.logged-in .user-btn {
+  background: #3498db;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.user-menu .user-btn {
+  margin-left: 400px;  /* hanya tombol username yang kena */
+  padding: 8px 14px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #afdbf5, #128e92);
+  color : white;
+  cursor: pointer;
+}
+
 .logout-btn {
+  display: block;
+  padding: 8px;
+  text-decoration: none;
   color: red;
   font-weight: bold;
+}
+
+.logout-btn:hover {
+  background: #f2f2f2;
 }
 
 .user-dropdown.show {
   display: block;
 }
+
+.guest-menu a {
+  margin-left: 300px;   /* hanya login/register yang kena */
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  background: linear-gradient(135deg, #ffa7e5, #128e92);
+    display: inline-block; 
+}
+
 
 /* Container tombol admin */
 .admin-auth {

@@ -1,26 +1,10 @@
 [
     {
-        "jenjang": "MI",
-        "jumlah": "7"
-    },
-    {
-        "jenjang": "SD",
-        "jumlah": "6"
-    },
-    {
-        "jenjang": "MI",
-        "jumlah": "3"
-    },
-    {
         "jenjang": "SD",
         "jumlah": "2"
     },
     {
         "jenjang": "PT\/Akademi",
         "jumlah": "9"
-    },
-    {
-        "jenjang": "MTS",
-        "jumlah": "3"
     }
 ]
