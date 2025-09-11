@@ -6,10 +6,6 @@ if (!isset($_SESSION['admin']) || $_SESSION['kelurahan'] !== ($_GET['kelurahan']
 }
 ?>
 
-
-
-
-
 <?php
 $type = "tambahdata"; 
 $kelurahan = $_GET['kelurahan'] ?? '';
@@ -19,7 +15,6 @@ if (is_array($kelurahan)) {
 ?>
 
 <?php
-
 $type = $_GET['type'] ?? '';
 
 $map = [
@@ -37,11 +32,16 @@ if (file_exists($data_file)) {
     $data = json_decode($json, true) ?? [];
 }
 
+// 🔹 FIX: Hapus data lebih aman
 if (isset($_GET['hapus'])) {
-    $index = $_GET['hapus'];
-    array_splice($data, $index, 1);
-    file_put_contents($data_file, json_encode($data, JSON_PRETTY_PRINT));
-    header("Location: tambahdata.php?type=$type");
+    $index = (int) $_GET['hapus'];
+    if (isset($data[$index])) {
+        array_splice($data, $index, 1);
+        file_put_contents($data_file, json_encode($data, JSON_PRETTY_PRINT));
+    }
+
+    $kelurahan = urlencode($_GET['kelurahan'] ?? '');
+    header("Location: tambahdata.php?type=$type&kelurahan=$kelurahan");
     exit;
 }
 
@@ -63,8 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ];
     } elseif ($type == 'kependudukan') {
         $record = [
-            'jenis_kelamin' => $_POST['jenis_kelamin'],
-            'kelompok_umur' => $_POST['kelompok_umur'],
+            'jenis_kelamin'   => $_POST['jenis_kelamin'],
+            'kelompok_umur'   => $_POST['kelompok_umur'],
             'jumlah_penduduk' => $_POST['jumlah_penduduk'],
         ];
     }
@@ -82,23 +82,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "<p>✅ Data berhasil ditambahkan!</p>";
     if ($type == 'pendidikan') {
         echo "<a href='pendidikan.php?kelurahan=$kelurahan' class='btn-kembali'>⬅ Kembali</a>";
-
     } elseif ($type == 'ekonomi') {
         echo "<a href='ekonomi.php?kelurahan=$kelurahan' class='btn-kembali'>⬅ Kembali</a>";
-
     } elseif ($type == 'kesehatan') {
         echo "<a href='kesehatan.php?kelurahan=$kelurahan' class='btn-kembali'>⬅ Kembali</a>";
-
     } elseif ($type == 'kependudukan') {
         echo "<a href='kependudukan.php?kelurahan=$kelurahan' class='btn-kembali'>⬅ Kembali</a>";
-    } exit;}
+    }
+    exit;
+}
 
-
+// 🔹 FIX: Edit data lebih aman
 $edit_data = null;
 $edit_index = null;
 if (isset($_GET['edit'])) {
-    $edit_index = $_GET['edit'];
-    $edit_data = $data[$edit_index];
+    $edit_index = (int) $_GET['edit'];
+    if (isset($data[$edit_index])) {
+        $edit_data = $data[$edit_index];
+    }
 }
 ?>
 
@@ -118,58 +119,55 @@ if (isset($_GET['edit'])) {
     <a href="kependudukan.php">🧑‍🤝‍🧑 Kependudukan</a>
     <a href="ekonomi.php">💼 Ekonomi</a>
     <a href="kesehatan.php">🏥 Kesehatan</a>
-  </div>
+</div>
 
-
-  <div class="navbar">
+<div class="navbar">
     <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
     <a href="index.php" class="beranda-link">Beranda</a>
     
-<div class="admin-auth">
-  <?php if(isset($_SESSION['admin'])): ?>
-    <div class="admin-menu">
-      <button class="admin-btn" onclick="toggleAdminDropdown()">
-        <?php echo htmlspecialchars($_SESSION['admin']); ?> ⬇
-      </button>
-      <div id="adminDropdown" class="admin-dropdown">
-        <a href="logout_admin.php" class="admin-logout">Logout</a>
-      </div>
+    <div class="admin-auth">
+      <?php if(isset($_SESSION['admin'])): ?>
+        <div class="admin-menu">
+          <button class="admin-btn" onclick="toggleAdminDropdown()">
+            <?php echo htmlspecialchars($_SESSION['admin']); ?> ⬇
+          </button>
+          <div id="adminDropdown" class="admin-dropdown">
+            <a href="logout_admin.php" class="admin-logout">Logout</a>
+          </div>
+        </div>
+      <?php else: ?>
+        <a href="login_admin.php" class="admin-login">Login Admin</a>
+      <?php endif; ?>
     </div>
-  <?php else: ?>
-    <a href="login_admin.php" class="admin-login">Login Admin</a>
-  <?php endif; ?>
-</div>
-
 
     <div class="dropdown">
-  <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
-  <div class="dropdown-content" id="kelurahanList">
-    <?php
-    $listKelurahan = [
-      "Balimester", "Batu Ampar", "Baru", "Batuampar", "Bidaracina",
-      "Bambu Apus", "Cawang", "Ceger", "Cibubur", "Cipinang",
-      "Cipinang Besar Selatan", "Cipinang Besar Utara", "Cipinang Cempedak",
-      "Cipinang Melayu", "Cipinang Muara", "Cilangkap", "Ciracas",
-      "Duren Sawit", "Dukuh", "Gedong", "Halim Perdana Kusumah",
-      "Jatinegara", "Jatinegara Kaum", "Jati", "Kampung Dukuh",
-      "Kampung Melayu", "Kayu Manis", "Kayu Putih", "Kebon Manggis",
-      "Kramat Jati", "Klender", "Lubang Buaya", "Malaka Jaya",
-      "Malaka Sari", "Makasar", "Matraman", "Munjul", "Palmeriam",
-      "Pasar Rebo", "Pekayon", "Penggilingan", "Pinang Ranti",
-      "Pisangan Baru", "Pondok Bambu", "Pondok Kelapa", "Pondok Kopi",
-      "Pulogadung", "Pulo Gebang", "Rambutan", "Rawa Bunga",
-      "Rawa Terate", "Rawamangun", "Setu", "Susukan",
-      "Utan Kayu Selatan", "Utan Kayu Utara"
-    ];
+      <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
+      <div class="dropdown-content" id="kelurahanList">
+        <?php
+        $listKelurahan = [
+          "Balimester", "Batu Ampar", "Baru", "Batuampar", "Bidaracina",
+          "Bambu Apus", "Cawang", "Ceger", "Cibubur", "Cipinang",
+          "Cipinang Besar Selatan", "Cipinang Besar Utara", "Cipinang Cempedak",
+          "Cipinang Melayu", "Cipinang Muara", "Cilangkap", "Ciracas",
+          "Duren Sawit", "Dukuh", "Gedong", "Halim Perdana Kusumah",
+          "Jatinegara", "Jatinegara Kaum", "Jati", "Kampung Dukuh",
+          "Kampung Melayu", "Kayu Manis", "Kayu Putih", "Kebon Manggis",
+          "Kramat Jati", "Klender", "Lubang Buaya", "Malaka Jaya",
+          "Malaka Sari", "Makasar", "Matraman", "Munjul", "Palmeriam",
+          "Pasar Rebo", "Pekayon", "Penggilingan", "Pinang Ranti",
+          "Pisangan Baru", "Pondok Bambu", "Pondok Kelapa", "Pondok Kopi",
+          "Pulogadung", "Pulo Gebang", "Rambutan", "Rawa Bunga",
+          "Rawa Terate", "Rawamangun", "Setu", "Susukan",
+          "Utan Kayu Selatan", "Utan Kayu Utara"
+        ];
 
-    foreach ($listKelurahan as $nama) {
-        echo "<a href='data.php?kelurahan=" . urlencode($nama) . "'>$nama</a>";
-    }
-    ?>
-        </div>
+        foreach ($listKelurahan as $nama) {
+            echo "<a href='data.php?kelurahan=" . urlencode($nama) . "'>$nama</a>";
+        }
+        ?>
       </div>
     </div>
-  </div>
+</div>
 
 <div class="min-h-screen text-gray-800 dark:text-white">
     <main class="max-w-5xl mx-auto p-6">
@@ -201,7 +199,7 @@ if (isset($_GET['edit'])) {
                     <?php endforeach ?>
                 </select>
                 <select name="kelompok_umur" required class="w-full px-3 py-2 border rounded">
-                    <option value="">kelompok umur</option>
+                    <option value="">Kelompok Umur</option>
                     <?php foreach (['00-04','05-09','10-14','15-19','20-24','25-29','30-34','35-39','40-44','45-49','50-54','55-59','60-64','65-69','70-75','75+'] as $j): ?>
                         <option value="<?= $j ?>" <?= isset($edit_data['kelompok_umur']) && $edit_data['kelompok_umur'] === $j ? 'selected' : '' ?>><?= $j ?></option>
                     <?php endforeach ?>
@@ -213,7 +211,7 @@ if (isset($_GET['edit'])) {
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
                 <?= $edit_data ? "Update" : "Simpan" ?>
             </button>
-            </form> 
+        </form> 
 
         <div>
             <h3 class="text-xl font-semibold mb-3">Data <?= ucfirst($type) ?></h3>
@@ -244,19 +242,22 @@ if (isset($_GET['edit'])) {
                                 <td class="border px-2 py-1"><?= htmlspecialchars($val) ?></td>
                             <?php endforeach ?>
                             <td class="border px-2 py-1 text-center space-x-2">
-                                <a href="?type=<?= $type ?>&edit=<?= $i ?>" class="text-blue-500 hover:underline">Edit</a>
-                                <a href="?type=<?= $type ?>&hapus=<?= $i ?>" onclick="return confirm('Yakin ingin menghapus?')" class="text-red-500 hover:underline">Hapus</a>
+                                <a href="?type=<?= urlencode($type) ?>&edit=<?= $i ?>&kelurahan=<?= urlencode($_GET['kelurahan'] ?? '') ?>" 
+                                   class="text-blue-500 hover:underline">Edit</a>
+                                
+                                <a href="?type=<?= urlencode($type) ?>&hapus=<?= $i ?>&kelurahan=<?= urlencode($_GET['kelurahan'] ?? '') ?>" 
+                                   onclick="return confirm('Yakin ingin menghapus?')" 
+                                   class="text-red-500 hover:underline">Hapus</a>
                             </td>
                         </tr>
                     <?php endforeach ?>
-
                 </tbody>
             </table>
 
- <a href="<?php echo $type; ?>.php?kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali">
-    ⬅ Kembali ke Data <?php echo ucfirst($type); ?>
-</a>
-       </div>
+            <a href="<?php echo $type; ?>.php?kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali">
+                ⬅ Kembali ke Data <?php echo ucfirst($type); ?>
+            </a>
+        </div>
     </main>
 </div>
 
@@ -267,3 +268,4 @@ function toggleAdminDropdown() {
 </script>
 
 </body>
+</html>

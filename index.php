@@ -25,8 +25,7 @@ session_start();
     <a href="index.php" class="beranda-link">Beranda</a>
 
 
-
-    <div class="auth-buttons">
+<div class="auth-buttons">
   <?php if(isset($_SESSION['username'])): ?>
     <div class="user-menu">
       <button class="user-btn" onclick="toggleDropdown()">
@@ -37,8 +36,10 @@ session_start();
       </div>
     </div>
   <?php else: ?>
-    <a href="login.php" class="btn-login">Login</a>
-    <a href="register.php" class="btn-register">Register</a>
+    <div class="guest-menu">
+      <a href="login.php" class="btn-login">Login</a>
+      <a href="register.php" class="btn-register">Register</a>
+    </div>
   <?php endif; ?>
 </div>
 
