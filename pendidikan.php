@@ -3,7 +3,7 @@ session_start();
 include "koneksi.php";
 
 if (!isset($_SESSION['login'])) {
-    $redirectUrl = "pendidikan.php";
+    $redirectUrl = "kependudukan.php";
     if (isset($_GET['kelurahan'])) {
         $redirectUrl .= "?kelurahan=" . urlencode($_GET['kelurahan']);
     }
@@ -12,37 +12,21 @@ if (!isset($_SESSION['login'])) {
 }
 
 $kelurahan = isset($_GET['kelurahan']) ? $_GET['kelurahan'] : '';
-$sql = "SELECT jenis_pendidikan, jumlah FROM pendidikan WHERE kelurahan='$kelurahan'";
-$result = mysqli_query($conn, $sql);
-
-$labels = [];
-$data   = [];
-
-while ($row = mysqli_fetch_assoc($result)) {
-    $labels[] = $row['jenis_pendidikan'];
-    $data[]   = $row['jumlah'];
-}
 ?>
 
 <?php
-$type = "pendidikan"; 
+$type = "kependudukan"; 
 $kelurahan = $_GET['kelurahan'] ?? '';
 if (is_array($kelurahan)) {
     $kelurahan = reset($kelurahan);
 }
 ?>
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 99ed83a7733d16856ededdba12a2e8fd53efc020
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Grafik Pendidikan</title>
+  <title>Grafik Kependudukan</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -76,50 +60,58 @@ if (is_array($kelurahan)) {
 </div>
 
     <div class="dropdown">
-  <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
-  <div class="dropdown-content" id="kelurahanList">
-    <?php
-    $listKelurahan = [
-      "Balimester", "Batu Ampar", "Baru", "Batuampar", "Bidaracina",
-      "Bambu Apus", "Cawang", "Ceger", "Cibubur", "Cipinang",
-      "Cipinang Besar Selatan", "Cipinang Besar Utara", "Cipinang Cempedak",
-      "Cipinang Melayu", "Cipinang Muara", "Cilangkap", "Ciracas",
-      "Duren Sawit", "Dukuh", "Gedong", "Halim Perdana Kusumah",
-      "Jatinegara", "Jatinegara Kaum", "Jati", "Kampung Dukuh",
-      "Kampung Melayu", "Kayu Manis", "Kayu Putih", "Kebon Manggis",
-      "Kramat Jati", "Klender", "Lubang Buaya", "Malaka Jaya",
-      "Malaka Sari", "Makasar", "Matraman", "Munjul", "Palmeriam",
-      "Pasar Rebo", "Pekayon", "Penggilingan", "Pinang Ranti",
-      "Pisangan Baru", "Pondok Bambu", "Pondok Kelapa", "Pondok Kopi",
-      "Pulogadung", "Pulo Gebang", "Rambutan", "Rawa Bunga",
-      "Rawa Terate", "Rawamangun", "Setu", "Susukan",
-      "Utan Kayu Selatan", "Utan Kayu Utara"
-    ];
+      <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
+      <div class="dropdown-content" id="kelurahanList">
+        <?php
+        $listKelurahan = [
+          "Balimester", "Batu Ampar", "Baru", "Batuampar", "Bidaracina",
+          "Bambu Apus", "Cawang", "Ceger", "Cibubur", "Cipinang",
+          "Cipinang Besar Selatan", "Cipinang Besar Utara", "Cipinang Cempedak",
+          "Cipinang Melayu", "Cipinang Muara", "Cilangkap", "Ciracas",
+          "Duren Sawit", "Dukuh", "Gedong", "Halim Perdana Kusumah",
+          "Jatinegara", "Jatinegara Kaum", "Jati", "Kampung Dukuh",
+          "Kampung Melayu", "Kayu Manis", "Kayu Putih", "Kebon Manggis",
+          "Kramat Jati", "Klender", "Lubang Buaya", "Malaka Jaya",
+          "Malaka Sari", "Makasar", "Matraman", "Munjul", "Palmeriam",
+          "Pasar Rebo", "Pekayon", "Penggilingan", "Pinang Ranti",
+          "Pisangan Baru", "Pondok Bambu", "Pondok Kelapa", "Pondok Kopi",
+          "Pulogadung", "Pulo Gebang", "Rambutan", "Rawa Bunga",
+          "Rawa Terate", "Rawamangun", "Setu", "Susukan",
+          "Utan Kayu Selatan", "Utan Kayu Utara"
+        ];
 
-    foreach ($listKelurahan as $nama) {
-        echo "<a href='data.php?kelurahan=" . urlencode($nama) . "'>$nama</a>";
-    }
-    ?>
-        </div>
+        foreach ($listKelurahan as $nama) {
+            echo "<a href='data.php?kelurahan=" . urlencode($nama) . "'>$nama</a>";
+        }
+        ?>
       </div>
     </div>
   </div>
 
-  <h2>Grafik Statistik Pendidikan - <?php echo htmlspecialchars($kelurahan); ?></h2>
-  <canvas id="chartPendidikan"></canvas>
+  <h2>Grafik Statistik Kependudukan - <?php echo htmlspecialchars($kelurahan); ?></h2>
 
-  <center><a href="download.php?kategori=pendidikan&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-download">⬇️ Download CSV</a></center>
-  <center><button class="btn-download" data-chart="chartPendidikan">📥 Download PNG</button></center>
+  <!-- Chart Piramida Penduduk -->
+  <canvas id="chartGender"></canvas>
+  <br>
+  <!-- Chart Total Penduduk -->
+  <canvas id="chartTotal"></canvas>
 
-<h3>Belum ada data?
-  <a href="tambahdata.php?type=pendidikan&kelurahan=<?php echo urlencode($kelurahan); ?>">tambah data</a>
-</h3>
+  <center>
+    <a href="download.php?kategori=kependudukan&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-download">⬇️ Download CSV</a>
+  </center>
+  <center>
+    <button class="btn-download" data-chart="chartGender">📥 Download Gender PNG</button>
+    <button class="btn-download" data-chart="chartTotal">📥 Download Total PNG</button>
+  </center>
+
+  <h3>Belum ada data?
+    <a href="tambahdata.php?type=kependudukan&kelurahan=<?php echo urlencode($kelurahan); ?>">tambah data</a>
+  </h3>
 
 <script>
 function toggleSidebar() {
   document.getElementById("sidebar").classList.toggle("hidden");
 }
-
 function filterKelurahan() {
   const input = document.getElementById("searchKel").value.toUpperCase();
   const links = document.getElementById("kelurahanList").getElementsByTagName("a");
@@ -129,29 +121,70 @@ function filterKelurahan() {
   }
 }
 
-fetch("getdata.php?kategori=pendidikan&kelurahan=<?php echo urlencode($kelurahan); ?>")
+fetch("getdata.php?kategori=kependudukan&kelurahan=<?php echo urlencode($kelurahan); ?>")
   .then(res => res.json())
   .then(data => {
-    const ctx = document.getElementById("chartPendidikan").getContext("2d");
-    new Chart(ctx, {
+    // Chart Piramida Gender
+    const ctx1 = document.getElementById("chartGender").getContext("2d");
+    new Chart(ctx1, {
+      type: 'bar',
+      data: {
+        labels: data.labels,
+        datasets: [
+          {
+            label: 'Laki-laki',
+            data: data.laki_laki,
+            backgroundColor: 'rgba(54, 162, 235, 0.7)',
+            borderColor: '#3498db',
+            borderWidth: 1
+          },
+          {
+            label: 'Perempuan',
+            data: data.perempuan,
+            backgroundColor: 'rgba(255, 99, 132, 0.7)',
+            borderColor: '#e84393',
+            borderWidth: 1
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        plugins: {
+          legend: { position: 'top' }
+        },
+        scales: {
+          x: { beginAtZero: true, title: { display: true, text: 'Jumlah' }},
+          y: { title: { display: true, text: 'Kelompok Umur' }}
+        }
+      }
+    });
+
+    // Chart Total Penduduk (Laki + Perempuan)
+    const total = data.laki_laki.map((val, i) => val + data.perempuan[i]);
+    const ctx2 = document.getElementById("chartTotal").getContext("2d");
+    new Chart(ctx2, {
       type: 'bar',
       data: {
         labels: data.labels,
         datasets: [{
-          label: 'Jumlah Pendidikan',
-          data: data.jumlah,
-          backgroundColor: [
-            'rgba(231, 76, 60, 0.7)',
-            'rgba(241, 196, 15, 0.7)',
-            'rgba(52, 152, 219, 0.7)',
-            'rgba(46, 204, 113, 0.7)'
-          ],
+          label: 'Total Penduduk',
+          data: total,
+          backgroundColor: 'rgba(52, 152, 219, 0.7)',
+          borderColor: '#2980b9',
           borderWidth: 1
         }]
       },
       options: {
         indexAxis: 'y',
-        responsive: true
+        responsive: true,
+        plugins: {
+          legend: { position: 'top' }
+        },
+        scales: {
+          x: { beginAtZero: true, title: { display: true, text: 'Jumlah' }},
+          y: { title: { display: true, text: 'Kelompok Umur' }}
+        }
       }
     });
   });
@@ -169,12 +202,10 @@ document.querySelectorAll(".btn-download").forEach(function(button) {
 });
 </script>
 
- <script>
+<script>
 function toggleDropdown() {
   document.getElementById("userDropdown").classList.toggle("show");
 }
-
-// Tutup dropdown kalau klik di luar
 window.onclick = function(e) {
   if (!e.target.matches('.user-btn')) {
     let dropdowns = document.getElementsByClassName("user-dropdown");
@@ -187,9 +218,9 @@ window.onclick = function(e) {
   }
 }
 </script>
-<center><a href="data.php?type=<?php echo urlencode($type); ?>&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali">
-   ⬅ Kembali ke  Kategori Data 
-</a></center>
 
+<center><a href="data.php?type=<?php echo urlencode($type); ?>&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali">
+   ⬅ Kembali ke Kategori Data
+</a></center>
 </body>
 </html>

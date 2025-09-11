@@ -1,3 +1,14 @@
 [
-
+    {
+        "kelurahan": "Pulo Gebang",
+        "jenis_kelamin": "Perempuan",
+        "kelompok_umur": "00-04",
+        "jumlah_penduduk": "3112"
+    },
+    {
+        "kelurahan": "Pulo Gebang",
+        "jenis_kelamin": "Laki-laki",
+        "kelompok_umur": "00-04",
+        "jumlah_penduduk": "4212"
+    }
 ]
