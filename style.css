@@ -455,6 +455,7 @@ table th {
   background: linear-gradient(135deg, #afdbf5, #128e92);
   color : white;
   cursor: pointer;
+
 }
 
 .logout-btn {
@@ -473,13 +474,19 @@ table th {
   display: block;
 }
 
+.guest-menu {
+  display: flex;
+  justify-content: flex-end; /* dorong ke kanan */
+  gap: 10px; /* jarak antar tombol */
+  margin-left: 350px; /* hanya login/register yang kena */
+}
+
 .guest-menu a {
-  margin-left: 300px;   /* hanya login/register yang kena */
   padding: 8px 14px;
   border-radius: 6px;
   text-decoration: none;
-  background: linear-gradient(135deg, #ffa7e5, #128e92);
-    display: inline-block; 
+  background: linear-gradient(135deg, #ff00f2, #128e92);
+  color: white;
 }
 
 
