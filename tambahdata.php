@@ -30,7 +30,7 @@ if ($type === '') {
 
 $data_file = '';
 if ($type !== '') {
-    $data_file = "data_{$type}_" . urlencode($kelurahan) . ".json";
+    $data_file = "data_kependudukan.json";
 }
 
 $data = [];
@@ -55,24 +55,31 @@ if (isset($_GET['hapus'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($type == 'pendidikan') {
         $record = [
-            'jenjang' => $_POST['jenjang'],
-            'jumlah'  => $_POST['jumlah'],
+            'jenjang' => $_POST['jenjang'] ?? '',
+            'jumlah'  => $_POST['jumlah'] ?? 0,
         ];
     } elseif ($type == 'kesehatan') {
         $record = [
-            'fasilitas_kesehatan' => $_POST['fasilitas_kesehatan'],
-            'jumlah'              => $_POST['jumlah_kesehatan'],
+            'fasilitas_kesehatan' => $_POST['fasilitas_kesehatan'] ?? '',
+            'jumlah'              => $_POST['jumlah_kesehatan'] ?? 0,
         ];
     } elseif ($type == 'ekonomi') {
         $record = [
-            'fasilitas' => $_POST['fasilitas'],
-            'jumlah'    => $_POST['jumlah_fasilitas'],
+            'fasilitas' => $_POST['fasilitas'] ?? '',
+            'jumlah'    => $_POST['jumlah_fasilitas'] ?? 0,
         ];
     } elseif ($type == 'kependudukan') {
         $record = [
+<<<<<<< HEAD
+            'kelurahan'        => $kelurahan,
+            'jenis_kelamin'    => $_POST['jenis_kelamin'] ?? '',
+            'kelompok_umur'    => $_POST['kelompok_umur'] ?? '',
+            'jumlah_penduduk'  => $_POST['jumlah_penduduk'] ?? 0,
+=======
             'jenis_kelamin'   => $_POST['jenis_kelamin'],
             'kelompok_umur'   => $_POST['kelompok_umur'],
             'jumlah_penduduk' => $_POST['jumlah_penduduk'],
+>>>>>>> 195ff63441fd5b877ab541551c71f3aacb44da5f
         ];
     }
 
@@ -88,6 +95,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     echo "<p>✅ Data berhasil ditambahkan!</p>";
     if ($type == 'pendidikan') {
+<<<<<<< HEAD
+        echo "<a href='pendidikan.php?kelurahan=$kelurahan'>⬅ Kembali</a>";
+    } elseif ($type == 'ekonomi') {
+        echo "<a href='ekonomi.php?kelurahan=$kelurahan'>⬅ Kembali</a>";
+    } elseif ($type == 'kesehatan') {
+        echo "<a href='kesehatan.php?kelurahan=$kelurahan'>⬅ Kembali</a>";
+    } elseif ($type == 'kependudukan') {
+        echo "<a href='kependudukan.php?kelurahan=$kelurahan'>⬅ Kembali</a>";
+    }
+    exit;
+}
+
+=======
         echo "<a href='pendidikan.php?kelurahan=$kelurahan' class='btn-kembali'>⬅ Kembali</a>";
     } elseif ($type == 'ekonomi') {
         echo "<a href='ekonomi.php?kelurahan=$kelurahan' class='btn-kembali'>⬅ Kembali</a>";
@@ -98,6 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     exit;
 }
+>>>>>>> 195ff63441fd5b877ab541551c71f3aacb44da5f
 
 // 🔹 FIX: Edit data lebih aman
 $edit_data = null;
@@ -243,6 +264,29 @@ if (isset($_GET['edit'])) {
                     </tr>
                 </thead>
                 <tbody>
+<<<<<<< HEAD
+    <?php if (!empty($data)): ?>
+        <?php foreach ($data as $i => $row): ?>
+            <tr class="hover:bg-gray-100 dark:hover:bg-gray-800">
+                <?php if (is_array($row)): ?>
+                    <?php foreach ($row as $val): ?>
+                        <td class="border px-2 py-1"><?= htmlspecialchars($val) ?></td>
+                    <?php endforeach ?>
+                <?php endif; ?>
+                <td class="border px-2 py-1 text-center space-x-2">
+                    <a href="?type=<?= $type ?>&edit=<?= $i ?>" class="text-blue-500 hover:underline">Edit</a>
+                    <a href="?type=<?= $type ?>&hapus=<?= $i ?>" onclick="return confirm('Yakin ingin menghapus?')" class="text-red-500 hover:underline">Hapus</a>
+                </td>
+            </tr>
+        <?php endforeach ?>
+    <?php else: ?>
+        <tr>
+            <td colspan="4" class="text-center py-2">Belum ada data</td>
+        </tr>
+    <?php endif; ?>
+</tbody>
+
+=======
                     <?php foreach ($data as $i => $row): ?>
                         <tr class="hover:bg-gray-100 dark:hover:bg-gray-800">
                             <?php foreach ($row as $val): ?>
@@ -259,6 +303,7 @@ if (isset($_GET['edit'])) {
                         </tr>
                     <?php endforeach ?>
                 </tbody>
+>>>>>>> 195ff63441fd5b877ab541551c71f3aacb44da5f
             </table>
 
             <a href="<?php echo $type; ?>.php?kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali">
@@ -273,6 +318,11 @@ function toggleAdminDropdown() {
   document.getElementById("adminDropdown").classList.toggle("show");
 }
 </script>
+<<<<<<< HEAD
+</body>
+</html>
+=======
 
 </body>
 </html>
+>>>>>>> 195ff63441fd5b877ab541551c71f3aacb44da5f
