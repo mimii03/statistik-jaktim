@@ -6,8 +6,20 @@ if (is_array($kelurahan)) {
 }
 ?>
 
+<?php
+session_start();
+include "koneksi.php";
 
+if (!isset($_SESSION['login'])) {
+    $redirectUrl = "kependudukan.php";
+    if (isset($_GET['kelurahan'])) {
+        $redirectUrl .= "?kelurahan=" . urlencode($_GET['kelurahan']);
+    }
+    header("Location: login.php?redirect=" . urlencode($redirectUrl));
+    exit;
+}
 
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -41,12 +53,12 @@ if (is_array($kelurahan)) {
       </div>
     </div>
   <?php else: ?>
-    <a href="login.php" class="btn-login">Login</a>
-    <a href="register.php" class="btn-register">Register</a>
+    <div class="guest-menu">
+      <a href="login.php" class="btn-login">Login</a>
+      <a href="register.php" class="btn-register">Register</a>
+    </div>
   <?php endif; ?>
 </div>
-
-
     <div class="dropdown">
   <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
   <div class="dropdown-content" id="kelurahanList">

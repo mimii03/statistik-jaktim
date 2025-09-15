@@ -6,6 +6,20 @@ if (is_array($kelurahan)) {
 }
 ?>
 
+<?php
+session_start();
+include "koneksi.php";
+
+if (!isset($_SESSION['login'])) {
+    $redirectUrl = "kesehatan.php";
+    if (isset($_GET['kelurahan'])) {
+        $redirectUrl .= "?kelurahan=" . urlencode($_GET['kelurahan']);
+    }
+    header("Location: login.php?redirect=" . urlencode($redirectUrl));
+    exit;
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="id">
@@ -29,7 +43,7 @@ if (is_array($kelurahan)) {
     <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
    <a href="index.php" class="beranda-link">Beranda</a>
 
-   <div class="auth-buttons">
+  <div class="auth-buttons">
   <?php if(isset($_SESSION['username'])): ?>
     <div class="user-menu">
       <button class="user-btn" onclick="toggleDropdown()">
@@ -40,11 +54,12 @@ if (is_array($kelurahan)) {
       </div>
     </div>
   <?php else: ?>
-    <a href="login.php" class="btn-login">Login</a>
-    <a href="register.php" class="btn-register">Register</a>
+    <div class="guest-menu">
+      <a href="login.php" class="btn-login">Login</a>
+      <a href="register.php" class="btn-register">Register</a>
+    </div>
   <?php endif; ?>
 </div>
-
 
     <div class="dropdown">
   <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">

@@ -449,7 +449,7 @@ table th {
 }
 
 .user-menu .user-btn {
-  margin-left: 400px;  /* hanya tombol username yang kena */
+  margin-left: 375px;  /* hanya tombol username yang kena */
   padding: 8px 14px;
   border-radius: 6px;
   background: linear-gradient(135deg, #afdbf5, #128e92);
