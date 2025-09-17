@@ -26,7 +26,16 @@
     {
         "kelurahan": "Pulo Gebang",
         "jenis_kelamin": "Perempuan",
+<<<<<<< HEAD
+        "kelompok_umur": "40-44",
+        "jumlah_penduduk": "150"
+    },
+    {
+        "fasilitas_kesehatan": "Rumah Sakit",
+        "jumlah": "2"
+=======
         "kelompok_umur": "05-09",
         "jumlah_penduduk": "321"
+>>>>>>> 53ce892aa1adde5791915470b2cead963faf731d
     }
 ]
