@@ -40,5 +40,9 @@
         "jenis_kelamin": "Perempuan",
         "kelompok_umur": "40-44",
         "jumlah_penduduk": "150"
+    },
+    {
+        "fasilitas_kesehatan": "Rumah Sakit",
+        "jumlah": "2"
     }
 ]
