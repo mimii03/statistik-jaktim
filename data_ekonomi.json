@@ -18,5 +18,20 @@
     {
         "fasilitas": "Warung\/Warteg",
         "jumlah": "185"
+    },
+    {
+        "kelurahan": "Pulo Gebang",
+        "fasilitas": "Mini Market",
+        "jumlah": 13
+    },
+    {
+        "kelurahan": "Pulo Gebang",
+        "fasilitas": "Pasar Lingkungan",
+        "jumlah": 3
+    },
+    {
+        "kelurahan": "Pulo Gebang",
+        "fasilitas": "Toko",
+        "jumlah": 4
     }
 ]
