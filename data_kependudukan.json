@@ -3,46 +3,39 @@
         "kelurahan": "Pulo Gebang",
         "jenis_kelamin": "Laki-laki",
         "kelompok_umur": "00-04",
-        "jumlah_penduduk": "4212"
+        "jumlah_penduduk": "421"
     },
     {
-        "kelurahan": "Pulogadung",
+        "kelurahan": "Pulo Gebang",
         "jenis_kelamin": "Perempuan",
         "kelompok_umur": "00-04",
-        "jumlah_penduduk": "312"
+        "jumlah_penduduk": "444"
     },
     {
-        "kelurahan": "Pulogadung",
+        "kelurahan": "Pulo Gebang",
         "jenis_kelamin": "Laki-laki",
-        "kelompok_umur": "00-04",
-        "jumlah_penduduk": "37"
+        "kelompok_umur": "05-09",
+        "jumlah_penduduk": "133"
     },
     {
-        "kelurahan": "Pulogadung",
-        "jenis_kelamin": "Laki-laki",
-        "kelompok_umur": "70-75",
-        "jumlah_penduduk": "222"
-    },
-    {
-        "kelurahan": "Pulogadung",
-        "jenis_kelamin": "Laki-laki",
-        "kelompok_umur": "50-54",
-        "jumlah_penduduk": "1"
-    },
-    {
-        "kelurahan": "Pulogadung",
+        "kelurahan": "Pulo Gebang",
         "jenis_kelamin": "Perempuan",
         "kelompok_umur": "10-14",
-        "jumlah_penduduk": "100"
+        "jumlah_penduduk": "442"
     },
     {
-        "kelurahan": "Pulogadung",
+        "kelurahan": "Pulo Gebang",
         "jenis_kelamin": "Perempuan",
+<<<<<<< HEAD
         "kelompok_umur": "40-44",
         "jumlah_penduduk": "150"
     },
     {
         "fasilitas_kesehatan": "Rumah Sakit",
         "jumlah": "2"
+=======
+        "kelompok_umur": "05-09",
+        "jumlah_penduduk": "321"
+>>>>>>> 53ce892aa1adde5791915470b2cead963faf731d
     }
 ]
