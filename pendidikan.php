@@ -51,15 +51,7 @@ if (is_array($kelurahan)) {
         <a href="register.php" class="btn-register">Register</a>
       <?php endif; ?>
     </div>
-  <?php else: ?>
-    <div class="guest-menu">
-      <a href="login.php" class="btn-login">Login</a>
-      <a href="register.php" class="btn-register">Register</a>
-    </div>
-  <?php endif; ?>
-</div>
-     <!-- Dropdown Search Kelurahan -->
-    <div class="dropdown">
+ <div class="dropdown">
       <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
       <div class="dropdown-content" id="kelurahanList">
         <?php
@@ -77,11 +69,8 @@ if (is_array($kelurahan)) {
     </div>
   </div>
 
-
-  <h2>Grafik Statistik Kependudukan - <?php echo htmlspecialchars($kelurahan); ?></h2>
-
-  <!-- Chart Piramida Penduduk -->
-  <canvas id="chartGender"></canvas>
+  <h2>Grafik Statistik Pendidikan - <?php echo htmlspecialchars($kelurahan); ?></h2>
+  <canvas id="chartPendidikan"></canvas>
   <br>
   <center>
     <a href="download.php?kategori=pendidikan&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-download">⬇️ Download CSV</a>

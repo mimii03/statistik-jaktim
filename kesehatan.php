@@ -43,7 +43,7 @@ if (is_array($kelurahan)) {
         <a href="register.php" class="btn-register">Register</a>
       <?php endif; ?>
     </div>
-    <div class="dropdown">
+ <div class="dropdown">
       <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
       <div class="dropdown-content" id="kelurahanList">
         <?php
@@ -60,10 +60,6 @@ if (is_array($kelurahan)) {
       </div>
     </div>
   </div>
-
-  <?php
-  $kelurahan = $_GET['kelurahan'];
-  ?>
   <h2>Grafik Statistik Kesehatan - <?php echo htmlspecialchars($kelurahan); ?></h2>
   <canvas id="chartKesehatan"></canvas>
   <br>
