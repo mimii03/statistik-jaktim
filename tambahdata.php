@@ -33,9 +33,8 @@ if ($type !== '') {
 
     if (!file_exists($data_file)) {
         file_put_contents($data_file, json_encode([]));
-    }
+    }}
 
-    // Baca semua data dari file JSON
     $json_all = file_get_contents($data_file);
     $all_data = json_decode($json_all, true);
     if (!is_array($all_data)) {
@@ -50,7 +49,6 @@ if ($type !== '') {
     } else {
         $data = $all_data;
     }
-}
 
 if (isset($_GET['hapus'])) {
     $index = (int) $_GET['hapus'];
@@ -122,7 +120,6 @@ if (isset($_GET['edit'])) {
     }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en" class="bg-[#e0f2fe] dark:bg-gray-900">
