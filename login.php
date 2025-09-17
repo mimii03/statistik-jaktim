@@ -9,8 +9,15 @@ $conn = mysqli_connect($host, $user, $pass, $db);
 
 $error = '';
 
-// simpan query redirect kalau ada
-$redirect = isset($_GET['redirect']) ? $_GET['redirect'] : 'index.php';
+// --- Tangkap halaman redirect ---
+if (isset($_GET['redirect'])) {
+    $redirect = $_GET['redirect'];
+} elseif (isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], 'login.php') === false) {
+    // kalau ada halaman sebelumnya, dan bukan login.php
+    $redirect = $_SERVER['HTTP_REFERER'];
+} else {
+    $redirect = 'index.php';
+}
 
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
@@ -49,7 +56,9 @@ if (isset($_POST['login'])) {
       <input type="password" name="password" placeholder="Password" required>
       <button type="submit" name="login">Login</button>
     </form>
-    <p>Belum punya akun? <a href="register.php" class="link-daftar">Daftar</a></p>
+    <p>Belum punya akun? 
+      <a href="register.php?redirect=<?php echo urlencode($redirect); ?>" class="link-daftar">Daftar</a>
+    </p>
   </div>
 </body>
 </html>

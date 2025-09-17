@@ -35,11 +35,12 @@ session_start();
       </div>
     </div>
   <?php else: ?>
-    <a href="login.php" class="btn-login">Login</a>
-    <a href="register.php" class="btn-register">Register</a>
+    <div class="guest-menu">
+      <a href="login.php" class="btn-login">Login</a>
+      <a href="register.php" class="btn-register">Register</a>
+    </div>
   <?php endif; ?>
 </div>
-
 
       <div class="dropdown">
   <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">

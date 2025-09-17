@@ -1,14 +1,44 @@
 [
     {
         "kelurahan": "Pulo Gebang",
-        "jenis_kelamin": "Perempuan",
-        "kelompok_umur": "00-04",
-        "jumlah_penduduk": "3112"
-    },
-    {
-        "kelurahan": "Pulo Gebang",
         "jenis_kelamin": "Laki-laki",
         "kelompok_umur": "00-04",
         "jumlah_penduduk": "4212"
+    },
+    {
+        "kelurahan": "Pulogadung",
+        "jenis_kelamin": "Perempuan",
+        "kelompok_umur": "00-04",
+        "jumlah_penduduk": "312"
+    },
+    {
+        "kelurahan": "Pulogadung",
+        "jenis_kelamin": "Laki-laki",
+        "kelompok_umur": "00-04",
+        "jumlah_penduduk": "37"
+    },
+    {
+        "kelurahan": "Pulogadung",
+        "jenis_kelamin": "Laki-laki",
+        "kelompok_umur": "70-75",
+        "jumlah_penduduk": "222"
+    },
+    {
+        "kelurahan": "Pulogadung",
+        "jenis_kelamin": "Laki-laki",
+        "kelompok_umur": "50-54",
+        "jumlah_penduduk": "1"
+    },
+    {
+        "kelurahan": "Pulogadung",
+        "jenis_kelamin": "Perempuan",
+        "kelompok_umur": "10-14",
+        "jumlah_penduduk": "100"
+    },
+    {
+        "kelurahan": "Pulogadung",
+        "jenis_kelamin": "Perempuan",
+        "kelompok_umur": "40-44",
+        "jumlah_penduduk": "150"
     }
 ]

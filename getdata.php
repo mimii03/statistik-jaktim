@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');
 
-$kategori = $_GET['kategori'] ?? '';
+$kategori  = $_GET['kategori'] ?? '';
 $kelurahan = $_GET['kelurahan'] ?? '';
 
 $map = [
@@ -11,39 +11,19 @@ $map = [
     'kependudukan' => 'data_kependudukan.json',
 ];
 
-if (!isset($map[$kategori])) {
+if (!isset($map[$kategori]) || !file_exists($map[$kategori])) {
     if ($kategori === 'kependudukan') {
-        echo json_encode(['labels' => [], 'Laki-laki' => [], 'Perempuan' => []]);
+        echo json_encode(['labels' => [], 'laki_laki' => [], 'perempuan' => []]);
     } else {
         echo json_encode(['labels' => [], 'jumlah' => []]);
     }
     exit;
 }
 
-$file = $map[$kategori];
+$data = json_decode(file_get_contents($map[$kategori]), true) ?? [];
 
-if (!file_exists($file)) {
-    if ($kategori === 'kependudukan') {
-        echo json_encode(['labels' => [], 'Laki-laki' => [], 'Perempuan' => []]);
-    } else {
-        echo json_encode(['labels' => [], 'jumlah' => []]);
-    }
-    exit;
-}
-
-$json = file_get_contents($file);
-$data = json_decode($json, true) ?? [];
-
+// ====================== KEPENDUDUKAN ======================
 if ($kategori === 'kependudukan') {
-    $file = $map[$kategori];
-
-    if (!file_exists($file)) {
-        echo json_encode(['labels' => [], 'Laki-laki' => [], 'Perempuan' => []]);
-        exit;
-    }
-
-    $data = json_decode(file_get_contents($file), true) ?? [];
-
     $filtered = array_filter($data, function($row) use ($kelurahan) {
         return isset($row['kelurahan']) && strtolower($row['kelurahan']) === strtolower($kelurahan);
     });
@@ -72,14 +52,32 @@ if ($kategori === 'kependudukan') {
         }
     }
 
+    // Urutkan berdasarkan angka umur (opsional)
+    $gabung = [];
+    foreach ($labels as $i => $label) {
+        $gabung[] = [
+            'label'     => $label,
+            'laki'      => $laki_laki[$i],
+            'perempuan' => $perempuan[$i],
+        ];
+    }
+
+    usort($gabung, function($a, $b) {
+        $numA = intval($a['label']);
+        $numB = intval($b['label']);
+        return $numA <=> $numB;
+    });
+
     echo json_encode([
-        'labels'     => $labels,
-        'laki_laki'  => $laki_laki,
-        'perempuan'  => $perempuan
+        'labels'     => array_column($gabung, 'label'),
+        'laki_laki'  => array_column($gabung, 'laki'),
+        'perempuan'  => array_column($gabung, 'perempuan')
     ]);
     exit;
+}
 
-} elseif ($kategori === 'pendidikan') {
+// ====================== PENDIDIKAN ======================
+if ($kategori === 'pendidikan') {
     $filtered = array_filter($data, function($row) use ($kelurahan) {
         return isset($row['kelurahan']) && strtolower($row['kelurahan']) === strtolower($kelurahan);
     });
@@ -97,7 +95,10 @@ if ($kategori === 'kependudukan') {
         'jumlah' => $jumlah
     ]);
     exit;
-} elseif ($kategori === 'kesehatan' || $kategori === 'ekonomi') {
+}
+
+// ====================== KESEHATAN / EKONOMI ======================
+if ($kategori === 'kesehatan' || $kategori === 'ekonomi') {
     $filtered = array_filter($data, function($row) use ($kelurahan) {
         return isset($row['kelurahan']) && strtolower($row['kelurahan']) === strtolower($kelurahan);
     });
