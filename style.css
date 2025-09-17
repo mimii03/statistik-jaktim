@@ -257,26 +257,108 @@ p.error {
 }
 
 .search-input {
-  width: 100%;
-  padding: 8px;
+  padding: 6px 12px;       /* lebih kecil */
   border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: 5px;
+  border-radius: 20px;
+  width: 180px;            /* lebar diperkecil */
+  outline: none;
+  font-size: 13px;         /* font lebih kecil */
+  transition: all 0.3s ease;
 }
 
-.dropdown-content a {
-  padding: 8px 12px;
-  display: block;
-  text-decoration: none;
-  color: rgb(0, 0, 0);
+.search-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0,123,255,0.3);
 }
 
-.dropdown-content a:hover {
-  background-color: #cfcfcf;
-}
 
 .content {
   text-align: center;
+  margin-top: 100px; /* kasih jarak biar gak nabrak navbar */
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 180px;
+  max-height: 180px;
+  overflow-y: auto;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  margin-top: 5px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  z-index: 1000;
+}
+
+/* Container dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Input pencarian */
+.search-input {
+  padding: 6px 12px;       /* lebih kecil */
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  width: 180px;            /* lebar diperkecil */
+  outline: none;
+  font-size: 13px;         /* font lebih kecil */
+  transition: all 0.3s ease;
+}
+
+/* Efek fokus */
+.search-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0,123,255,0.3);
+}
+
+/* Konten dropdown */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 180px;         /* samain dengan input */
+  max-height: 180px;        /* list lebih pendek */
+  overflow-y: auto;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-top: 3px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+  z-index: 1000;
+}
+
+/* Item kelurahan */
+.dropdown-content a {
+  display: block;
+  padding: 6px 12px;       /* lebih kecil */
+  font-size: 13px;         /* font lebih kecil */
+  text-decoration: none;
+  color: #333;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.2s;
+}
+
+/* Hover efek */
+.dropdown-content a:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Class untuk menampilkan dropdown */
+.show {
+  display: block;
+}
+
+
+.dropdown-content a:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.show {
+  display: block;
 }
 
 .sidebar.hidden + .content {

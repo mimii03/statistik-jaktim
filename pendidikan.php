@@ -60,34 +60,25 @@ if (is_array($kelurahan)) {
     </div>
   <?php endif; ?>
 </div>
+     <!-- Dropdown Search Kelurahan -->
     <div class="dropdown">
       <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
       <div class="dropdown-content" id="kelurahanList">
         <?php
-        $listKelurahan = [
-          "Balimester", "Batu Ampar", "Baru", "Batuampar", "Bidaracina",
-          "Bambu Apus", "Cawang", "Ceger", "Cibubur", "Cipinang",
-          "Cipinang Besar Selatan", "Cipinang Besar Utara", "Cipinang Cempedak",
-          "Cipinang Melayu", "Cipinang Muara", "Cilangkap", "Ciracas",
-          "Duren Sawit", "Dukuh", "Gedong", "Halim Perdana Kusumah",
-          "Jatinegara", "Jatinegara Kaum", "Jati", "Kampung Dukuh",
-          "Kampung Melayu", "Kayu Manis", "Kayu Putih", "Kebon Manggis",
-          "Kramat Jati", "Klender", "Lubang Buaya", "Malaka Jaya",
-          "Malaka Sari", "Makasar", "Matraman", "Munjul", "Palmeriam",
-          "Pasar Rebo", "Pekayon", "Penggilingan", "Pinang Ranti",
-          "Pisangan Baru", "Pondok Bambu", "Pondok Kelapa", "Pondok Kopi",
-          "Pulogadung", "Pulo Gebang", "Rambutan", "Rawa Bunga",
-          "Rawa Terate", "Rawamangun", "Setu", "Susukan",
-          "Utan Kayu Selatan", "Utan Kayu Utara"
-        ];
-
-        foreach ($listKelurahan as $nama) {
-            echo "<a href='data.php?kelurahan=" . urlencode($nama) . "'>$nama</a>";
+        $listKelurahan = include 'kelurahan.php';
+        if (is_array($listKelurahan)) {
+          foreach ($listKelurahan as $nama) {
+            echo "<a href='data.php?kelurahan=" . urlencode($nama) . "'>" 
+               . htmlspecialchars($nama) . "</a>";
+          }
+        } else {
+          echo "<p style='color:red;'>⚠️ Gagal load daftar kelurahan</p>";
         }
         ?>
       </div>
     </div>
   </div>
+
 
   <h2>Grafik Statistik Kependudukan - <?php echo htmlspecialchars($kelurahan); ?></h2>
 
