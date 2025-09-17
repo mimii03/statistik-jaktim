@@ -102,66 +102,55 @@ if (is_array($kelurahan)) {
       if (!data) return;
 
       const labels = data.labels;
-      // laki-laki dibuat negatif biar tampil ke kiri
       const dataLaki = data.laki_laki.map(v => -Math.abs(v));
       const dataPerempuan = data.perempuan.map(v => Math.abs(v));
 
       const ctx = document.getElementById("chartKependudukan").getContext("2d");
 
       new Chart(ctx, {
-        type: "bar",
-        data: {
-          labels: labels,
-          datasets: [
-            {
-              label: "Laki-laki",
-              data: dataLaki,
-              backgroundColor: "rgba(54, 162, 235, 0.7)"
-            },
-            {
-              label: "Perempuan",
-              data: dataPerempuan,
-              backgroundColor: "rgba(255, 99, 132, 0.7)"
-            }
-          ]
-        },
-        options: {
-          indexAxis: "y",
-          responsive: true,
-          plugins: {
-            tooltip: {
-              callbacks: {
-                label: function(context) {
-                  return context.dataset.label + ": " + Math.abs(context.parsed.x);
-                }
-              }
-            }
-          },
-          scales: {
-            x: {
-              stacked: true,
-              ticks: {
-                callback: value => Math.abs(value)
-              },
-              title: { display: true, text: "Jumlah Penduduk" }
-            },
-            y: {
-              stacked: true,
-              title: { display: true, text: "Kelompok Umur" }
-            }
+  type: "bar",
+  data: {
+    labels: labels,
+    datasets: [
+      {
+        label: "Laki-laki",
+        data: dataLaki,
+        backgroundColor: "rgba(54, 162, 235, 0.7)"
+      },
+      {
+        label: "Perempuan",
+        data: dataPerempuan,
+        backgroundColor: "rgba(255, 99, 132, 0.7)"
+      }
+    ]
+  },
+  options: {
+    indexAxis: "y",
+    responsive: true,
+    plugins: {
+      tooltip: {
+        callbacks: {
+          label: function(context) {
+            return context.dataset.label + ": " + Math.abs(context.parsed.x);
           }
         }
-      });
+      }
+    },
+    scales: {
+      x: {
+        ticks: {
+          callback: value => Math.abs(value)
+        },
+        title: { display: true, text: "Jumlah Penduduk" }
+      },
+      y: {
+        title: { display: true, text: "Kelompok Umur" }
+      }
     }
-
+  }
+});
+    }
     renderChart();
   </script>
-<<<<<<< HEAD
-=======
-  <center><a href="data.php?type=<?php echo urlencode($type); ?>&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali bg-blue-500 hover:bg-blue-600 text-white text-lg font-semibold px-9 py-4 rounded-lg inline-block">
-   ⬅ Kembali ke  Kategori Data 
-</a></center>
-
->>>>>>> 195ff63441fd5b877ab541551c71f3aacb44da5f
 </body>
 </html>
