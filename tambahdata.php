@@ -25,76 +25,94 @@ if ($type === '') {
 }
 
 $data_file = '';
+$all_data = [];
+$data = [];
+
 if ($type !== '') {
     $data_file = "data_{$type}.json";
+
     if (!file_exists($data_file)) {
         file_put_contents($data_file, json_encode([]));
     }
-    $data = json_decode(file_get_contents($data_file), true);
-} else {
-    $data = [];
+
+    // Baca semua data dari file JSON
+    $json_all = file_get_contents($data_file);
+    $all_data = json_decode($json_all, true);
+    if (!is_array($all_data)) {
+        $all_data = [];
+    }
+
+    // Filter data berdasarkan kelurahan untuk ditampilkan
+    if (in_array($type, ['kependudukan','pendidikan','kesehatan','ekonomi'])) {
+        $data = array_values(array_filter($all_data, function($row) use ($kelurahan) {
+            return isset($row['kelurahan']) && $row['kelurahan'] === $kelurahan;
+        }));
+    } else {
+        $data = $all_data;
+    }
 }
 
-if ($type === 'kependudukan' || $type === 'pendidikan' || $type === 'kesehatan' || $type === 'ekonomi') {
-    $data = array_values(array_filter($data, function($row) use ($kelurahan) {
-        return isset($row['kelurahan']) && $row['kelurahan'] === $kelurahan;
-    }));
-
-// hapus data
 if (isset($_GET['hapus'])) {
     $index = (int) $_GET['hapus'];
     if (isset($data[$index])) {
-        array_splice($data, $index, 1);
-        file_put_contents($data_file, json_encode($data, JSON_PRETTY_PRINT));
+        $old = $data[$index];
+        foreach ($all_data as $key => $row) {
+            if ($row == $old) {
+                unset($all_data[$key]);
+                break;
+            }
+        }
+        file_put_contents($data_file, json_encode(array_values($all_data), JSON_PRETTY_PRINT));
     }
-    $kelurahan = urlencode($_GET['kelurahan'] ?? '');
-    header("Location: tambahdata.php?type=$type&kelurahan=$kelurahan");
+    header("Location: tambahdata.php?type=$type&kelurahan=" . urlencode($kelurahan));
     exit;
 }
 
-// tambah / edit data
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($type == 'pendidikan') {
         $record = [
             'kelurahan' => $kelurahan,
             'jenjang'   => $_POST['jenjang'] ?? '',
-            'jumlah'    => $_POST['jumlah'] ?? 0,
+            'jumlah'    => (int)($_POST['jumlah'] ?? 0),
         ];
     } elseif ($type == 'kesehatan') {
         $record = [
-            'kelurahan'          => $kelurahan,
-            'fasilitas_kesehatan'=> $_POST['fasilitas_kesehatan'] ?? '',
-            'jumlah'             => $_POST['jumlah_kesehatan'] ?? 0,
+            'kelurahan'           => $kelurahan,
+            'fasilitas_kesehatan' => $_POST['fasilitas_kesehatan'] ?? '',
+            'jumlah'              => (int)($_POST['jumlah_kesehatan'] ?? 0),
         ];
     } elseif ($type == 'ekonomi') {
         $record = [
             'kelurahan' => $kelurahan,
             'fasilitas' => $_POST['fasilitas'] ?? '',
-            'jumlah'    => $_POST['jumlah_fasilitas'] ?? 0,
+            'jumlah'    => (int)($_POST['jumlah_fasilitas'] ?? 0),
         ];
     } elseif ($type == 'kependudukan') {
         $record = [
-            'kelurahan'        => $kelurahan,
-            'jenis_kelamin'    => $_POST['jenis_kelamin'] ?? '',
-            'kelompok_umur'    => $_POST['kelompok_umur'] ?? '',
-            'jumlah_penduduk'  => $_POST['jumlah_penduduk'] ?? 0,
+            'kelurahan'       => $kelurahan,
+            'jenis_kelamin'   => $_POST['jenis_kelamin'] ?? '',
+            'kelompok_umur'   => $_POST['kelompok_umur'] ?? '',
+            'jumlah_penduduk' => (int)($_POST['jumlah_penduduk'] ?? 0),
         ];
     }
 
     if (isset($_POST['edit_index']) && $_POST['edit_index'] !== '') {
-        $data[(int)$_POST['edit_index']] = $record;
+        $old = $data[(int)$_POST['edit_index']];
+        foreach ($all_data as $key => $row) {
+            if ($row == $old) {
+                $all_data[$key] = $record;
+                break;
+            }
+        }
     } else {
-        $data[] = $record;
+        $all_data[] = $record;
     }
 
-    file_put_contents($data_file, json_encode($data, JSON_PRETTY_PRINT));
-
-    $kelurahan = isset($_POST['kelurahan']) ? urlencode($_POST['kelurahan']) : '';
-    header("Location: $type.php?kelurahan=$kelurahan");
+    file_put_contents($data_file, json_encode(array_values($all_data), JSON_PRETTY_PRINT));
+    header("Location: $type.php?kelurahan=" . urlencode($kelurahan));
     exit;
 }
 
-// edit data
 $edit_data = null;
 $edit_index = null;
 if (isset($_GET['edit'])) {
@@ -104,6 +122,7 @@ if (isset($_GET['edit'])) {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en" class="bg-[#e0f2fe] dark:bg-gray-900">

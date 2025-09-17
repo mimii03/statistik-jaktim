@@ -97,8 +97,29 @@ if ($kategori === 'pendidikan') {
     exit;
 }
 
-// ====================== KESEHATAN / EKONOMI ======================
-if ($kategori === 'kesehatan' || $kategori === 'ekonomi') {
+// ====================== KESEHATAN ======================
+if ($kategori === 'kesehatan') {
+    $filtered = array_filter($data, function($row) use ($kelurahan) {
+        return isset($row['kelurahan']) && strtolower($row['kelurahan']) === strtolower($kelurahan);
+    });
+
+    $labels = [];
+    $jumlah = [];
+
+    foreach ($filtered as $row) {
+        $labels[] = $row['fasilitas_kesehatan'] ?? '';
+        $jumlah[] = (int)($row['jumlah'] ?? 0);
+    }
+
+    echo json_encode([
+        'labels' => $labels,
+        'jumlah' => $jumlah
+    ]);
+    exit;
+}
+
+// ====================== EKONOMI ======================
+if ($kategori === 'ekonomi') {
     $filtered = array_filter($data, function($row) use ($kelurahan) {
         return isset($row['kelurahan']) && strtolower($row['kelurahan']) === strtolower($kelurahan);
     });
@@ -117,5 +138,3 @@ if ($kategori === 'kesehatan' || $kategori === 'ekonomi') {
     ]);
     exit;
 }
-
-echo json_encode(['labels' => [], 'jumlah' => []]);
