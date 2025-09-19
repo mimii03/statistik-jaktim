@@ -18,6 +18,12 @@ body {
   display: block;
 }
 
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+}
+
 h1 {
   margin-bottom: 20px;
   text-align: center;
@@ -205,17 +211,18 @@ p.error {
 }
 
 .navbar {
-  height: 60px;
-  width: 100%;
-  background-color: #2980b9;
-  color: white;
   display: flex;
   align-items: center;
-  margin: 0;
+  justify-content: flex-start;
+  background: #2980b9;
   padding: 10px 20px;
+  height: 60px;
+  color: white;
   position: fixed;
   top: 0;
-  z-index: 1;
+  width: 100%;
+  z-index: 100;
+  flex-wrap: nowrap !important;
 }
 
 .navbar .toggle-btn {
@@ -232,9 +239,11 @@ p.error {
 
 .dropdown {
   position: relative;
-  margin-left: auto;
+  margin-left: 20px !important;
   margin-right: 30px;
   color: rgb(255, 255, 255);
+  max-width: 200px !important;
+  flex-shrink: 0 !important;
 }
 
 .dropdown-content {
@@ -257,108 +266,26 @@ p.error {
 }
 
 .search-input {
-  padding: 6px 12px;       /* lebih kecil */
+  width: 100%;
+  padding: 8px;
   border: 1px solid #ccc;
-  border-radius: 20px;
-  width: 180px;            /* lebar diperkecil */
-  outline: none;
-  font-size: 13px;         /* font lebih kecil */
-  transition: all 0.3s ease;
+  border-radius: 4px;
+  margin-bottom: 5px;
 }
 
-.search-input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 8px rgba(0,123,255,0.3);
+.dropdown-content a {
+  padding: 8px 12px;
+  display: block;
+  text-decoration: none;
+  color: rgb(0, 0, 0);
 }
 
+.dropdown-content a:hover {
+  background-color: #cfcfcf;
+}
 
 .content {
   text-align: center;
-  margin-top: 100px; /* kasih jarak biar gak nabrak navbar */
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #fff;
-  min-width: 180px;
-  max-height: 180px;
-  overflow-y: auto;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  margin-top: 5px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-  z-index: 1000;
-}
-
-/* Container dropdown */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-/* Input pencarian */
-.search-input {
-  padding: 6px 12px;       /* lebih kecil */
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  width: 180px;            /* lebar diperkecil */
-  outline: none;
-  font-size: 13px;         /* font lebih kecil */
-  transition: all 0.3s ease;
-}
-
-/* Efek fokus */
-.search-input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0,123,255,0.3);
-}
-
-/* Konten dropdown */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #fff;
-  min-width: 180px;         /* samain dengan input */
-  max-height: 180px;        /* list lebih pendek */
-  overflow-y: auto;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  margin-top: 3px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
-  z-index: 1000;
-}
-
-/* Item kelurahan */
-.dropdown-content a {
-  display: block;
-  padding: 6px 12px;       /* lebih kecil */
-  font-size: 13px;         /* font lebih kecil */
-  text-decoration: none;
-  color: #333;
-  border-bottom: 1px solid #f0f0f0;
-  transition: background 0.2s;
-}
-
-/* Hover efek */
-.dropdown-content a:hover {
-  background-color: #007bff;
-  color: #fff;
-}
-
-/* Class untuk menampilkan dropdown */
-.show {
-  display: block;
-}
-
-
-.dropdown-content a:hover {
-  background-color: #007bff;
-  color: #fff;
-}
-
-.show {
-  display: block;
 }
 
 .sidebar.hidden + .content {
@@ -367,6 +294,7 @@ p.error {
 
 .beranda-link {
     display: flex;
+    padding: 0 10px !important;
     align-items: center;
     justify-content: center;
     font-size: 18px;
@@ -375,6 +303,8 @@ p.error {
     text-decoration: none;
     height: 60px;
     transform: translateY(-8px);
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
 }
 
 .beranda-link:hover {
@@ -389,12 +319,12 @@ p.error {
   border-radius: 5px;
   font-size: 14px;
 }
+
 .auth-buttons {
   display: flex;
-  gap: 10px;   
-  margin-left: 500px;   
-  margin-top: -20px;
-  margin-right: 20px;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: nowrap;
 }
 
 .auth-buttons a {
@@ -404,9 +334,12 @@ p.error {
   font-size: 14px;
   font-weight: 600;
   color: #fff;
-  background: linear-gradient(135deg, #4e73df, #0505ff); /* gaya biru */
+  background: linear-gradient(135deg, #4e73df, #1d4ed8);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
+  white-space: nowrap; 
+  width: auto;
+  height: 36px;
 }
 
 .auth-buttons a:hover {
@@ -415,20 +348,48 @@ p.error {
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
+.right-section {
+  display: flex;
+  align-items: center;
+  margin-left: auto;   
+  gap: 15px; 
+  flex-wrap: nowrap !important;             
+}
+
+.guest-menu a, .btn-login, .btn-register {
+  padding: 6px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #4e73df, #1d4ed8);
+  transition: all 0.3s ease;
+}
+
+.guest-menu a:hover {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  transform: translateY(-2px);
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  min-width: 220px;
+}
+
 body.login-page {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   background: linear-gradient(135deg, #74ebd5, #acb6e5);
-}
-
-.guest-menu .btn-login,
-.guest-menu .btn-register {
-  padding: 8px 14px;
-  border-radius: 8px;
-  text-decoration: none;
-  margin-left: 5px;
 }
 
 .btn-kembali {
@@ -474,13 +435,11 @@ table th {
 .user-btn {
   background: linear-gradient(135deg, #15ee4b, #26f1e7);
   color: white;
-  padding: 10px 16px;
+  padding: 8px 14px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 15px;
-  margin-left: 325px; 
-  margin-top: 20px;
+  font-size: 14px;
 }
 
 .user-dropdown {
@@ -507,82 +466,25 @@ table th {
   background: #f2f2f2;
 }
 
-.user-menu:hover .user-dropdown {
-  display: block;
-}
-
-.btn-login {
-  background: #4a6cf7;
-  color: white;
-}
-
-.btn-register {
-  background: #6c5ce7;
-  color: white;
-}
-
-/* Style ketika sudah login */
-.logged-in .user-btn {
-  background: #3498db;
-  color: white;
-  padding: 8px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.user-menu .user-btn {
-  margin-left: 375px;  /* hanya tombol username yang kena */
-  padding: 8px 14px;
-  border-radius: 6px;
-  background: linear-gradient(135deg, #afdbf5, #128e92);
-  color : white;
-  cursor: pointer;
-
-}
 
 .logout-btn {
-  display: block;
-  padding: 8px;
-  text-decoration: none;
   color: red;
   font-weight: bold;
-}
-
-.logout-btn:hover {
-  background: #f2f2f2;
 }
 
 .user-dropdown.show {
   display: block;
 }
 
-.guest-menu {
-  display: flex;
-  justify-content: flex-end; /* dorong ke kanan */
-  gap: 10px; /* jarak antar tombol */
-  margin-left: 350px; /* hanya login/register yang kena */
-}
-
-.guest-menu a {
-  padding: 8px 14px;
-  border-radius: 6px;
-  text-decoration: none;
-  background: linear-gradient(135deg, #ff00f2, #128e92);
-  color: white;
-}
-
-
-/* Container tombol admin */
 .admin-auth {
   position: absolute;
   top: 15px;
   right: 20px;
   display: flex;
   align-items: center;
-  margin-right: 250px; /* geser ke kiri */
+  margin-right: 250px; 
 }
 
-/* Tombol utama admin */
 .admin-btn {
   background: linear-gradient(135deg, #ffa7e5, #128e92);
   color: white;
@@ -600,7 +502,6 @@ table th {
   transform: translateY(-2px);
 }
 
-/* Dropdown admin */
 .admin-dropdown {
   display: none;
   position: absolute;
@@ -613,7 +514,6 @@ table th {
   z-index: 100;
 }
 
-/* Isi dropdown */
 .admin-dropdown a {
   display: block;
   padding: 10px 16px;
@@ -624,10 +524,9 @@ table th {
 
 .admin-dropdown a:hover {
   background: #f5f5f5;
-  color: #d9534f; /* merah pas hover logout */
+  color: #d9534f; 
 }
 
-/* Animasi fade dropdown */
 .admin-dropdown.show {
   display: block;
   animation: fadeIn 0.2s ease-in-out;
