@@ -16,5 +16,25 @@
         "kelurahan": "Pulo Gebang",
         "jenjang": "MTS",
         "jumlah": 52
+    },
+    {
+        "kelurahan": "Pulogadung",
+        "jenjang": "PT\/Akademi",
+        "jumlah": 10
+    },
+    {
+        "kelurahan": "Pulogadung",
+        "jenjang": "SD",
+        "jumlah": 10
+    },
+    {
+        "kelurahan": "Pulogadung",
+        "jenjang": "MTS",
+        "jumlah": 10
+    },
+    {
+        "kelurahan": "Pulogadung",
+        "jenjang": "MA",
+        "jumlah": 10
     }
 ]

@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <p style="color:red;"><?php echo $error; ?></p>
     <?php endif; ?>
 
-    <form method="post" autocomplete="off">
+    <form method="post">
       <input type="hidden" name="redirect" value="<?php echo htmlspecialchars($redirect); ?>">
       <input type="text" name="username" placeholder="Username" autocomplete="username" required>
       <input type="password" name="password" placeholder="Password" required>
