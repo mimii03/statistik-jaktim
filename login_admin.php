@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <form method="post" autocomplete="off">
       <input type="hidden" name="redirect" value="<?php echo htmlspecialchars($redirect); ?>">
-      <input type="text" name="username" placeholder="Username" required>
+      <input type="text" name="username" placeholder="Username" autocomplete="username" required>
       <input type="password" name="password" placeholder="Password" required>
       <button type="submit" name="login">Login</button>
     </form>

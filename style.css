@@ -447,7 +447,7 @@ table th {
   position: absolute;
   top: 100%;
   right: 0;
-  background: #fff;
+  background: transparent;
   min-width: 160px;
   border-radius: 6px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.15);
@@ -463,15 +463,41 @@ table th {
 }
 
 .user-dropdown a:hover {
-  background: #f2f2f2;
+  background: transparent;
 }
 
 
 .logout-btn {
+<<<<<<< HEAD
   color: red;
+=======
+  display: block;
+  padding: 8px 18px;
+  text-decoration: none;
+  color: #fff;
+>>>>>>> 5f6facd1562b13087f3c49c3f552d96abc1de844
   font-weight: bold;
+  text-align: center;
+
+  /* gradasi sama kaya tombol tri */
+  background: linear-gradient(135deg, #4facfe, #0000ff);
+
+  /* biar semi bulat */
+  border-radius: 9999px;
+
+  /* biar ngambang dikit */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  transition: all 0.3s ease;
 }
 
+<<<<<<< HEAD
+=======
+.logout-btn:hover {
+  background: linear-gradient(135deg, #3a8dde, #0000cc);
+}
+
+>>>>>>> 5f6facd1562b13087f3c49c3f552d96abc1de844
 .user-dropdown.show {
   display: block;
 }
