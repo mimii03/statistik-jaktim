@@ -77,7 +77,6 @@ if (!isset($_SESSION['login'])) {
       </div>
     </div>
   </div>
-
   
   <?php
   $kelurahan = $_GET['kelurahan'];
