@@ -1,8 +1,4 @@
 
-<?php
-session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -13,7 +9,7 @@ session_start();
 </head>
 <body>
     <div class="sidebar hidden" id="sidebar">
-    <h3>Statistik</h3>
+    <h4>Statistik</h4>
     <a href="pendidikan.php">📚 Pendidikan</a>
     <a href="kependudukan.php">🧑‍🤝‍🧑 Kependudukan</a>
     <a href="ekonomi.php">💼 Ekonomi</a>
@@ -21,28 +17,28 @@ session_start();
   </div>
 
   <div class="navbar">
-    <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
-    <a href="index.php" class="beranda-link">Beranda</a>
-    
-<div class="auth-buttons">
-  <?php if(isset($_SESSION['username'])): ?>
-    <div class="user-menu">
-      <button class="user-btn" onclick="toggleDropdown()">
-        <?php echo htmlspecialchars($_SESSION['username']); ?> ⬇
-      </button>
-      <div id="userDropdown" class="user-dropdown">
-        <a href="logout.php" class="logout-btn">Logout</a>
-      </div>
-    </div>
-  <?php else: ?>
-    <div class="guest-menu">
-      <a href="login.php" class="btn-login">Login</a>
-      <a href="register.php" class="btn-register">Register</a>
-    </div>
-  <?php endif; ?>
-</div>
+  <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
+  <a href="index.php" class="beranda-link">Beranda</a>
 
-      <!-- Dropdown Search Kelurahan -->
+  <div class="right-section">
+    <div class="auth-buttons">
+      <?php if(isset($_SESSION['username'])): ?>
+        <div class="user-menu">
+          <button class="user-btn" onclick="toggleDropdown()">
+            <?php echo htmlspecialchars($_SESSION['username']); ?> ⬇
+          </button>
+          <div id="userDropdown" class="user-dropdown">
+            <a href="logout.php" class="logout-btn">Logout</a>
+          </div>
+        </div>
+      <?php else: ?>
+        <div class="guest-menu">
+          <a href="login.php" class="btn-login">Login</a>
+          <a href="register.php" class="btn-register">Register</a>
+        </div>
+      <?php endif; ?>
+    </div>
+
     <div class="dropdown">
       <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
       <div class="dropdown-content" id="kelurahanList">
@@ -60,6 +56,7 @@ session_start();
       </div>
     </div>
   </div>
+</div>
 
   <h1>Pilih Kategori Data</h1>
 
@@ -108,23 +105,5 @@ session_start();
     }
   </script>
 
- <script>
-function toggleDropdown() {
-  document.getElementById("userDropdown").classList.toggle("show");
-}
-
-// Tutup dropdown kalau klik di luar
-window.onclick = function(e) {
-  if (!e.target.matches('.user-btn')) {
-    let dropdowns = document.getElementsByClassName("user-dropdown");
-    for (let i = 0; i < dropdowns.length; i++) {
-      let openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-}
-</script>
 </body>
 </html>

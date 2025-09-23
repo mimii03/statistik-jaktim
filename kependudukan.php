@@ -16,6 +16,7 @@ if (is_array($kelurahan)) {
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+    
     <div class="sidebar hidden" id="sidebar">
         <h4>Statistik</h4>
         <a href="pendidikan.php">📚 Pendidikan</a>
@@ -23,25 +24,30 @@ if (is_array($kelurahan)) {
         <a href="ekonomi.php">💼 Ekonomi</a>
         <a href="kesehatan.php">🏥 Kesehatan</a>
     </div>
-    <div class="navbar">
-        <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
-        <a href="index.php" class="beranda-link">Beranda</a>
-        <div class="auth-buttons">
-            <?php if (isset($_SESSION['username'])): ?>
-                <div class="user-menu">
-                    <button class="user-btn" onclick="toggleDropdown()">
-                        <?php echo htmlspecialchars($_SESSION['username']); ?> ⬇
-                    </button>
-                    <div id="userDropdown" class="user-dropdown">
-                        <a href="logout.php" class="logout-btn">Logout</a>
-                    </div>
-                </div>
-            <?php else: ?>
-                <a href="login.php" class="btn-login">Login</a>
-                <a href="register.php" class="btn-register">Register</a>
-            <?php endif; ?>
+
+  <div class="navbar">
+  <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
+  <a href="index.php" class="beranda-link">Beranda</a>
+
+  <div class="right-section">
+    <div class="auth-buttons">
+      <?php if(isset($_SESSION['username'])): ?>
+        <div class="user-menu">
+          <button class="user-btn" onclick="toggleDropdown()">
+            <?php echo htmlspecialchars($_SESSION['username']); ?> ⬇
+          </button>
+          <div id="userDropdown" class="user-dropdown">
+            <a href="logout.php" class="logout-btn">Logout</a>
+          </div>
         </div>
-        <!-- Dropdown Search Kelurahan -->
+      <?php else: ?>
+        <div class="guest-menu">
+          <a href="login.php" class="btn-login">Login</a>
+          <a href="register.php" class="btn-register">Register</a>
+        </div>
+      <?php endif; ?>
+    </div>
+
     <div class="dropdown">
       <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
       <div class="dropdown-content" id="kelurahanList">
@@ -59,6 +65,7 @@ if (is_array($kelurahan)) {
       </div>
     </div>
   </div>
+</div>
 
     <?php $kelurahan = $_GET['kelurahan'] ?? ''; ?>
 
@@ -92,7 +99,6 @@ if (is_array($kelurahan)) {
             if (!data) return;
 
             const labels = data.labels;
-            // laki-laki dibuat negatif biar tampil ke kiri
             const dataLaki = data.laki_laki.map(v => -Math.abs(v));
             const dataPerempuan = data.perempuan.map(v => Math.abs(v));
 
