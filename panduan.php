@@ -13,11 +13,8 @@ session_start();
 
   <!-- Sidebar -->
   <div class="sidebar hidden" id="sidebar">
-    <h4>Statistik</h4>
-    <a href="pendidikan.php">📚 Pendidikan</a>
-    <a href="kependudukan.php">🧑‍🤝‍🧑 Kependudukan</a>
-    <a href="ekonomi.php">💼 Ekonomi</a>
-    <a href="kesehatan.php">🏥 Kesehatan</a>
+    <a href="tentang.php"> Tentang </a>
+    <a href="panduan.php"> Panduan </a>
   </div>
 
   <!-- Navbar -->
@@ -25,24 +22,24 @@ session_start();
     <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
     <a href="index.php" class="beranda-link">Beranda</a>
 
-    <div class="right-section">
-      <div class="auth-buttons">
-        <?php if(isset($_SESSION['username'])): ?>
-          <div class="user-menu">
-            <button class="user-btn" onclick="toggleDropdown()">
-              <?php echo htmlspecialchars($_SESSION['username']); ?> ⬇
-            </button>
-            <div id="userDropdown" class="user-dropdown">
-              <a href="logout.php" class="logout-btn">Logout</a>
-            </div>
+  <div class="right-section">
+    <div class="auth-buttons">
+      <?php if(isset($_SESSION['username'])): ?>
+        <div class="user-menu">
+          <button class="user-btn" onclick="toggleDropdown()">
+            <?php echo htmlspecialchars($_SESSION['username']); ?> ⬇
+          </button>
+          <div id="userDropdown" class="user-dropdown">
+            <a href="logout.php" class="logout-btn">Logout</a>
           </div>
-        <?php else: ?>
-          <div class="guest-menu">
-            <a href="login.php" class="btn-login">Login</a>
-            <a href="register.php" class="btn-register">Register</a>
-          </div>
-        <?php endif; ?>
-      </div>
+        </div>
+      <?php else: ?>
+        <div class="guest-menu">
+          <a href="login.php" class="btn-login">Login</a>
+          <a href="register.php" class="btn-register">Register</a>
+        </div>
+      <?php endif; ?>
+    </div>
 
       <!-- Search -->
       <div class="dropdown">

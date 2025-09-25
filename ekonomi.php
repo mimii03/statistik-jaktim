@@ -31,11 +31,8 @@ if (!isset($_SESSION['login'])) {
 </head>
 <body>
   <div class="sidebar hidden" id="sidebar">
-    <h4>Statistik</h4>
-    <a href="pendidikan.php">📚 Pendidikan</a>
-    <a href="kependudukan.php">🧑‍🤝‍🧑 Kependudukan</a>
-    <a href="ekonomi.php">💼 Ekonomi</a>
-    <a href="kesehatan.php">🏥 Kesehatan</a>
+    <a href="tentang.php"> Tentang </a>
+    <a href="panduan.php"> Panduan </a>
   </div>
 
   <div class="navbar">
@@ -43,7 +40,7 @@ if (!isset($_SESSION['login'])) {
   <a href="index.php" class="beranda-link">Beranda</a>
 
   <div class="right-section">
-    <div class="auth-buttons">
+    <div class="auth-buttons" style="margin-bottom: 15px;">
       <?php if(isset($_SESSION['username'])): ?>
         <div class="user-menu">
           <button class="user-btn" onclick="toggleDropdown()">

@@ -17,11 +17,8 @@ if (is_array($kelurahan)) {
 </head>
 <body>
   <div class="sidebar hidden" id="sidebar">
-    <h4>Statistik</h4>
-    <a href="pendidikan.php">📚 Pendidikan</a>
-    <a href="kependudukan.php">🧑‍🤝‍🧑 Kependudukan</a>
-    <a href="ekonomi.php">💼 Ekonomi</a>
-    <a href="kesehatan.php">🏥 Kesehatan</a>
+    <a href="tentang.php"> Tentang </a>
+    <a href="panduan.php"> Panduan </a>
   </div>
 
     <div class="navbar">
@@ -29,7 +26,7 @@ if (is_array($kelurahan)) {
   <a href="index.php" class="beranda-link">Beranda</a>
 
   <div class="right-section">
-    <div class="auth-buttons">
+    <div class="auth-buttons" style="margin-bottom: 15px;">
       <?php if(isset($_SESSION['username'])): ?>
         <div class="user-menu">
           <button class="user-btn" onclick="toggleDropdown()">
@@ -64,12 +61,8 @@ if (is_array($kelurahan)) {
       </div>
     </div>
   </div>
-<<<<<<< HEAD
-  
-=======
 </div>
 
->>>>>>> d5b556c4ae15671d858a8a0ad32db6edd460d932
   <h2>Grafik Statistik Kesehatan - <?php echo htmlspecialchars($kelurahan); ?></h2>
   <canvas id="chartKesehatan"></canvas>
   <br>
