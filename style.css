@@ -535,4 +535,126 @@ table th {
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-5px); }
   to { opacity: 1; transform: translateY(0); }
+}/* ================================
+   STYLE PANDUAN PENGGUNAAN
+================================= *//* Style utama kontainer panduan */
+.guide-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
 }
+
+/* Setiap step (ikon + konten) */
+.guide-step {
+  display: flex;
+  align-items: flex-start;   /* Default: isi rata atas */
+  gap: 20px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.guide-step:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+/* Ikon step */
+.step-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4e73df, #1cc88a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 28px;
+  flex-shrink: 0;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+/* Konten step */
+.step-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Default: teks mulai dari atas */
+  text-align: center;          /* Biar konsisten rata tengah */
+}
+
+/* Kalau mau isi step ditengah vertikal */
+.step-content.center {
+  justify-content: center;
+}
+
+/* Judul step */
+.step-content h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Paragraf step */
+.step-content p {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+  .guide-step {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .step-icon {
+    margin-bottom: 12px;
+  }
+
+  .step-content {
+    justify-content: flex-start; /* di mobile tetap ke atas */
+  }
+}
+.guide-title {
+  text-align: center;       /* teks ke tengah */
+  font-size: 28px;          /* biar lebih gede */
+  color: #333;              /* warna teks */
+  margin-bottom: 20px;
+  position: relative;
+  display: inline-block;    /* biar garis pas di bawah teks aja */
+  padding-bottom: 8px;
+}
+
+.guide-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;              /* garis sepanjang teks */
+  height: 4px;              /* tebal garis */
+  background: #4e73df;      /* warna biru */
+  border-radius: 2px;
+}
+
+.guide-intro {
+  font-size: 18px;
+  line-height: 1.8;
+  text-align: center;
+  color: #444;
+  background: #f1f5ff;       /* biru muda lembut */
+  border-left: 5px solid #4e73df;
+  padding: 15px 20px;
+  margin: 20px auto;
+  max-width: 800px;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+}
+

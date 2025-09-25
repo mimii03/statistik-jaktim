@@ -60,46 +60,65 @@ session_start();
       </div>
     </div>
   </div>
-  <!-- Content -->
-  <div class="content">
-    <h2>Selamat Datang di Statistik Jaktim</h2>
+<div class="content">
+  <h2 class="guide-title">📖 Panduan Penggunaan Website Statistik</h2>
 
-    <h3>📖 Panduan Penggunaan Website Statistik</h3>
-    <p>
-      web ini dibuat dengan konsep sederhana agar mudah dipahami oleh siapa pun, baik pengguna yang sudah terbiasa dengan teknologi maupun yang baru pertama kali mencoba. Berikut adalah langkah-langkah yang bisa diikuti:
-    </p>
+  <p class="guide-intro">
+    Website ini dibuat dengan konsep sederhana agar mudah dipahami oleh siapa pun, baik pengguna yang sudah terbiasa dengan teknologi maupun yang baru pertama kali mencoba. Berikut adalah langkah-langkah yang bisa diikuti:
+  </p>
 
-    <h4>🔍 Pilih Kelurahan</h4>
-    <ul>
-      <li>Pada bagian kanan atas halaman, terdapat kolom pencarian kelurahan.</li>
-      <li>Ketik nama kelurahan yang ingin dicari, lalu pilih dari daftar yang muncul.</li>
-      <li>Setelah memilih kelurahan, sistem akan otomatis mengarahkan Anda ke halaman berikutnya.</li>
-    </ul>
+  <div class="guide-steps">
+    <div class="guide-step">
+      <div class="step-icon">🔍</div>
+      <div class="step-content">
+        <h3>Pilih Kelurahan</h3>
+        <p>Pada bagian kanan atas halaman, terdapat kolom pencarian kelurahan.</p>
+        <p>Ketik nama kelurahan yang ingin dicari, lalu pilih dari daftar yang muncul.</p>
+        <p>Setelah memilih kelurahan, sistem akan otomatis mengarahkan Anda ke halaman berikutnya.</p>
+      </div>
+    </div>
 
-    <h4>📂 Pilih Kategori Data</h4>
-    <ul>
-      <li>Setelah memilih kelurahan, Anda akan berada di halaman Pilih Kategori Data.</li>
-      <li>Terdapat beberapa pilihan kategori: Kependudukan, Pendidikan, Ekonomi, dan Kesehatan.</li>
-      <li>Pilih salah satu kategori sesuai kebutuhan Anda.</li>
-    </ul>
+    <div class="guide-step">
+      <div class="step-icon">📂</div>
+      <div class="step-content">
+        <h3>Pilih Kategori Data</h3>
+        <p>Setelah memilih kelurahan, Anda akan berada di halaman Pilih Kategori Data.</p>
+        <p>Terdapat beberapa pilihan kategori: Kependudukan, Pendidikan, Ekonomi, dan Kesehatan.</p>
+        <p>Pilih salah satu kategori sesuai kebutuhan Anda.</p>
+      </div>
+    </div>
 
-    <h4>📊 Tampilkan Data</h4>
-    <ul>
-      <li>Setelah memilih kategori, tekan tombol <b>“Tampilkan Data”</b>.</li>
-      <li>Sistem akan menampilkan grafik serta tabel berisi informasi sesuai kategori yang dipilih.</li>
-      <li>Grafik memudahkan pembaca memahami data secara visual, sedangkan tabel menampilkan detail angka secara lengkap.</li>
-    </ul>
+    <div class="guide-step">
+      <div class="step-icon">📊</div>
+      <div class="step-content">
+        <h3>Tampilkan Data</h3>
+        <p>Setelah memilih kategori, tekan tombol <b>“Tampilkan Data”</b>.</p>
+        <p>Sistem akan menampilkan grafik serta tabel berisi informasi sesuai kategori yang dipilih.</p>
+      </div>
+    </div>
 
-    <h4>🔄 Ganti Kelurahan</h4>
-    <ul>
-      <li>Jika ingin melihat data kelurahan lain, cukup kembali ke kolom pencarian kelurahan dan pilih yang baru.</li>
-      <li>Sistem akan otomatis memuat ulang kategori data untuk kelurahan tersebut.</li>
-    </ul>
+    <div class="guide-step">
+      <div class="step-icon">🔄</div>
+      <div class="step-content">
+        <h3>Ganti Kelurahan</h3>
+        <p>Jika ingin melihat data kelurahan lain, cukup kembali ke kolom pencarian kelurahan, ketik nama kelurahan baru yang diinginkan, lalu pilih dari daftar yang tersedia. Sistem akan otomatis menampilkan data sesuai kelurahan yang baru dipilih.</p>
+        <p>coba tes doang iniiiiiiiiiiii</p>  
+    </div>
+    </div>
 
-    <h4>📌 Navigasi Tambahan</h4>
-    <ul>
-      <li>Gunakan menu di sidebar untuk menuju halaman <b>Tentang</b> atau <b>Panduan</b>.</li>
-      <li>Halaman ini membantu pengguna memahami aplikasi secara lebih mendalam
+    <div class="guide-step">
+      <div class="step-icon">📌</div>
+      <div class="step-content">
+        <h3>Navigasi Tambahan</h3>
+        <p>Gunakan menu di sidebar untuk menuju halaman <b>Tentang</b> atau <b>Panduan</b>.</p>
+        <p>Halaman ini membantu pengguna memahami aplikasi secara lebih mendalam.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
   <!-- Scripts -->
   <script>
