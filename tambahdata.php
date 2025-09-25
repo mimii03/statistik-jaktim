@@ -130,20 +130,17 @@ if (isset($_GET['edit'])) {
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="sidebar hidden" id="sidebar">
-    <h4>Statistik</h4>
-    <a href="pendidikan.php">📚 Pendidikan</a>
-    <a href="kependudukan.php">🧑‍🤝‍🧑 Kependudukan</a>
-    <a href="ekonomi.php">💼 Ekonomi</a>
-    <a href="kesehatan.php">🏥 Kesehatan</a>
-</div>
+  <div class="sidebar hidden" id="sidebar">
+    <a href="tentang.php"> Tentang </a>
+    <a href="kependudukan.php"> Panduan </a>
+  </div>
 
 <div class="navbar">
     <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
     <a href="index.php" class="beranda-link">Beranda</a>
 
 <div class="right-section">
-        <div class="auth-buttons">
+        <div class="auth-buttons" style="margin-bottom: 15px;">
             <?php if(isset($_SESSION['admin'])): ?>
                 <div class="admin-menu user-menu">
                     <button class="admin-btn dropdown-toggle" onclick="toggleDropdown('adminDropdown')"> 
@@ -302,7 +299,6 @@ if (isset($_GET['edit'])) {
            dropdown.classList.toggle("show");
        }
    }
-   // Close on Outside Click
    document.addEventListener('click', function(event) {
        const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
        const dropdownMenus = document.querySelectorAll('.dropdown-menu');
