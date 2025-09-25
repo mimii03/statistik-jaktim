@@ -536,3 +536,19 @@ table th {
   from { opacity: 0; transform: translateY(-5px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+footer {
+  background-color: #0f2341; 
+  color: #e5e5e5;
+  padding: 20px 0 20px;
+  text-align: center;
+  margin-top: 60px;
+}
+
+footer p {
+  margin: 0;
+  font-size: 14px;
+  color: #ddd;
+  line-height: 1.6;
+}
+

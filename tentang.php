@@ -130,6 +130,15 @@ session_start();
     </div>
   </div>
 
+<footer>
+  <div class="footer">
+    <p>&copy; Statistik Jakarta Timur.<br>
+    Dikembangkan oleh Sudin Kominfotik Jakarta Timur.<br>
+    Hak Cipta Dilindungi Undang-Undang.</p>
+  </div>
+</footer>
+
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     function toggleSidebar() {
