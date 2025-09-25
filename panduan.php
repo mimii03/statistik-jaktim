@@ -13,18 +13,11 @@ session_start();
 <body>
 
   <div class="sidebar hidden" id="sidebar">
-<<<<<<< HEAD
-    <a href="tentang.php"> Tentang </a>
-    <a href="kependudukan.php"> Panduan </a>
-=======
     <h4>Statistik</h4>
     <a href="pendidikan.php">📚 Pendidikan</a>
     <a href="kependudukan.php">🧑‍🤝‍🧑 Kependudukan</a>
     <a href="ekonomi.php">💼 Ekonomi</a>
     <a href="kesehatan.php">🏥 Kesehatan</a>
-    <a href="panduan.php">:📖 Panduan</a>
-
->>>>>>> 1e46a99eff0d25ceccabab3569f798873d5c6c13
   </div>
 
   <div class="navbar">
@@ -32,7 +25,7 @@ session_start();
   <a href="index.php" class="beranda-link">Beranda</a>
 
   <div class="right-section">
-    <div class="auth-buttons"style="margin-bottom: 15px;">
+    <div class="auth-buttons">
       <?php if(isset($_SESSION['username'])): ?>
         <div class="user-menu">
           <button class="user-btn" onclick="toggleDropdown()">
@@ -71,7 +64,52 @@ session_start();
 
   <div class="content">
     <h2>Selamat Datang di Statistik Jaktim</h2>
-    <p>Silakan pilih kategori atau kelurahan dari navigasi di atas.</p>
+    <p>📖 Panduan Penggunaan Website Statistik
+1. Cara Masuk ke Website
+
+Buka browser (misalnya Chrome, Edge, atau Firefox).
+
+Ketik alamat website statistik di kolom URL, contoh: http://localhost/statistik.
+
+Tekan Enter, maka halaman utama website akan terbuka.
+
+2. Navigasi Menu
+
+Beranda → Menampilkan ringkasan informasi utama.
+
+Data → Menampilkan tabel data statistik.
+
+Grafik → Menampilkan data dalam bentuk diagram batang, garis, atau pie chart.
+
+Panduan → Menampilkan petunjuk penggunaan website.
+
+3. Melihat Data Statistik
+
+Pilih menu Data.
+
+Gunakan Dropdown Tahun untuk memilih periode data yang ingin ditampilkan.
+
+Gunakan Kolom Pencarian untuk mencari data tertentu dengan cepat.
+
+4. Melihat Grafik Statistik
+
+Pilih menu Grafik.
+
+Pilih jenis grafik yang tersedia (misalnya: diagram batang, garis, atau pie).
+
+Arahkan kursor (hover) ke bagian grafik untuk melihat detail angka.
+
+5. Fitur Tambahan
+
+Ekspor Data → Unduh data ke dalam file Excel/CSV.
+
+Filter Data → Saring data berdasarkan kategori tertentu.
+
+Cetak Laporan → Cetak tabel atau grafik langsung dari browser.
+
+6. Bantuan
+
+Jika mengalami kendala, silakan hubungi admin melalui menu Kontak atau kirim email ke admin@statistik.com.</p>
   </div>
 
   <script>

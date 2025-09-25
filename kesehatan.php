@@ -61,8 +61,12 @@ if (is_array($kelurahan)) {
       </div>
     </div>
   </div>
+<<<<<<< HEAD
+  
+=======
 </div>
 
+>>>>>>> d5b556c4ae15671d858a8a0ad32db6edd460d932
   <h2>Grafik Statistik Kesehatan - <?php echo htmlspecialchars($kelurahan); ?></h2>
   <canvas id="chartKesehatan"></canvas>
   <br>

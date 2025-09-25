@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 session_start();
 ?>
@@ -168,3 +169,6 @@ session_start();
   </script>
 </body>
 </html>
+=======
+p
+>>>>>>> 1e46a99eff0d25ceccabab3569f798873d5c6c13

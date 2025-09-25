@@ -75,8 +75,11 @@ if (!isset($_SESSION['login'])) {
       </div>
     </div>
   </div>
+<<<<<<< HEAD
+=======
 </div>
 
+>>>>>>> d5b556c4ae15671d858a8a0ad32db6edd460d932
   
   <?php
   $kelurahan = $_GET['kelurahan'];
