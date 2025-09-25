@@ -14,7 +14,7 @@ include "koneksi.php";
 <body>
   <div class="sidebar hidden" id="sidebar">
     <a href="tentang.php"> Tentang </a>
-    <a href="kependudukan.php"> Panduan </a>
+    <a href="panduan.php"> Panduan </a>
   </div>
 
   <div class="navbar">

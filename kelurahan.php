@@ -1,5 +1,4 @@
 <?php
-// daftar semua kelurahan
 return [
   "Balimester", "Batu Ampar", "Baru", "Batuampar", "Bidaracina",
   "Bambu Apus", "Cawang", "Ceger", "Cibubur", "Cipinang",

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 session_start();
 ?>
@@ -43,7 +42,7 @@ session_start();
 
   <div class="sidebar hidden" id="sidebar">
     <a href="tentang.php"> Tentang </a>
-    <a href="kependudukan.php"> Panduan </a>
+    <a href="panduan.php"> Panduan </a>
   </div>
 
   <div class="navbar">
@@ -121,7 +120,7 @@ session_start();
 
       <div class="highlight mt-4">
         <p>
-          Harapannya, web ini dapat menjadi jembatan antara data yang ada di lapangan dengan kebutuhan masyarakat luas, sekaligus melatih generasi muda untuk terbiasa membuat solusi digital yang bermanfaat bagi lingkungan sekitarnya.
+          Harapannya, web ini dapat menjadi jembatan antara data yang ada di lapangan dengan kebutuhan masyarakat luas, serta mendorong terciptanya transparansi data yang terbuka, akurat, dan mudah diakses oleh semua pihak.
         </p>
       </div>
 
@@ -169,6 +168,3 @@ session_start();
   </script>
 </body>
 </html>
-=======
-p
->>>>>>> 1e46a99eff0d25ceccabab3569f798873d5c6c13

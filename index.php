@@ -11,20 +11,9 @@ session_start();
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <div class="sidebar hidden" id="sidebar">
-<<<<<<< HEAD
     <a href="tentang.php"> Tentang </a>
-    <a href="kependudukan.php"> Panduan </a>
-=======
-    <h4>Statistik</h4>
-    <a href="pendidikan.php">📚 Pendidikan</a>
-    <a href="kependudukan.php">🧑‍🤝‍🧑 Kependudukan</a>
-    <a href="ekonomi.php">💼 Ekonomi</a>
-    <a href="kesehatan.php">🏥 Kesehatan</a>
-    <a href="panduan.php">:📖 Panduan</a>
-
->>>>>>> 1e46a99eff0d25ceccabab3569f798873d5c6c13
+    <a href="panduan.php"> Panduan </a>
   </div>
 
   <div class="navbar">

@@ -132,7 +132,7 @@ if (isset($_GET['edit'])) {
 <body>
   <div class="sidebar hidden" id="sidebar">
     <a href="tentang.php"> Tentang </a>
-    <a href="kependudukan.php"> Panduan </a>
+    <a href="pandun.php"> Panduan </a>
   </div>
 
 <div class="navbar">
