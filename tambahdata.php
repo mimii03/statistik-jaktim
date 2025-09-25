@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['admin']) || $_SESSION['kelurahan'] !== ($_GET['kelurahan'] ?? '')) {
-    $current_url = $_SERVER['REQUEST_URI']; // simpan halaman sekarang lengkap (termasuk ?type=...)
+    $current_url = $_SERVER['REQUEST_URI']; 
     header("Location: login_admin.php?kelurahan=" . urlencode($_GET['kelurahan'] ?? '') . "&redirect=" . urlencode($current_url));
     exit;
 }
@@ -41,7 +41,6 @@ if ($type !== '') {
         $all_data = [];
     }
 
-    // Filter data berdasarkan kelurahan untuk ditampilkan
     if (in_array($type, ['kependudukan','pendidikan','kesehatan','ekonomi'])) {
         $data = array_values(array_filter($all_data, function($row) use ($kelurahan) {
             return isset($row['kelurahan']) && $row['kelurahan'] === $kelurahan;
@@ -142,38 +141,40 @@ if (isset($_GET['edit'])) {
 <div class="navbar">
     <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
     <a href="index.php" class="beranda-link">Beranda</a>
-    
-    <div class="admin-auth">
-      <?php if(isset($_SESSION['admin'])): ?>
-        <div class="admin-menu">
-          <button class="admin-btn" onclick="toggleAdminDropdown()">
-            <?php echo htmlspecialchars($_SESSION['admin']); ?> ⬇
-          </button>
-          <div id="adminDropdown" class="admin-dropdown">
-            <a href="logout_admin.php" class="admin-logout">Logout</a>
-          </div>
+
+<div class="right-section">
+        <div class="auth-buttons">
+            <?php if(isset($_SESSION['admin'])): ?>
+                <div class="admin-menu user-menu">
+                    <button class="admin-btn dropdown-toggle" onclick="toggleDropdown('adminDropdown')"> 
+                        <?php echo htmlspecialchars($_SESSION['admin']); ?> ⬇
+                    </button>
+                    <div id="adminDropdown" class="user-dropdown"> 
+                        <a href="logout_admin.php" class="admin-logout logout-btn">Logout</a> 
+                    </div>
+                </div>
+            <?php else: ?>
+                <a href="login_admin.php?kelurahan=<?= urlencode($kelurahan) ?>" class="btn-login">Login Admin</a>
+            <?php endif; ?>
         </div>
-      <?php else: ?>
-        <a href="login_admin.php" class="admin-login">Login Admin</a>
-      <?php endif; ?>
+        <div class="dropdown">
+            <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
+            <div class="dropdown-content" id="kelurahanList">
+                <?php
+                $listKelurahan = include 'kelurahan.php';
+                if (is_array($listKelurahan)) {
+                    foreach ($listKelurahan as $nama) {
+                        echo "<a href='data.php?kelurahan=" . urlencode($nama) . "'>" 
+                           . htmlspecialchars($nama) . "</a>";
+                    }
+                } else {
+                    echo "<p style='color:red;'>⚠️ Gagal load daftar kelurahan</p>";
+                }
+                ?>
+            </div>
+        </div>
     </div>
-<div class="dropdown">
-      <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
-      <div class="dropdown-content" id="kelurahanList">
-        <?php
-        $listKelurahan = include 'kelurahan.php';
-        if (is_array($listKelurahan)) {
-          foreach ($listKelurahan as $nama) {
-            echo "<a href='data.php?kelurahan=" . urlencode($nama) . "'>" 
-               . htmlspecialchars($nama) . "</a>";
-          }
-        } else {
-          echo "<p style='color:red;'>⚠️ Gagal load daftar kelurahan</p>";
-        }
-        ?>
-      </div>
-    </div>
-  </div>
+</div>
 
 <div class="min-h-screen text-gray-800 dark:text-white">
   <main class="max-w-5xl mx-auto p-6">
@@ -278,9 +279,45 @@ if (isset($_GET['edit'])) {
 </div>
 
 <script>
-function toggleAdminDropdown() {
-  document.getElementById("adminDropdown").classList.toggle("show");
-}
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("hidden");
+    }
+
+    function filterKelurahan() {
+      const input = document.getElementById("searchKel");
+      const filter = input.value.toUpperCase();
+      const list = document.getElementById("kelurahanList");
+      const links = list.getElementsByTagName("a");
+
+      for (let i = 0; i < links.length; i++) {
+        let txtValue = links[i].textContent || links[i].innerText;
+        links[i].style.display = txtValue.toUpperCase().indexOf(filter) > -1 ? "" : "none";
+      }
+    }
+
+    function toggleDropdown(dropdownId) {
+       const dropdown = document.getElementById(dropdownId);
+       if (dropdown) {
+           dropdown.classList.toggle("show");
+       }
+   }
+   // Close on Outside Click
+   document.addEventListener('click', function(event) {
+       const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+       const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+       let clickedToggle = false;
+       dropdownToggles.forEach(toggle => {
+           if (toggle.contains(event.target)) {
+               clickedToggle = true;
+           }
+       });
+       if (!clickedToggle) {
+           dropdownMenus.forEach(menu => {
+               menu.classList.remove('show');
+           });
+       }
+   });
 </script>
 </body>
 </html>

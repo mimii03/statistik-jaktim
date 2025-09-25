@@ -24,10 +24,11 @@ if (is_array($kelurahan)) {
     <a href="kesehatan.php">🏥 Kesehatan</a>
   </div>
 
-  <div class="navbar">
-    <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
-    <a href="index.php" class="beranda-link">Beranda</a>
+    <div class="navbar">
+  <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
+  <a href="index.php" class="beranda-link">Beranda</a>
 
+  <div class="right-section">
     <div class="auth-buttons">
       <?php if(isset($_SESSION['username'])): ?>
         <div class="user-menu">
@@ -39,11 +40,14 @@ if (is_array($kelurahan)) {
           </div>
         </div>
       <?php else: ?>
-        <a href="login.php" class="btn-login">Login</a>
-        <a href="register.php" class="btn-register">Register</a>
+        <div class="guest-menu">
+          <a href="login.php" class="btn-login">Login</a>
+          <a href="register.php" class="btn-register">Register</a>
+        </div>
       <?php endif; ?>
     </div>
- <div class="dropdown">
+
+    <div class="dropdown">
       <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
       <div class="dropdown-content" id="kelurahanList">
         <?php
@@ -60,7 +64,12 @@ if (is_array($kelurahan)) {
       </div>
     </div>
   </div>
+<<<<<<< HEAD
   
+=======
+</div>
+
+>>>>>>> d5b556c4ae15671d858a8a0ad32db6edd460d932
   <h2>Grafik Statistik Kesehatan - <?php echo htmlspecialchars($kelurahan); ?></h2>
   <canvas id="chartKesehatan"></canvas>
   <br>

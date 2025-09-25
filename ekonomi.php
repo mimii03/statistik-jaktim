@@ -39,27 +39,28 @@ if (!isset($_SESSION['login'])) {
   </div>
 
   <div class="navbar">
-    <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
-    <a href="index.php" class="beranda-link">Beranda</a>
+  <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
+  <a href="index.php" class="beranda-link">Beranda</a>
 
-  <div class="auth-buttons">
-  <?php if(isset($_SESSION['username'])): ?>
-    <div class="user-menu">
-      <button class="user-btn" onclick="toggleDropdown()">
-        <?php echo htmlspecialchars($_SESSION['username']); ?> ⬇
-      </button>
-      <div id="userDropdown" class="user-dropdown">
-        <a href="logout.php" class="logout-btn">Logout</a>
-      </div>
+  <div class="right-section">
+    <div class="auth-buttons">
+      <?php if(isset($_SESSION['username'])): ?>
+        <div class="user-menu">
+          <button class="user-btn" onclick="toggleDropdown()">
+            <?php echo htmlspecialchars($_SESSION['username']); ?> ⬇
+          </button>
+          <div id="userDropdown" class="user-dropdown">
+            <a href="logout.php" class="logout-btn">Logout</a>
+          </div>
+        </div>
+      <?php else: ?>
+        <div class="guest-menu">
+          <a href="login.php" class="btn-login">Login</a>
+          <a href="register.php" class="btn-register">Register</a>
+        </div>
+      <?php endif; ?>
     </div>
-  <?php else: ?>
-    <div class="guest-menu">
-      <a href="login.php" class="btn-login">Login</a>
-      <a href="register.php" class="btn-register">Register</a>
-    </div>
-  <?php endif; ?>
-</div>
- <!-- Dropdown Search Kelurahan -->
+
     <div class="dropdown">
       <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
       <div class="dropdown-content" id="kelurahanList">
@@ -77,6 +78,11 @@ if (!isset($_SESSION['login'])) {
       </div>
     </div>
   </div>
+<<<<<<< HEAD
+=======
+</div>
+
+>>>>>>> d5b556c4ae15671d858a8a0ad32db6edd460d932
   
   <?php
   $kelurahan = $_GET['kelurahan'];

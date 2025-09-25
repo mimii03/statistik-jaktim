@@ -248,7 +248,7 @@ p.error {
 
 .dropdown-content {
   display: none;
-  background-color: rgb(255, 255, 255);
+  background-color: transparent ;
   position: absolute;
   color: rgb(255, 255, 255);
   top: 83%;
@@ -353,7 +353,8 @@ p.error {
   align-items: center;
   margin-left: auto;   
   gap: 15px; 
-  flex-wrap: nowrap !important;             
+  flex-wrap: nowrap !important;   
+  margin-bottom: 5px;        
 }
 
 .guest-menu a, .btn-login, .btn-register {
@@ -447,57 +448,31 @@ table th {
   position: absolute;
   top: 100%;
   right: 0;
-  background: transparent;
+  background: #ffffff;
   min-width: 160px;
   border-radius: 6px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-  z-index: 700;
+  z-index: 1000;
 }
 
 .user-dropdown a {
   display: block;
   padding: 12px 16px;
   text-decoration: none;
-  color: #333;
+  color: #ffffff;
   font-size: 14px;
 }
 
 .user-dropdown a:hover {
-  background: transparent;
+  background: #012b3d;
 }
 
 
 .logout-btn {
-<<<<<<< HEAD
   color: red;
-=======
-  display: block;
-  padding: 8px 18px;
-  text-decoration: none;
-  color: #fff;
->>>>>>> 5f6facd1562b13087f3c49c3f552d96abc1de844
   font-weight: bold;
-  text-align: center;
-
-  /* gradasi sama kaya tombol tri */
-  background: linear-gradient(135deg, #4facfe, #0000ff);
-
-  /* biar semi bulat */
-  border-radius: 9999px;
-
-  /* biar ngambang dikit */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-  transition: all 0.3s ease;
 }
 
-<<<<<<< HEAD
-=======
-.logout-btn:hover {
-  background: linear-gradient(135deg, #3a8dde, #0000cc);
-}
-
->>>>>>> 5f6facd1562b13087f3c49c3f552d96abc1de844
 .user-dropdown.show {
   display: block;
 }
