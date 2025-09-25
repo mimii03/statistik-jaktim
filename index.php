@@ -1,6 +1,7 @@
 <?php
 session_start();
 ?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -17,6 +18,8 @@ session_start();
     <a href="kependudukan.php">🧑‍🤝‍🧑 Kependudukan</a>
     <a href="ekonomi.php">💼 Ekonomi</a>
     <a href="kesehatan.php">🏥 Kesehatan</a>
+    <a href="panduan.php">:📖 Panduan</a>
+
   </div>
 
   <div class="navbar">
