@@ -1,7 +1,6 @@
 <?php
 session_start();
 ?>
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -12,6 +11,7 @@ session_start();
 </head>
 <body>
 
+  <!-- Sidebar -->
   <div class="sidebar hidden" id="sidebar">
     <h4>Statistik</h4>
     <a href="pendidikan.php">📚 Pendidikan</a>
@@ -20,102 +20,94 @@ session_start();
     <a href="kesehatan.php">🏥 Kesehatan</a>
   </div>
 
+  <!-- Navbar -->
   <div class="navbar">
-  <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
-  <a href="index.php" class="beranda-link">Beranda</a>
+    <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
+    <a href="index.php" class="beranda-link">Beranda</a>
 
-  <div class="right-section">
-    <div class="auth-buttons">
-      <?php if(isset($_SESSION['username'])): ?>
-        <div class="user-menu">
-          <button class="user-btn" onclick="toggleDropdown()">
-            <?php echo htmlspecialchars($_SESSION['username']); ?> ⬇
-          </button>
-          <div id="userDropdown" class="user-dropdown">
-            <a href="logout.php" class="logout-btn">Logout</a>
+    <div class="right-section">
+      <div class="auth-buttons">
+        <?php if(isset($_SESSION['username'])): ?>
+          <div class="user-menu">
+            <button class="user-btn" onclick="toggleDropdown()">
+              <?php echo htmlspecialchars($_SESSION['username']); ?> ⬇
+            </button>
+            <div id="userDropdown" class="user-dropdown">
+              <a href="logout.php" class="logout-btn">Logout</a>
+            </div>
           </div>
-        </div>
-      <?php else: ?>
-        <div class="guest-menu">
-          <a href="login.php" class="btn-login">Login</a>
-          <a href="register.php" class="btn-register">Register</a>
-        </div>
-      <?php endif; ?>
-    </div>
+        <?php else: ?>
+          <div class="guest-menu">
+            <a href="login.php" class="btn-login">Login</a>
+            <a href="register.php" class="btn-register">Register</a>
+          </div>
+        <?php endif; ?>
+      </div>
 
-    <div class="dropdown">
-      <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
-      <div class="dropdown-content" id="kelurahanList">
-        <?php
-        $listKelurahan = include 'kelurahan.php';
-        if (is_array($listKelurahan)) {
-          foreach ($listKelurahan as $nama) {
-            echo "<a href='data.php?kelurahan=" . urlencode($nama) . "'>" 
-               . htmlspecialchars($nama) . "</a>";
+      <!-- Search -->
+      <div class="dropdown">
+        <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
+        <div class="dropdown-content" id="kelurahanList">
+          <?php
+          $listKelurahan = include 'kelurahan.php';
+          if (is_array($listKelurahan)) {
+            foreach ($listKelurahan as $nama) {
+              echo "<a href='data.php?kelurahan=" . urlencode($nama) . "'>" 
+                 . htmlspecialchars($nama) . "</a>";
+            }
+          } else {
+            echo "<p style='color:red;'>⚠️ Gagal load daftar kelurahan</p>";
           }
-        } else {
-          echo "<p style='color:red;'>⚠️ Gagal load daftar kelurahan</p>";
-        }
-        ?>
+          ?>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
+  <!-- Content -->
   <div class="content">
     <h2>Selamat Datang di Statistik Jaktim</h2>
-    <p>📖 Panduan Penggunaan Website Statistik
-1. Cara Masuk ke Website
 
-Buka browser (misalnya Chrome, Edge, atau Firefox).
+    <h3>📖 Panduan Penggunaan Website Statistik</h3>
+    <p>
+      web ini dibuat dengan konsep sederhana agar mudah dipahami oleh siapa pun, baik pengguna yang sudah terbiasa dengan teknologi maupun yang baru pertama kali mencoba. Berikut adalah langkah-langkah yang bisa diikuti:
+    </p>
 
-Ketik alamat website statistik di kolom URL, contoh: http://localhost/statistik.
+    <h4>🔍 Pilih Kelurahan</h4>
+    <ul>
+      <li>Pada bagian kanan atas halaman, terdapat kolom pencarian kelurahan.</li>
+      <li>Ketik nama kelurahan yang ingin dicari, lalu pilih dari daftar yang muncul.</li>
+      <li>Setelah memilih kelurahan, sistem akan otomatis mengarahkan Anda ke halaman berikutnya.</li>
+    </ul>
 
-Tekan Enter, maka halaman utama website akan terbuka.
+    <h4>📂 Pilih Kategori Data</h4>
+    <ul>
+      <li>Setelah memilih kelurahan, Anda akan berada di halaman Pilih Kategori Data.</li>
+      <li>Terdapat beberapa pilihan kategori: Kependudukan, Pendidikan, Ekonomi, dan Kesehatan.</li>
+      <li>Pilih salah satu kategori sesuai kebutuhan Anda.</li>
+    </ul>
 
-2. Navigasi Menu
+    <h4>📊 Tampilkan Data</h4>
+    <ul>
+      <li>Setelah memilih kategori, tekan tombol <b>“Tampilkan Data”</b>.</li>
+      <li>Sistem akan menampilkan grafik serta tabel berisi informasi sesuai kategori yang dipilih.</li>
+      <li>Grafik memudahkan pembaca memahami data secara visual, sedangkan tabel menampilkan detail angka secara lengkap.</li>
+    </ul>
 
-Beranda → Menampilkan ringkasan informasi utama.
+    <h4>🔄 Ganti Kelurahan</h4>
+    <ul>
+      <li>Jika ingin melihat data kelurahan lain, cukup kembali ke kolom pencarian kelurahan dan pilih yang baru.</li>
+      <li>Sistem akan otomatis memuat ulang kategori data untuk kelurahan tersebut.</li>
+    </ul>
 
-Data → Menampilkan tabel data statistik.
+    <h4>📌 Navigasi Tambahan</h4>
+    <ul>
+      <li>Gunakan menu di sidebar untuk menuju halaman <b>Tentang</b> atau <b>Panduan</b>.</li>
+      <li>Halaman ini membantu pengguna memahami aplikasi secara lebih mendalam
 
-Grafik → Menampilkan data dalam bentuk diagram batang, garis, atau pie chart.
-
-Panduan → Menampilkan petunjuk penggunaan website.
-
-3. Melihat Data Statistik
-
-Pilih menu Data.
-
-Gunakan Dropdown Tahun untuk memilih periode data yang ingin ditampilkan.
-
-Gunakan Kolom Pencarian untuk mencari data tertentu dengan cepat.
-
-4. Melihat Grafik Statistik
-
-Pilih menu Grafik.
-
-Pilih jenis grafik yang tersedia (misalnya: diagram batang, garis, atau pie).
-
-Arahkan kursor (hover) ke bagian grafik untuk melihat detail angka.
-
-5. Fitur Tambahan
-
-Ekspor Data → Unduh data ke dalam file Excel/CSV.
-
-Filter Data → Saring data berdasarkan kategori tertentu.
-
-Cetak Laporan → Cetak tabel atau grafik langsung dari browser.
-
-6. Bantuan
-
-Jika mengalami kendala, silakan hubungi admin melalui menu Kontak atau kirim email ke admin@statistik.com.</p>
-  </div>
-
+  <!-- Scripts -->
   <script>
     function toggleSidebar() {
-      const sidebar = document.getElementById("sidebar");
-      sidebar.classList.toggle("hidden");
+      document.getElementById("sidebar").classList.toggle("hidden");
     }
 
     function filterKelurahan() {
