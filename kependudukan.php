@@ -64,6 +64,7 @@ if (is_array($kelurahan)) {
   </div>
 </div>
 
+  <div class="page-wrapper">
     <?php $kelurahan = $_GET['kelurahan'] ?? ''; ?>
 
     <h2>Grafik Statistik Kependudukan - <?php echo htmlspecialchars($kelurahan); ?></h2>
@@ -78,7 +79,7 @@ if (is_array($kelurahan)) {
     <h3>
         Belum ada data? <a href="tambahdata.php?type=kependudukan&kelurahan=<?php echo urlencode($kelurahan); ?>">tambah data</a>
     </h3>
-
+      </div>
     <script>
         async function fetchData() {
             try {
@@ -149,6 +150,14 @@ if (is_array($kelurahan)) {
       <center><a href="data.php?type=<?php echo urlencode($type); ?>&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali">
    ⬅ Kembali ke  Kategori Data 
 </a></center>
+
+<footer>
+  <div class="footer">
+    <p>&copy; Statistik Jakarta Timur.<br>
+    Dikembangkan oleh Sudin Kominfotik Jakarta Timur.<br>
+    Hak Cipta Dilindungi Undang-Undang.</p>
+    </div>
+</footer>
 
 </body>
 </html>

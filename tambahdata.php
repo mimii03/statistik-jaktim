@@ -173,6 +173,7 @@ if (isset($_GET['edit'])) {
     </div>
 </div>
 
+  <div class="page-wrapper">
 <div class="min-h-screen text-gray-800 dark:text-white">
   <main class="max-w-5xl mx-auto p-6">
     <form method="POST" class="space-y-3 mb-10">
@@ -272,8 +273,8 @@ if (isset($_GET['edit'])) {
         ⬅ Kembali ke Data <?php echo ucfirst($type); ?>
       </a>
     </div>
-  </main>
 </div>
+          </div>
 
 <script>
     function toggleSidebar() {
@@ -315,5 +316,15 @@ if (isset($_GET['edit'])) {
        }
    });
 </script>
+
+<footer>
+  <div class="footer">
+    <p>&copy; Statistik Jakarta Timur.<br>
+    Dikembangkan oleh Sudin Kominfotik Jakarta Timur.<br>
+    Hak Cipta Dilindungi Undang-Undang.</p>
+    </div>
+</footer>
+
+
 </body>
 </html>

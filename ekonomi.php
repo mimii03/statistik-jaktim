@@ -75,12 +75,9 @@ if (!isset($_SESSION['login'])) {
       </div>
     </div>
   </div>
-<<<<<<< HEAD
-=======
 </div>
 
->>>>>>> d5b556c4ae15671d858a8a0ad32db6edd460d932
-  
+  <div class="page-wrapper">
   <?php
   $kelurahan = $_GET['kelurahan'];
   ?>
@@ -93,6 +90,7 @@ if (!isset($_SESSION['login'])) {
   <h3>Belum ada data?
   <a href="tambahdata.php?type=ekonomi&kelurahan=<?php echo urlencode($kelurahan); ?>">tambah data</a>
 </h3>
+      </div>
   
   <script>
     function toggleSidebar() {
@@ -186,6 +184,15 @@ window.onclick = function(e) {
   <center><a href="data.php?type=<?php echo urlencode($type); ?>&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali">
    ⬅ Kembali ke  Kategori Data 
 </a></center>
+
+  <footer>
+  <div class="footer">
+    <p>&copy; Statistik Jakarta Timur.<br>
+    Dikembangkan oleh Sudin Kominfotik Jakarta Timur.<br>
+    Hak Cipta Dilindungi Undang-Undang.</p>
+    </div>
+</footer>
+
 
 </body>
 </html>
