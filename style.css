@@ -690,3 +690,46 @@ footer p {
   box-shadow: 0 3px 8px rgba(0,0,0,0.05);
 }
 
+.btn-beranda {
+  display: inline-block;
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #4e73df, #1cc88a);
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.btn-beranda:hover {
+  background: linear-gradient(135deg, #3655b3, #17a673);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-beranda:active {
+  transform: translateY(1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.content-box {
+     background: #fff;
+     border-radius: 12px;
+     padding: 40px;
+     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin: 30px auto;
+    width: 100%;
+     max-width: 1100px;  
+    }
+
+    .section-title {
+      color: #343a40;
+      border-bottom: 2px solid #007bff;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+    
