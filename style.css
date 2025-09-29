@@ -549,10 +549,8 @@ table th {
 /* ====== ANIMASI ====== */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-5px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ================================
+  to { opacity: 1; transform: translateY(0); }
+}/* ================================
    STYLE PANDUAN PENGGUNAAN
 ================================= *//* Style utama kontainer panduan */
 .guide-container {
@@ -561,10 +559,33 @@ table th {
   padding: 20px;
 }
 
-/* Setiap step (ikon + konten) */
+footer {
+  background-color: #0f2341; 
+  color: #e5e5e5;
+  padding: 20px 0 20px;
+  text-align: center;
+}
+
+footer p {
+  margin: 0;
+  font-size: 14px;
+  color: #ddd;
+  line-height: 1.6;}
+
+    .page-wrapper {
+    min-height: calc(100vh - 140px);
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    .page-wrapper {
+      min-height: calc(100vh - 120px);
+      padding-bottom: 60px;
+    }}
+
 .guide-step {
   display: flex;
-  align-items: flex-start;   /* Default: isi rata atas */
+  align-items: flex-start;   
   gap: 20px;
   background: #fff;
   padding: 20px;
@@ -578,8 +599,7 @@ table th {
   transform: translateY(-4px);
   box-shadow: 0 6px 16px rgba(0,0,0,0.12);
 }
-
-/* Ikon step */
+ 
 .step-icon {
   width: 60px;
   height: 60px;
@@ -593,38 +613,33 @@ table th {
   flex-shrink: 0;
   box-shadow: 0 3px 8px rgba(0,0,0,0.15);
 }
-
-/* Konten step */
+ 
 .step-content {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Default: teks mulai dari atas */
-  text-align: center;          /* Biar konsisten rata tengah */
+  justify-content: flex-start;  
+  text-align: center;           
 }
-
-/* Kalau mau isi step ditengah vertikal */
+ 
 .step-content.center {
   justify-content: center;
 }
-
-/* Judul step */
+ 
 .step-content h3 {
   font-size: 20px;
   font-weight: 600;
   color: #333;
   margin-bottom: 10px;
 }
-
-/* Paragraf step */
+ 
 .step-content p {
   font-size: 15px;
   color: #555;
   line-height: 1.6;
   margin-bottom: 8px;
 }
-
-/* Responsif */
+ 
 @media (max-width: 768px) {
   .guide-step {
     flex-direction: column;
@@ -637,16 +652,16 @@ table th {
   }
 
   .step-content {
-    justify-content: flex-start; /* di mobile tetap ke atas */
+    justify-content: flex-start; 
   }
 }
 .guide-title {
-  text-align: center;       /* teks ke tengah */
-  font-size: 28px;          /* biar lebih gede */
-  color: #333;              /* warna teks */
+  text-align: center;        
+  font-size: 28px;         
+  color: #333;             
   margin-bottom: 20px;
   position: relative;
-  display: inline-block;    /* biar garis pas di bawah teks aja */
+  display: inline-block;     
   padding-bottom: 8px;
 }
 
@@ -655,9 +670,9 @@ table th {
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 100%;              /* garis sepanjang teks */
-  height: 4px;              /* tebal garis */
-  background: #4e73df;      /* warna biru */
+  width: 100%;               
+  height: 4px;              
+  background: #4e73df;      
   border-radius: 2px;
 }
 
@@ -666,7 +681,7 @@ table th {
   line-height: 1.8;
   text-align: center;
   color: #444;
-  background: #f1f5ff;       /* biru muda lembut */
+  background: #f1f5ff;        
   border-left: 5px solid #4e73df;
   padding: 15px 20px;
   margin: 20px auto;
@@ -675,28 +690,3 @@ table th {
   box-shadow: 0 3px 8px rgba(0,0,0,0.05);
 }
 
-.btn-beranda {
-  display: inline-block;
-  padding: 12px 25px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #fff;
-  background: linear-gradient(135deg, #4e73df, #1cc88a);
-  border: none;
-  border-radius: 8px;
-  text-decoration: none;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s ease;
-}
-
-.btn-beranda:hover {
-  background: linear-gradient(135deg, #3655b3, #17a673);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-}
-
-.btn-beranda:active {
-  transform: translateY(1px);
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-}

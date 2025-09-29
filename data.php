@@ -59,22 +59,31 @@ include "koneksi.php";
   </div>
 </div>
 
+  <div class="page-wrapper">
   <h1>Pilih Kategori Data</h1>
 
   <div class="centered-container">
 <label for="kategori">Pilih Kategori Data:</label>
 <select id="kategori">
   <option value="">-- Pilih Kategori --</option>
-  <option value="pendidikan">📚 Pendidikan</option>
-  <option value="kependudukan">🧑‍🤝‍🧑 Kependudukan</option>
-  <option value="ekonomi">💼 Ekonomi</option>
-  <option value="kesehatan">🏥 Kesehatan</option>
+  <option value="pendidikan.php">📚 Pendidikan</option>
+  <option value="kependudukan.php">🧑‍🤝‍🧑 Kependudukan</option>
+  <option value="ekonomi.php">💼 Ekonomi</option>
+  <option value="kesehatan.php">🏥 Kesehatan</option>
 </select>
 </div>
 
 <div style="text-align: center; margin-top: 20px;">
   <button onclick="redirectToData()" class="small-btn">Tampilkan Data</button>
 </div>
+      </div>
+<footer>
+  <div class="footer">
+    <p>&copy; Statistik Jakarta Timur.<br>
+    Dikembangkan oleh Sudin Kominfotik Jakarta Timur.<br>
+    Hak Cipta Dilindungi Undang-Undang.</p>
+    </div>
+</footer>
 
   <script>
     function toggleSidebar() {
@@ -94,16 +103,17 @@ include "koneksi.php";
       }
     }
     
-    function redirectToData() {
-      const kelurahan = new URLSearchParams(window.location.search).get('kelurahan');
-      const kategori = document.getElementById("kategori").value;
+function redirectToData() {
+  const kelurahan = new URLSearchParams(window.location.search).get('kelurahan');
+  const kategori = document.getElementById("kategori").value;
 
-      if (kelurahan && kategori) {
-        window.location.href = `${kategori}.php?kelurahan=${kelurahan}`;
-      } else {
-        alert("Silakan pilih kategori data.");
-      }
-    }
+  if (kelurahan && kategori) {
+    window.location.href = `${kategori}?kelurahan=${kelurahan}`;
+  } else {
+    alert("Silakan pilih kategori data.");
+  }
+}
+
   </script>
 
 </body>

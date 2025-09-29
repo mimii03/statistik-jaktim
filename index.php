@@ -58,10 +58,12 @@ session_start();
   </div>
 </div>
 
+  <div class="page-wrapper">
   <div class="content">
     <h2>Selamat Datang di Statistik Jaktim</h2>
     <p>Silakan pilih kategori atau kelurahan dari navigasi di atas.</p>
   </div>
+      </div>
 
   <script>
     function toggleSidebar() {
@@ -97,6 +99,14 @@ session_start();
       }
     }
   </script>
+
+<footer>
+  <div class="footer">
+    <p>&copy; Statistik Jakarta Timur.<br>
+    Dikembangkan oleh Sudin Kominfotik Jakarta Timur.<br>
+    Hak Cipta Dilindungi Undang-Undang.</p>
+    </div>
+</footer>
 
 </body>
 </html>

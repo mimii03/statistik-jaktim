@@ -77,6 +77,7 @@ if (!isset($_SESSION['login'])) {
   </div>
 </div>
 
+  <div class="page-wrapper">
   <h2>Grafik Statistik Kesehatan - <?php echo htmlspecialchars($kelurahan); ?></h2>
   <canvas id="chartKesehatan"></canvas>
   <br>
@@ -90,7 +91,7 @@ if (!isset($_SESSION['login'])) {
   <h3>Belum ada data?
     <a href="tambahdata.php?type=kesehatan&kelurahan=<?php echo urlencode($kelurahan); ?>">tambah data</a>
   </h3>
-
+      </div>
   <script>
     function toggleSidebar() {
       const sidebar = document.getElementById("sidebar");
@@ -196,5 +197,14 @@ if (!isset($_SESSION['login'])) {
       ⬅ Kembali ke Kategori Data
     </a>
   </center>
+
+  <footer>
+  <div class="footer">
+    <p>&copy; Statistik Jakarta Timur.<br>
+    Dikembangkan oleh Sudin Kominfotik Jakarta Timur.<br>
+    Hak Cipta Dilindungi Undang-Undang.</p>
+    </div>
+</footer>
+
 </body>
 </html>

@@ -9,7 +9,6 @@ $conn = mysqli_connect($host, $user, $pass, $db);
 
 $error = '';
 
-// --- Tangkap halaman redirect ---
 if (isset($_GET['redirect'])) {
     $redirect = $_GET['redirect'];
 } elseif (isset($_SERVER['HTTP_REFERER']) 
@@ -33,7 +32,6 @@ if (isset($_POST['login'])) {
         $_SESSION['login'] = true;
         $_SESSION['username'] = $row['username'];
 
-        // ambil dari POST hidden input
         $redirect = isset($_POST['redirect']) ? $_POST['redirect'] : 'index.php';
         header("Location: $redirect");
         exit;

@@ -17,7 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($username === '' || $password === '') {
         $error = "Username & password wajib diisi.";
     } else {
-        // prepared statement untuk keamanan
         $stmt = $conn->prepare("SELECT * FROM admin WHERE username = ? AND kelurahan = ? LIMIT 1");
         if ($stmt) {
             $stmt->bind_param("ss", $username, $kelurahan);
@@ -27,15 +26,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($result && $result->num_rows > 0) {
                 $admin = $result->fetch_assoc();
 
-                // cek password: jika kolom password di DB di-hash pakai password_hash()
                 if (!empty($admin['password']) && password_verify($password, $admin['password'])) {
-                    // login sukses (hash match)
                     $_SESSION['admin'] = $admin['username'];
                     $_SESSION['kelurahan'] = $admin['kelurahan'];
                     header("Location: " . $redirect);
                     exit;
                 } elseif ($admin['password'] === $password) {
-                    // fallback: jika password masih disimpan plaintext di DB
                     $_SESSION['admin'] = $admin['username'];
                     $_SESSION['kelurahan'] = $admin['kelurahan'];
                     header("Location: " . $redirect);

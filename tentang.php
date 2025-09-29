@@ -8,38 +8,10 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tentang</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      background-color: #f8f9fa;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    .content-box {
-     background: #fff;
-     border-radius: 12px;
-     padding: 40px;
-     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    margin: 30px auto;
-    width: 100%;
-     max-width: 1100px;  
-    }
-    .section-title {
-      color: #343a40;
-      border-bottom: 2px solid #007bff;
-      padding-bottom: 10px;
-      margin-bottom: 20px;
-    }
-    .highlight {
-      background-color: #e7f3ff;
-      padding: 15px;
-      border-left: 4px solid #007bff;
-      border-radius: 5px;
-      margin: 20px 0;
-    }
-  </style>
 </head>
 <body>
-
   <div class="sidebar hidden" id="sidebar">
     <a href="tentang.php"> Tentang </a>
     <a href="panduan.php"> Panduan </a>
@@ -87,6 +59,7 @@ session_start();
     </div>
   </div>
 
+<div class="page-wrapper">
 <div class="container-fluid d-flex justify-content-center">
   <div class="content-box">
       <h1 class="mb-4 section-title">Tentang Statistik Jakarta Timur</h1>
@@ -129,7 +102,7 @@ session_start();
       </div>
     </div>
   </div>
-
+        </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     function toggleSidebar() {
@@ -166,5 +139,14 @@ session_start();
       }
     });
   </script>
+
+  <footer>
+  <div class="footer">
+    <p>&copy; Statistik Jakarta Timur.<br>
+    Dikembangkan oleh Sudin Kominfotik Jakarta Timur.<br>
+    Hak Cipta Dilindungi Undang-Undang.</p>
+    </div>
+</footer>
+
 </body>
 </html>

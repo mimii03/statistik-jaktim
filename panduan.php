@@ -60,6 +60,7 @@ session_start();
       </div>
     </div>
   </div>
+    <div class="page-wrapper">
 <div class="content">
   <h2 class="guide-title">📖 Panduan Penggunaan Website Statistik</h2>
 
@@ -120,9 +121,7 @@ session_start();
     </div>
   </div>
 </div>
-
-
-
+        </div>
 
   <!-- Scripts -->
   <script>
@@ -158,6 +157,14 @@ session_start();
       }
     }
   </script>
+
+<footer>
+  <div class="footer">
+    <p>&copy; Statistik Jakarta Timur.<br>
+    Dikembangkan oleh Sudin Kominfotik Jakarta Timur.<br>
+    Hak Cipta Dilindungi Undang-Undang.</p>
+    </div>
+</footer>
 
 </body>
 </html>
