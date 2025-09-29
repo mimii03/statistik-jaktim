@@ -447,23 +447,26 @@ table th {
   position: absolute;
   top: 100%;
   right: 0;
-  background: #fff;
-  min-width: 160px;
-  border-radius: 6px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  background: none;     /* tidak ada background */
+  box-shadow: none;     /* tidak ada bayangan */
+  border: none;
+  padding: 0;
   z-index: 1000;
 }
 
 .user-dropdown a {
-  display: block;
-  padding: 12px 16px;
+  display: inline-block;
+  padding: 12px 26px;   /* lebih besar */
+  background: #4e73df;  /* warna tombol */
+  color: #fff;
+  font-size: 1 rem;   /* teks sedikit lebih besar */
+  border-radius: 20px;  /* oval */
   text-decoration: none;
-  color: #333;
-  font-size: 14px;
+  transition: background 0.2s ease;
 }
 
 .user-dropdown a:hover {
-  background: #f2f2f2;
+  background: #1cc88a;  /* efek hover hijau */
 }
 
 
@@ -475,24 +478,32 @@ table th {
 .user-dropdown.show {
   display: block;
 }
-
+/* ====== ADMIN AUTH WRAPPER ====== */
 .admin-auth {
   position: absolute;
-  top: 15px;
-  right: 20px;
+  top: 8px;              /* jarak dari atas navbar */
+  right: 20px;           /* jarak dari kanan */
   display: flex;
   align-items: center;
-  margin-right: 250px; 
+  gap: 10px;
+  z-index: 2000;        /* turunin dikit dari atas */
 }
 
+/* ====== ADMIN MENU ====== */
+.admin-menu {
+  position: relative;
+}
+
+/* Tombol Admin */
 .admin-btn {
   background: linear-gradient(135deg, #ffa7e5, #128e92);
   color: white;
   border: none;
-  padding: 8px 16px;
+  padding: 10px 18px;
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
+  font-size: 14px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   transition: all 0.3s ease;
 }
@@ -502,16 +513,18 @@ table th {
   transform: translateY(-2px);
 }
 
+/* Dropdown Admin */
 .admin-dropdown {
   display: none;
   position: absolute;
-  top: 45px;
+  top: 120%;              /* turun biar ga nempel tombol */
   right: 0;
   background: white;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.15);
   overflow: hidden;
   z-index: 100;
+  min-width: 150px;
 }
 
 .admin-dropdown a {
@@ -520,6 +533,7 @@ table th {
   color: #333;
   text-decoration: none;
   transition: background 0.2s;
+  font-size: 14px;
 }
 
 .admin-dropdown a:hover {
@@ -532,10 +546,13 @@ table th {
   animation: fadeIn 0.2s ease-in-out;
 }
 
+/* ====== ANIMASI ====== */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-5px); }
-  to { opacity: 1; transform: translateY(0); }
-}/* ================================
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ================================
    STYLE PANDUAN PENGGUNAAN
 ================================= *//* Style utama kontainer panduan */
 .guide-container {
@@ -658,3 +675,28 @@ table th {
   box-shadow: 0 3px 8px rgba(0,0,0,0.05);
 }
 
+.btn-beranda {
+  display: inline-block;
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #4e73df, #1cc88a);
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.btn-beranda:hover {
+  background: linear-gradient(135deg, #3655b3, #17a673);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-beranda:active {
+  transform: translateY(1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}

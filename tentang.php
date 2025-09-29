@@ -124,8 +124,8 @@ session_start();
         </p>
       </div>
 
-      <div class="text-center mt-5">
-        <a href="index.php" class="btn btn-primary btn-lg">Kembali ke Beranda</a>
+    <center> <a href="index.php" class="btn-beranda">🏠 Kembali ke Beranda</a></center>
+
       </div>
     </div>
   </div>

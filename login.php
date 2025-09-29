@@ -12,13 +12,16 @@ $error = '';
 // --- Tangkap halaman redirect ---
 if (isset($_GET['redirect'])) {
     $redirect = $_GET['redirect'];
-} elseif (isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], 'login.php') === false) {
-    // kalau ada halaman sebelumnya, dan bukan login.php
+} elseif (isset($_SERVER['HTTP_REFERER']) 
+          && strpos($_SERVER['HTTP_REFERER'], 'login.php') === false 
+          && strpos($_SERVER['HTTP_REFERER'], 'register.php') === false) {
+    // kalau ada halaman sebelumnya, tapi bukan login.php atau register.php
     $redirect = $_SERVER['HTTP_REFERER'];
 } else {
-    $redirect = 'index.php';
+    $redirect = 'index.php'; // default
 }
 
+// --- Proses login ---
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -57,7 +60,7 @@ if (isset($_POST['login'])) {
       <button type="submit" name="login">Login</button>
     </form>
     <p>Belum punya akun? 
-      <a href="register.php?redirect=<?php echo urlencode($redirect); ?>" class="link-daftar">Daftar</a>
+      <a href="register.php?redirect=index.php" class="link-daftar">Daftar</a>
     </p>
   </div>
 </body>

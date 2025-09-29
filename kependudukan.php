@@ -5,6 +5,13 @@ $kelurahan = $_GET['kelurahan'] ?? '';
 if (is_array($kelurahan)) {
     $kelurahan = reset($kelurahan);
 }
+
+
+if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
+    // kalau belum login, balikin ke login.php
+    header("Location: login.php?redirect=" . urlencode($_SERVER['REQUEST_URI']));
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="id">

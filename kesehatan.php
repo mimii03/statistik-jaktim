@@ -1,10 +1,24 @@
 <?php
-session_start();
-$type = "kesehatan"; 
+$type = "ekonomi"; 
 $kelurahan = $_GET['kelurahan'] ?? '';
 if (is_array($kelurahan)) {
     $kelurahan = reset($kelurahan);
 }
+?>
+
+<?php
+session_start();
+include "koneksi.php";
+
+if (!isset($_SESSION['login'])) {
+    $redirectUrl = "kesehatan.php";
+    if (isset($_GET['kelurahan'])) {
+        $redirectUrl .= "?kelurahan=" . urlencode($_GET['kelurahan']);
+    }
+    header("Location: login.php?redirect=" . urlencode($redirectUrl));
+    exit;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="id">

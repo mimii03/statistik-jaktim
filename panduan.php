@@ -112,6 +112,10 @@ session_start();
         <h3>Navigasi Tambahan</h3>
         <p>Gunakan menu di sidebar untuk menuju halaman <b>Tentang</b> atau <b>Panduan</b>.</p>
         <p>Halaman ini membantu pengguna memahami aplikasi secara lebih mendalam.</p>
+      </div> 
+      </div>
+      <center> <a href="index.php" class="btn-beranda">🏠 Kembali ke Beranda</a></center>
+
       </div>
     </div>
   </div>
