@@ -90,7 +90,9 @@ if (!isset($_SESSION['login'])) {
   <canvas id="chartPendidikan"></canvas>
   <br>
   <center>
-<a href="download_json.php?kategori=pendidikan&kelurahan=Pulo Gebang">pppppDownload CSV</a>
+<a href="download_json.php?kategori=pendidikan&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-download">
+    Download CSV
+</a>
   </center>
   <center>
     <button class="btn-download" data-chart="chartPendidikan">📥 Download PNG</button>

@@ -13,5 +13,10 @@
         "kelurahan": "Pulo Gebang",
         "fasilitas_kesehatan": "rumah sakit",
         "jumlah": 3
+    },
+    {
+        "kelurahan": "Pulogadung",
+        "fasilitas_kesehatan": "Apotik",
+        "jumlah": 9
     }
 ]

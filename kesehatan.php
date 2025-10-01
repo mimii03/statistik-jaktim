@@ -82,10 +82,12 @@ if (!isset($_SESSION['login'])) {
   <canvas id="chartKesehatan"></canvas>
   <br>
   <center>
-    <a href="download.php?kategori=kesehatan&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-download">⬇️ Download CSV</a>
+<a href="download_json.php?kategori=kesehatan&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-download">
+    Download CSV
+</a>
   </center>
   <center>
-    <button class="btn-download" data-chart="chartKesehatan">📥 Download PNG</button>
+    <button class="btn-download" data-chart="chartPendidikan">📥 Download PNG</button>
   </center>
 
   <h3>Belum ada data?

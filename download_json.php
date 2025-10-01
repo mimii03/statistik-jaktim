@@ -1,62 +1,64 @@
 <?php
-// Ambil parameter dari URL
-$kategori  = isset($_GET['kategori']) ? $_GET['kategori'] : '';
-$kelurahan = isset($_GET['kelurahan']) ? $_GET['kelurahan'] : '';
+$kategori  = $_GET['kategori'] ?? '';
+$kelurahan = $_GET['kelurahan'] ?? '';
 
 if ($kategori == '' || $kelurahan == '') {
     die("Parameter tidak lengkap!");
 }
 
-// Tentukan nama file JSON dan key label
 switch ($kategori) {
     case 'pendidikan':
-        $json_file = 'data_pendidikan.json';
-        $label_key = 'jenis_pendidikan';
-        break;
-    case 'ekonomi':
-        $json_file = 'data_ekonomi.json';
-        $label_key = 'jenis_usaha';
-        break;
-    case 'kesehatan':
-        $json_file = 'data_kesehatan.json';
-        $label_key = 'fasilitas';
+        $file  = 'data_pendidikan.json';
+        $label = 'jenjang';
         break;
     case 'kependudukan':
-        $json_file = 'data_kependudukan.json';
-        $label_key = 'kelompok_umur';
+        $file  = 'data_kependudukan.json';
+        $label = 'kelompok_umur';
+        break;
+    case 'kesehatan':
+        $file  = 'data_kesehatan.json';
+        $label = 'fasilitas';
+        break;
+    case 'ekonomi':
+        $file  = 'data_ekonomi.json';
+        $label = 'jenis_usaha';
         break;
     default:
         die("Kategori tidak valid!");
 }
 
-// Baca file JSON
-if (!file_exists($json_file)) {
-    die("File JSON tidak ditemukan: " . $json_file);
+if (!file_exists($file)) {
+    die("File data tidak ditemukan!");
 }
-$json_data = file_get_contents($json_file);
-$data = json_decode($json_data, true);
 
+$data = json_decode(file_get_contents($file), true);
 if ($data === null) {
-    die("Format JSON tidak valid di file: " . $json_file);
+    die("Format JSON tidak valid!");
 }
 
-// Filter data sesuai kelurahan
+// Filter kelurahan
 $filtered = array_filter($data, function ($row) use ($kelurahan) {
-    return isset($row['kelurahan']) && $row['kelurahan'] === $kelurahan;
+    return isset($row['kelurahan']) 
+        && strtolower(trim($row['kelurahan'])) === strtolower(trim($kelurahan));
 });
 
-// Header untuk download CSV
+// Set header CSV
 header("Content-Type: text/csv; charset=utf-8");
 header("Content-Disposition: attachment; filename={$kategori}_{$kelurahan}.csv");
 
-// Tulis CSV ke output
+// Buka output
 $output = fopen("php://output", "w");
-fputcsv($output, ['Label', 'Jumlah']);
 
+// Header kolom (pakai titik koma ;)
+fputcsv($output, ['Kelurahan', ucfirst($label), 'Jumlah'], ';');
+
+// Isi data baris per baris
 foreach ($filtered as $row) {
-    if (isset($row[$label_key], $row['jumlah'])) {
-        fputcsv($output, [$row[$label_key], $row['jumlah']]);
-    }
+    fputcsv($output, [
+        $row['kelurahan'] ?? '',
+        $row[$label] ?? '',
+        $row['jumlah'] ?? ''
+    ], ';');
 }
 
 fclose($output);

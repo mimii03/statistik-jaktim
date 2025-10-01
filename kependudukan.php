@@ -1,16 +1,24 @@
 <?php
-session_start();
-$type = "kependudukan";
+$type = "ekonomi"; 
 $kelurahan = $_GET['kelurahan'] ?? '';
 if (is_array($kelurahan)) {
     $kelurahan = reset($kelurahan);
 }
+?>
 
+<?php
+session_start();
+include "koneksi.php";
 
-if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
-    header("Location: login.php?redirect=" . urlencode($_SERVER['REQUEST_URI']));
+if (!isset($_SESSION['login'])) {
+    $redirectUrl = "kependudukan.php";
+    if (isset($_GET['kelurahan'])) {
+        $redirectUrl .= "?kelurahan=" . urlencode($_GET['kelurahan']);
+    }
+    header("Location: login.php?redirect=" . urlencode($redirectUrl));
     exit;
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -70,22 +78,24 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
   </div>
 </div>
 
-  <div class="page-wrapper">
     <?php $kelurahan = $_GET['kelurahan'] ?? ''; ?>
 
     <h2>Grafik Statistik Kependudukan - <?php echo htmlspecialchars($kelurahan); ?></h2>
     <canvas id="chartKependudukan"></canvas>
-    <br />
-    <center>
-        <a href="download.php?kategori=kependudukan&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-download">⬇️ Download CSV</a>
-    </center>
-    <center>
-        <button class="btn-download" data-chart="chartKependudukan">📥 Download PNG</button>
-    </center>
+     <br>
+  <center>
+<a href="download_json.php?kategori=kependudukan&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-download">
+    Download CSV
+</a>
+  </center>
+  <center>
+    <button class="btn-download" data-chart="chartPendidikan">📥 Download PNG</button>
+  </center>
+
     <h3>
         Belum ada data? <a href="tambahdata.php?type=kependudukan&kelurahan=<?php echo urlencode($kelurahan); ?>">tambah data</a>
     </h3>
-      </div>
+
     <script>
         async function fetchData() {
             try {
@@ -152,34 +162,10 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
         }
 
         renderChart();
-
-        function toggleDropdown() {
-    document.getElementById("userDropdown").classList.toggle("show");
-  }
-
-  window.onclick = function(e) {
-    if (!e.target.matches('.user-btn')) {
-      let dropdowns = document.getElementsByClassName("user-dropdown");
-      for (let i = 0; i < dropdowns.length; i++) {
-        let openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-          openDropdown.classList.remove('show');
-        }
-      }
-    }
-  }
     </script>
       <center><a href="data.php?type=<?php echo urlencode($type); ?>&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali">
    ⬅ Kembali ke  Kategori Data 
 </a></center>
-
-<footer>
-  <div class="footer">
-    <p>&copy; Statistik Jakarta Timur.<br>
-    Dikembangkan oleh Sudin Kominfotik Jakarta Timur.<br>
-    Hak Cipta Dilindungi Undang-Undang.</p>
-    </div>
-</footer>
 
 </body>
 </html>

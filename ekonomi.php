@@ -83,9 +83,15 @@ if (!isset($_SESSION['login'])) {
   ?>
   <h2>Grafik Statistik Ekonomi - <?php echo htmlspecialchars($kelurahan); ?></h2>
   <canvas id="chartEkonomi"></canvas>
-  <br>
-  <center><a href="download.php?kategori=ekonomi&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-download">⬇️ Download CSV</a></center>?
-  <center><button class="btn-download" data-chart="chartEkonomi">📥 Download PNG</button></center>
+    <br>
+  <center>
+<a href="download_json.php?kategori=ekonomi&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-download">
+    Download CSV
+</a>
+  </center>
+  <center>
+    <button class="btn-download" data-chart="chartPendidikan">📥 Download PNG</button>
+  </center>
 
   <h3>Belum ada data?
   <a href="tambahdata.php?type=ekonomi&kelurahan=<?php echo urlencode($kelurahan); ?>">tambah data</a>

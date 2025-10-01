@@ -38,5 +38,10 @@
         "kelurahan": "Pulogadung",
         "fasilitas": "Warung",
         "jumlah": 1
+    },
+    {
+        "kelurahan": "Pulogadung",
+        "fasilitas": "Supermarket",
+        "jumlah": 5
     }
 ]
