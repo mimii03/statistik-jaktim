@@ -10,5 +10,11 @@
         "jenis_kelamin": "Laki-laki",
         "kelompok_umur": "00-04",
         "jumlah_penduduk": 341
+    },
+    {
+        "kelurahan": "Pulogadung",
+        "jenis_kelamin": "Laki-laki",
+        "kelompok_umur": "20-24",
+        "jumlah_penduduk": 10
     }
 ]

@@ -14,7 +14,6 @@ if (isset($_GET['redirect'])) {
 } elseif (isset($_SERVER['HTTP_REFERER']) 
           && strpos($_SERVER['HTTP_REFERER'], 'login.php') === false 
           && strpos($_SERVER['HTTP_REFERER'], 'register.php') === false) {
-    // kalau ada halaman sebelumnya, tapi bukan login.php atau register.php
     $redirect = $_SERVER['HTTP_REFERER'];
 } else {
     $redirect = 'index.php'; // default
@@ -24,6 +23,7 @@ if (isset($_GET['redirect'])) {
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
+    $redirect = $_POST['redirect'] ?? 'index.php';
 
     $result = mysqli_query($conn, "SELECT * FROM users WHERE username='$username'");
     $row = mysqli_fetch_assoc($result);
@@ -32,7 +32,6 @@ if (isset($_POST['login'])) {
         $_SESSION['login'] = true;
         $_SESSION['username'] = $row['username'];
 
-        $redirect = isset($_POST['redirect']) ? $_POST['redirect'] : 'index.php';
         header("Location: $redirect");
         exit;
     } else {
@@ -58,7 +57,7 @@ if (isset($_POST['login'])) {
       <button type="submit" name="login">Login</button>
     </form>
     <p>Belum punya akun? 
-      <a href="register.php?redirect=index.php" class="link-daftar">Daftar</a>
+      <a href="register.php?redirect=<?php echo urlencode($redirect); ?>" class="link-daftar">Daftar</a>
     </p>
   </div>
 </body>

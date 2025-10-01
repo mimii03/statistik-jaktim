@@ -36,5 +36,25 @@
         "kelurahan": "Pulogadung",
         "jenjang": "MA",
         "jumlah": 10
+    },
+    {
+        "kelurahan": "Pulogadung",
+        "jenjang": "SMK",
+        "jumlah": 13
+    },
+    {
+        "kelurahan": "Pulogadung",
+        "jenjang": "SMP",
+        "jumlah": 15
+    },
+    {
+        "kelurahan": "Pulogadung",
+        "jenjang": "MTS",
+        "jumlah": 3
+    },
+    {
+        "kelurahan": "Pulogadung",
+        "jenjang": "SMA",
+        "jumlah": 15
     }
 ]

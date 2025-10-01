@@ -77,6 +77,7 @@ include "koneksi.php";
   <button onclick="redirectToData()" class="small-btn">Tampilkan Data</button>
 </div>
       </div>
+      
 <footer>
   <div class="footer">
     <p>&copy; Statistik Jakarta Timur.<br>
@@ -114,6 +115,22 @@ function redirectToData() {
   }
 }
 
+function toggleDropdown() {
+    document.getElementById("userDropdown").classList.toggle("show");
+  }
+
+  window.onclick = function(e) {
+    if (!e.target.matches('.user-btn')) {
+      let dropdowns = document.getElementsByClassName("user-dropdown");
+      for (let i = 0; i < dropdowns.length; i++) {
+        let openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
+  
   </script>
 
 </body>
