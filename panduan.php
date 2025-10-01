@@ -20,24 +20,24 @@ session_start();
     <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
     <a href="index.php" class="beranda-link">Beranda</a>
 
-  <div class="right-section">
-    <div class="auth-buttons">
-      <?php if(isset($_SESSION['username'])): ?>
-        <div class="user-menu">
-          <button class="user-btn" onclick="toggleDropdown()">
-            <?php echo htmlspecialchars($_SESSION['username']); ?> ⬇
-          </button>
-          <div id="userDropdown" class="user-dropdown">
-            <a href="logout.php" class="logout-btn">Logout</a>
+    <div class="right-section">
+      <div class="auth-buttons" style="margin-bottom: 15px;">
+        <?php if(isset($_SESSION['username'])): ?>
+          <div class="user-menu">
+            <button class="user-btn" onclick="toggleDropdown()">
+              <?php echo htmlspecialchars($_SESSION['username']); ?> ⬇
+            </button>
+            <div id="userDropdown" class="user-dropdown">
+              <a href="logout.php" class="logout-btn">Logout</a>
+            </div>
           </div>
-        </div>
-      <?php else: ?>
-        <div class="guest-menu">
-          <a href="login.php" class="btn-login">Login</a>
-          <a href="register.php" class="btn-register">Register</a>
-        </div>
-      <?php endif; ?>
-    </div>
+        <?php else: ?>
+          <div class="guest-menu">
+            <a href="login.php" class="btn-login">Login</a>
+            <a href="register.php" class="btn-register">Register</a>
+          </div>
+        <?php endif; ?>
+      </div>
 
       <div class="dropdown">
         <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
