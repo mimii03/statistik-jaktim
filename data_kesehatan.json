@@ -8,5 +8,10 @@
         "kelurahan": "Pulogadung",
         "fasilitas_kesehatan": "Rumah Sakit",
         "jumlah": 6
+    },
+    {
+        "kelurahan": "Pulo Gebang",
+        "fasilitas_kesehatan": "rumah sakit",
+        "jumlah": 3
     }
 ]

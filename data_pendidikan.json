@@ -15,7 +15,7 @@
     {
         "kelurahan": "Pulo Gebang",
         "jenjang": "MTS",
-        "jumlah": 52
+        "jumlah": 4
     },
     {
         "kelurahan": "Pulogadung",
@@ -56,5 +56,10 @@
         "kelurahan": "Pulogadung",
         "jenjang": "SMA",
         "jumlah": 15
+    },
+    {
+        "kelurahan": "Pulo Gebang",
+        "jenjang": "SMP",
+        "jumlah": 7
     }
 ]
