@@ -8,6 +8,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = trim($_POST["password"]);
     $confirm  = trim($_POST["confirm"]);
 
+    $redirect = $_POST['redirect'] ?? ($_GET['redirect'] ?? 'index.php');
+
     if (empty($username) || empty($email) || empty($password) || empty($confirm)) {
         $error = "Semua field harus diisi!";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -23,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $query = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$hashed')";
             if (mysqli_query($conn, $query)) {
-                header("Location: login.php");
+                header("Location: login.php?redirect=" . urlencode($redirect));
                 exit;
             } else {
                 $error = "Gagal mendaftar. Coba lagi.";
@@ -48,13 +50,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h2>Register</h2>
         <?php if (!empty($error)) { echo "<p class='error'>$error</p>"; } ?>
         <form method="POST" action="">
+            <input type="hidden" name="redirect" value="<?= htmlspecialchars($_GET['redirect'] ?? 'index.php'); ?>">
             <input type="text" name="username" placeholder="Username" value="<?= htmlspecialchars($username ?? '') ?>">
             <input type="text" name="email" placeholder="Email" value="<?= htmlspecialchars($email ?? '') ?>">
             <input type="password" name="password" placeholder="Password">
             <input type="password" name="confirm" placeholder="Konfirmasi Password">
             <button type="submit">Daftar</button>
         </form>
-        <p>Sudah punya akun? <a href="login.php" class="link-daftar">Login</a></p>
+        <p>Sudah punya akun? 
+            <a href="login.php?redirect=<?= urlencode($_GET['redirect'] ?? 'index.php'); ?>" class="link-daftar">Login</a>
+        </p>
     </div>
 </body>
 </html>

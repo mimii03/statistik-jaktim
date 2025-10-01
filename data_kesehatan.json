@@ -3,5 +3,10 @@
         "kelurahan": "Pulo Gebang",
         "fasilitas_kesehatan": "puskesmas",
         "jumlah": 5
+    },
+    {
+        "kelurahan": "Pulogadung",
+        "fasilitas_kesehatan": "Rumah Sakit",
+        "jumlah": 6
     }
 ]

@@ -76,5 +76,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       ⬅ Kembali ke Data <?php echo htmlspecialchars(ucfirst($kelurahan)); ?>
     </a>
   </div>
+
+  <script>
+    document.querySelector('form').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    this.submit();
+  }
+});
+  </script>
 </body>
 </html>

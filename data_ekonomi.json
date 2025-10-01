@@ -33,5 +33,10 @@
         "kelurahan": "Pulo Gebang",
         "fasilitas": "Toko",
         "jumlah": 4
+    },
+    {
+        "kelurahan": "Pulogadung",
+        "fasilitas": "Warung",
+        "jumlah": 1
     }
 ]

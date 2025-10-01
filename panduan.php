@@ -11,13 +11,11 @@ session_start();
 </head>
 <body>
 
-  <!-- Sidebar -->
   <div class="sidebar hidden" id="sidebar">
     <a href="tentang.php"> Tentang </a>
     <a href="panduan.php"> Panduan </a>
   </div>
 
-  <!-- Navbar -->
   <div class="navbar">
     <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
     <a href="index.php" class="beranda-link">Beranda</a>
@@ -41,7 +39,6 @@ session_start();
       <?php endif; ?>
     </div>
 
-      <!-- Search -->
       <div class="dropdown">
         <input type="text" class="search-input" id="searchKel" onkeyup="filterKelurahan()" placeholder="Cari kelurahan...">
         <div class="dropdown-content" id="kelurahanList">
@@ -123,7 +120,6 @@ session_start();
 </div>
         </div>
 
-  <!-- Scripts -->
   <script>
     function toggleSidebar() {
       document.getElementById("sidebar").classList.toggle("hidden");

@@ -8,7 +8,6 @@ if (is_array($kelurahan)) {
 
 
 if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
-    // kalau belum login, balikin ke login.php
     header("Location: login.php?redirect=" . urlencode($_SERVER['REQUEST_URI']));
     exit;
 }
@@ -153,6 +152,22 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
         }
 
         renderChart();
+
+        function toggleDropdown() {
+    document.getElementById("userDropdown").classList.toggle("show");
+  }
+
+  window.onclick = function(e) {
+    if (!e.target.matches('.user-btn')) {
+      let dropdowns = document.getElementsByClassName("user-dropdown");
+      for (let i = 0; i < dropdowns.length; i++) {
+        let openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
     </script>
       <center><a href="data.php?type=<?php echo urlencode($type); ?>&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali">
    ⬅ Kembali ke  Kategori Data 
