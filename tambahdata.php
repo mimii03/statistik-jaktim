@@ -188,12 +188,22 @@ if (isset($_GET['edit'])) {
         <input type="number" name="jumlah" placeholder="Jumlah" value="<?= $edit_data['jumlah'] ?? '' ?>" required class="w-full px-3 py-2 border rounded">
 
       <?php elseif ($type == 'kesehatan'): ?>
-        <input type="text" name="fasilitas_kesehatan" placeholder="Nama Fasilitas" value="<?= $edit_data['fasilitas_kesehatan'] ?? '' ?>" required class="w-full px-3 py-2 border rounded">
-        <input type="number" name="jumlah_kesehatan" placeholder="Jumlah" value="<?= $edit_data['jumlah'] ?? '' ?>" required class="w-full px-3 py-2 border rounded">
+        <select name="fasilitas_kesehatan" required class="w-full px-3 py-2 border rounded">
+        <option value="">Pilih Fasilitas Kesehatan</option>
+        <?php foreach (['Rumah Sakit','Puskesmas','Pos Kesehatan','Klinik Kesehatan','Tempat Praktek Dokter','Tempat Praktek Bidan','Apotik','Toko Obat'] as $k): ?>
+          <option value="<?= $k ?>" <?= isset($edit_data['fasilitas_kesehatan']) && $edit_data['fasilitas_kesehatan'] === $k ? 'selected' : '' ?>><?= $k ?></option>
+        <?php endforeach ?>
+      </select>
+      <input type="number" name="jumlah_kesehatan" placeholder="Jumlah" value="<?= $edit_data['jumlah'] ?? '' ?>" required class="w-full px-3 py-2 border rounded">
 
       <?php elseif ($type == 'ekonomi'): ?>
-        <input type="text" name="fasilitas" placeholder="Nama Fasilitas Ekonomi" value="<?= $edit_data['fasilitas'] ?? '' ?>" required class="w-full px-3 py-2 border rounded">
-        <input type="number" name="jumlah_fasilitas" placeholder="Jumlah" value="<?= $edit_data['jumlah'] ?? '' ?>" required class="w-full px-3 py-2 border rounded">
+        <select name="fasilitas" required class="w-full px-3 py-2 border rounded">
+        <option value="">Pilih Fasilitas Ekonomi</option>
+        <?php foreach (['Pasar Lingkungan','Mini Market','Pabrik Industri','Toko','Warung/Warteg','Lokasi Kaki Lima','Bank','POM Bensin','Kuliner'] as $e): ?>
+          <option value="<?= $e ?>" <?= isset($edit_data['fasilitas']) && $edit_data['fasilitas'] === $e ? 'selected' : '' ?>><?= $e ?></option>
+        <?php endforeach ?>
+      </select>
+      <input type="number" name="jumlah_fasilitas" placeholder="Jumlah" value="<?= $edit_data['jumlah'] ?? '' ?>" required class="w-full px-3 py-2 border rounded">
 
       <?php elseif ($type == 'kependudukan'): ?>
         <select name="jenis_kelamin" required class="w-full px-3 py-2 border rounded">
