@@ -87,7 +87,7 @@ if (!isset($_SESSION['login'])) {
 </a>
   </center>
   <center>
-    <button class="btn-download" data-chart="chartPendidikan">📥 Download PNG</button>
+    <button class="btn-download" data-chart="chartKesehatan">📥 Download PNG</button>
   </center>
 
   <h3>Belum ada data?

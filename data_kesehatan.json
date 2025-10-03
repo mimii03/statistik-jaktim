@@ -18,5 +18,10 @@
         "kelurahan": "Pulogadung",
         "fasilitas_kesehatan": "Apotik",
         "jumlah": 9
+    },
+    {
+        "kelurahan": "Pulo Gebang",
+        "fasilitas_kesehatan": "Tempat Praktek Bidan",
+        "jumlah": 3
     }
 ]

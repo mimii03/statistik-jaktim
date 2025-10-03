@@ -43,5 +43,15 @@
         "kelurahan": "Pulogadung",
         "fasilitas": "Supermarket",
         "jumlah": 5
+    },
+    {
+        "kelurahan": "Pulo Gebang",
+        "fasilitas": "Kuliner",
+        "jumlah": 10
+    },
+    {
+        "kelurahan": "Pulo Gebang",
+        "fasilitas": "Warung\/Warteg",
+        "jumlah": 7
     }
 ]

@@ -83,15 +83,9 @@ if (!isset($_SESSION['login'])) {
   ?>
   <h2>Grafik Statistik Ekonomi - <?php echo htmlspecialchars($kelurahan); ?></h2>
   <canvas id="chartEkonomi"></canvas>
-    <br>
-  <center>
-<a href="download_json.php?kategori=ekonomi&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-download">
-    Download CSV
-</a>
-  </center>
-  <center>
-    <button class="btn-download" data-chart="chartPendidikan">📥 Download PNG</button>
-  </center>
+  <br>
+  <center><a href="download.php?kategori=ekonomi&kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-download">Download CSV</a></center>?
+  <center><button class="btn-download" data-chart="chartEkonomi">📥 Download PNG</button></center>
 
   <h3>Belum ada data?
   <a href="tambahdata.php?type=ekonomi&kelurahan=<?php echo urlencode($kelurahan); ?>">tambah data</a>
@@ -167,6 +161,7 @@ if (!isset($_SESSION['login'])) {
         link.click();
       });
     });
+
   </script>
 
    <script>
@@ -174,7 +169,6 @@ function toggleDropdown() {
   document.getElementById("userDropdown").classList.toggle("show");
 }
 
-// Tutup dropdown kalau klik di luar
 window.onclick = function(e) {
   if (!e.target.matches('.user-btn')) {
     let dropdowns = document.getElementsByClassName("user-dropdown");

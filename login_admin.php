@@ -69,21 +69,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <input type="hidden" name="redirect" value="<?php echo htmlspecialchars($redirect); ?>">
       <input type="text" name="username" placeholder="Username" autocomplete="username" required>
       <input type="password" name="password" placeholder="Password" required>
-      <button type="submit" name="login">Login</button>
+      <button type="submit" name="login" value="1">Login</button>
     </form>
 
     <a href="data.php?kelurahan=<?php echo urlencode($kelurahan); ?>" class="btn-kembali">
       ⬅ Kembali ke Data <?php echo htmlspecialchars(ucfirst($kelurahan)); ?>
     </a>
   </div>
-
-  <script>
-    document.querySelector('form').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') {
-    e.preventDefault();
-    this.submit();
-  }
-});
-  </script>
 </body>
 </html>

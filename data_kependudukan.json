@@ -34,5 +34,35 @@
         "jenis_kelamin": "Laki-laki",
         "kelompok_umur": "45-49",
         "jumlah_penduduk": 6
+    },
+    {
+        "kelurahan": "Pulogadung",
+        "jenis_kelamin": "Laki-laki",
+        "kelompok_umur": "00-04",
+        "jumlah_penduduk": 23
+    },
+    {
+        "kelurahan": "Pulogadung",
+        "jenis_kelamin": "Perempuan",
+        "kelompok_umur": "20-24",
+        "jumlah_penduduk": 15
+    },
+    {
+        "kelurahan": "Pulogadung",
+        "jenis_kelamin": "Laki-laki",
+        "kelompok_umur": "55-59",
+        "jumlah_penduduk": 3
+    },
+    {
+        "kelurahan": "Pulo Gebang",
+        "jenis_kelamin": "Laki-laki",
+        "kelompok_umur": "00-04",
+        "jumlah_penduduk": 125
+    },
+    {
+        "kelurahan": "Pulo Gebang",
+        "jenis_kelamin": "Laki-laki",
+        "kelompok_umur": "20-24",
+        "jumlah_penduduk": 315
     }
 ]
